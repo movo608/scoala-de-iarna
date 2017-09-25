@@ -21,10 +21,10 @@ class ApiController extends Controller
 	public function beforeAction($action)
 	{            
 	    switch ($action->id) {
-	    	case 'create-cat':
+	    	case 'get-logged-navbar':
 	    		$this->enableCsrfValidation = false;
 	    		break;
-	    	case 'create-website':
+	    	case 'get-not-logged-navbar':
 	    		$this->enableCsrfValidation = false;
 	    		break;
 	    }
@@ -35,38 +35,10 @@ class ApiController extends Controller
 	/**
 	 * Extracts the entries from the `buttons_navbar_logged` table
 	 */
-	public function actionGetNavbar()
+	public function actionGetLoggedNavbar()
 	{
 		$buttonsModel = ButtonsNavbar::find()->all();
 
 		return Json::encode($buttonsModel);
-	}
-
-	/**
-	 * Extracts the entries from the `buttons_navbar_not_logged` table
-	 */
-	public function actionGetLoggedNavbar()
-	{
-		$loggedButtonsModel = ButtonsNavbarNotLogged::find()->all();
-
-		return Json::encode($loggedButtonsModel);
-	}
-
-	/**
-	* Gets the posts from a category.
-	* Category id provided in URL.
-	* URL format: web/api/get-web-from-cat?id={:id}
-	*/
-	public function actionGetWebFromCat($id, $result = [])
-	{
-		$links = CategoriesWebsitesLink::find()->where(['category_id' => $id])->all();
-
-		$iterator = (int) 0;
-		foreach ($links as $link) {
-			$result[$iterator] = Websites::find()->where(['id' => $link->website_id])->one();
-			$iterator++;
-		}
-
-		return Json::encode($result);
 	}
 }

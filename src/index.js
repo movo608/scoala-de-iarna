@@ -12,6 +12,7 @@ import App from './containers/App'
 import reducer from './reducers'
 import Login from './containers/Login.jsx'
 import Browse from './containers/Browse.jsx'
+import CreateCategories from './containers/CreateCategories.js'
 import logger from 'redux-logger'
 
 const middleware = applyMiddleware(thunkMiddleware);
@@ -31,6 +32,7 @@ render(
                   <Route exact path='/' render={() => <LandingLayout><App /></LandingLayout>}/>
                   <Route exact path='/login' render={() => <LandingLayout><Login /></LandingLayout>}/>
                   <Route exact path='/browse' render={() => <LandingLayout><Browse /></LandingLayout>} />
+                  <Route exact path='/create/category' render={() => <LandingLayout><CreateCategories /></LandingLayout>} />
               </Switch>
           </div>
       </Router>
