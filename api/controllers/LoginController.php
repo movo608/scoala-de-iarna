@@ -55,6 +55,9 @@ class LoginController extends Controller
 	    if ($action->id == 'login') {
 	        $this->enableCsrfValidation = false;
 	    }
+	    if ($action->id == 'logout') {
+	    	$this->enableCsrfValidation = false;
+	    }
 
 	    return parent::beforeAction($action);
 	}
@@ -81,7 +84,7 @@ class LoginController extends Controller
 					$user->is_logged = 1;
 					$user->save(false, ['is_logged']);
 					
-					return Json::encode(['status' => true, 'data' => 'success']);
+					return Json::encode(['status' => true, 'data' => 'success', 'userId' => $user->id, 'username' => $user->email]);
 				} else {
 					return Json::encode(['status' => false, 'data' => 'error_invalid_credentials']);
 				}
@@ -91,6 +94,24 @@ class LoginController extends Controller
 
 		} else {
 			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Logs an user out, rendering the (model)$user -> `is_logged` to 0 
+	 */
+	public function actionLogout() {
+
+		if (Yii::$app->request->get()) {
+			$model = User::find()->where(['id' => Yii::$app->request->get('id')])->one();
+			$model->is_logged = 0;
+			if ($model->save(false)) {
+				return Json::encode(['status' => true, 'data' => 'success_user_user_logged_out']);
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_user_not_logged_out']);
+			}
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_not_request']);
 		}
 	}
 

@@ -5,22 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "buttons_navbar".
+ * This is the model class for table "posts".
  *
  * @property integer $id
+ * @property integer $category_id
  * @property string $name
- * @property string $value_en
- * @property string $value_ro
- * @property string $value_hu
+ * @property string $body
  */
-class ButtonsNavbar extends \yii\db\ActiveRecord
+class Posts extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'buttons_navbar_logged';
+        return 'posts';
     }
 
     /**
@@ -29,9 +28,10 @@ class ButtonsNavbar extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'value'], 'required'],
-            [['name', 'value'], 'string', 'max' => 32],
-            [['name'], 'unique'],
+            [['category_id', 'name', 'body'], 'required'],
+            [['category_id'], 'integer'],
+            [['body'], 'string'],
+            [['name'], 'string', 'max' => 64],
         ];
     }
 
@@ -42,8 +42,9 @@ class ButtonsNavbar extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'category_id' => 'Category ID',
             'name' => 'Name',
-            'value' => 'Value'
+            'body' => 'Body',
         ];
     }
 }

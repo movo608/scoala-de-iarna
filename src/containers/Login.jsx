@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { userLogin } from '../actions/index'
-import { createHashHistory } from 'history';
+import { createHashHistory } from 'history'
+import { bindActionCreators } from 'redux'
 
 const customHistory = createHashHistory();
 
 class Login extends Component {
     constructor(props) {
         super(props);
+
 		this.state = {
 			email : '',
 			password: ''
-		}
+		};
 
 		this.changeEmail = this.changeEmail.bind(this);
 		this.changePassword = this.changePassword.bind(this);
@@ -26,13 +28,14 @@ class Login extends Component {
 		this.setState({password : e.target.value});
 	}
 
-	submitLogin(){
+	submitLogin() {
 		const { dispatch } = this.props;
-		dispatch(userLogin(this.state.email, this.state.password));
-		if(this.props.users.isLoggedIn) {
+		this.props.userLogin(this.state.email, this.state.password);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.users.isLoggedIn === true) {
 			customHistory.push('/browse');
-		}else {
-			alert("Invalid email or address");
 		}
 	}
 
@@ -43,15 +46,15 @@ class Login extends Component {
                     <div className="form-signin">
                         <h2 className="form-signin-heading">Please sign in</h2>
                         <label className="sr-only">Email address</label>
-                        <input onChange={this.changeEmail}type="email" id="inputEmail" className="form-control" placeholder="Email address" required="" />
+                        <input onChange={ this.changeEmail } type="email" id="inputEmail" className="form-control" placeholder="Email address" required="" />
 						<label className="sr-only">Password</label>
-						<input onChange={this.changePassword}type="password" id="inputPassword" className="form-control" placeholder="Password" required="" />
+						<input onChange={ this.changePassword } type="password" id="inputPassword" className="form-control" placeholder="Password" required="" />
 						<div className="checkbox">
 							<label>
 								<input type="checkbox" value="remember-me" /> Remember me
 							</label>
 						</div>
-						<button onClick={this.submitLogin} className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+						<button onClick={ this.submitLogin } className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                     </div>
                 </div>
             </div>
@@ -59,10 +62,14 @@ class Login extends Component {
     }
 }
 
-function select(state) {
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ userLogin }, dispatch);
+}
+
+function mapStateToProps(state) {
 	return {
 		users: state.users
 	}
 }
 
-export default connect(select)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

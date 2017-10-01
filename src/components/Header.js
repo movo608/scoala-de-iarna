@@ -14,35 +14,37 @@ import { getLoggedNavbar } from '../actions'
 const customHistory = createHashHistory();
 
 class Header extends Component {
-	componentWillMount() {
-		this.props.getLoggedNavbar();
-	}
-
 	constructor(props){
 		super(props);
 
 		this.submitLogout = this.submitLogout.bind(this);
 	}
 
-	submitLogout() {
-		this.props.userLogout();
-		customHistory.push('/');
+	componentWillMount() {
+		this.props.getLoggedNavbar();
 	}
 
+	submitLogout() {
+		this.props.userLogout(this.props.users.userId);
+		customHistory.push('/');
+	}
+	
 	renderButtons() {
-		if(this.props.users.isLoggedIn) {
-			return  <button onClick={this.submitLogout} className="btn btn-default navbar-btn login-btn">Logout</button>;
+		if(this.props.users.isLoggedIn === true) {
+			return  <button onClick={ this.submitLogout } className="btn btn-default navbar-btn login-btn">
+						Logout ({ this.props.users.username.substring(0, this.props.users.username.indexOf('@')) })
+					</button>;
 		} else {
 			return <li><Link to="/login">Login</Link></li>
 		}
 	}
 
 	renderLoggedInButtons($flag_permission) {
-		if ($flag_permission) {
+		if ($flag_permission === true) {
 			return _.map(this.props.navbarLogged.navbarLogged, (link) => {
 				return (
 					<li key={ link.id }>
-						<Link to={ link.name }>{ link.value_en }</Link>
+						<Link to={ link.name }>{ link.value }</Link>
 					</li>
 				);
 			});
@@ -61,9 +63,7 @@ class Header extends Component {
 						{ <Link to="/">Home</Link> }
 			    	</li>
 			    	{ this.renderButtons() }
-					
 					{ this.renderLoggedInButtons(this.props.users.isLoggedIn) }
-
 			    </ul>
 			  </div>
 			</nav>
