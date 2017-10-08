@@ -16,6 +16,8 @@ import Login from './containers/Login.jsx'
 import Browse from './containers/Browse.jsx'
 import CreateCategories from './containers/CreateCategories.js'
 import CreatePosts from './containers/CreatePosts.js'
+import ViewCategories from './containers/ViewCategories'
+import ViewPosts from './containers/ViewPosts'
 
 const middleware = applyMiddleware(thunkMiddleware);
 const customHistory = createHashHistory();
@@ -36,6 +38,8 @@ render(
                   <Route exact path='/browse' render={() => <LandingLayout><Browse /></LandingLayout>} />
                   <Route exact path='/create/category' render={() => <LandingLayout><CreateCategories /></LandingLayout>} />
                   <Route exact path='/create/post' render={() => <LandingLayout><CreatePosts /></LandingLayout>} />
+                  <Route exact path='/view/categories' render={() => <LandingLayout><ViewCategories /></LandingLayout>} />
+                  <Route exact path='/view/posts' render={() => <LandingLayout><ViewPosts /></LandingLayout>} />
               </Switch>
           </div>
       </Router>

@@ -32,6 +32,12 @@ class ApiController extends Controller
 	    	case 'create-category':
 	    		$this->enableCsrfValidation = false;
 	    		break;
+	    	case 'delete-category':
+	    		$this->enableCsrfValidation = false;
+	    	case 'create-post':
+	    		$this->enableCsrfValidation = false;
+	    	case 'delete-post':
+	    		$this->enableCsrfValidation = false;
 	    }
 
 	    return parent::beforeAction($action);
@@ -84,6 +90,80 @@ class ApiController extends Controller
 				return Json::encode(['status' => true, 'data' => 'success_category_created', 'name' => $model->name]);
 			} else {
 				return Json::encode(['status' => false, 'data' => 'error_category_not_saved']);
+			}
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Deletes a category from the database
+	 */
+	public function actionDeleteCategory()
+	{
+		$request = Yii::$app->request;
+
+		if ($request->get()) {
+
+			if ($model = PostsCategories::find()->where(['id' => $request->get('id')])->one()) {
+				if ($model->delete()) {
+					return Json::encode(['status' => true, 'data' => 'success_entry_deleted']);
+				} else {
+					return Json::encode(['status' => false, 'data' => 'error_entry_not_deleted']);
+				}
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_category_not_found']);
+			}
+
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Creates a post
+	 */
+	public function actionCreatePost()
+	{
+		$request = Yii::$app->request;
+
+		if ($request->get()) {
+			$model = new Posts();
+
+			if (PostsCategories::find()->where(['id' => $request->get('category_id')])->one()) {
+				return Json::encode(['status' => false, 'data' => 'error_category_not_exists']);
+			}
+
+			$model->category_id = $request->get('category_id');
+			$model->name = $request->get('name');
+			$model->body = $request->get('body');
+
+			if ($model->save(false)) {
+				return Json::encode(['status' => true, 'data' => 'success_post_created']);
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_post_not_created']);
+			}
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Deletes a post from the database
+	 */
+	public function actionDeletePost()
+	{
+		$request = Yii::$app->request;
+
+		if ($request->get()) {
+			if ($model = Posts::find()->where(['id' => $request->get('id')])->one()) {
+				if ($model->delete()) {
+					return Json::encode(['status' => false, 'data' => 'success_post_deleted']);
+				} else {
+					return Json::encode(['status' => false, 'data' => 'error_could_not_be_deleted']);
+				}
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_post_not_found']);
 			}
 		} else {
 			return Json::encode(['status' => false, 'data' => 'error_no_request']);

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { userLogin } from '../actions/index'
 import { createHashHistory } from 'history'
 import { bindActionCreators } from 'redux'
+import { reactLocalStorage as __storage } from 'reactjs-localstorage'
+
+// import login actions
+import { userLogin } from '../actions'
 
 const customHistory = createHashHistory();
 
@@ -11,7 +14,7 @@ class Login extends Component {
         super(props);
 
 		this.state = {
-			email : '',
+			email: '',
 			password: ''
 		};
 
@@ -20,21 +23,27 @@ class Login extends Component {
 		this.submitLogin = this.submitLogin.bind(this);
     }
 
+    componentWillMount() {
+    	if (this.props.users.isLoggedIn) {
+    		customHistory.push('/browse');
+    	}
+    }
+
 	changeEmail(e) {
-		this.setState({email : e.target.value});
+		this.setState({email: e.target.value});
 	}
 
 	changePassword(e) {
-		this.setState({password : e.target.value});
+		this.setState({password: e.target.value});
 	}
 
 	submitLogin() {
-		const { dispatch } = this.props;
 		this.props.userLogin(this.state.email, this.state.password);
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.users.isLoggedIn === true) {
+			__storage.setObject('user', { users: this.props.users });
 			customHistory.push('/browse');
 		}
 	}

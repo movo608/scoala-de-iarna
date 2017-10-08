@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { userLogout } from '../actions/index'
 import { createHashHistory } from 'history'
 import { bindActionCreators } from 'redux'
 import _ from 'lodash'
@@ -10,11 +9,12 @@ import _ from 'lodash'
  * Import actions
  */
 import { getLoggedNavbar } from '../actions'
+import { userLogout } from '../actions/index'
 
 const customHistory = createHashHistory();
 
 class Header extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.submitLogout = this.submitLogout.bind(this);
@@ -31,9 +31,9 @@ class Header extends Component {
 	
 	renderButtons() {
 		if(this.props.users.isLoggedIn === true) {
-			return  <button onClick={ this.submitLogout } className="btn btn-default navbar-btn login-btn">
+			return ( <button onClick={ this.submitLogout } className="btn btn-default navbar-btn login-btn">
 						Logout ({ this.props.users.username.substring(0, this.props.users.username.indexOf('@')) })
-					</button>;
+					</button> );
 		} else {
 			return <li><Link to="/login">Login</Link></li>
 		}

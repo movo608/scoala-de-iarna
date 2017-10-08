@@ -58,6 +58,9 @@ class LoginController extends Controller
 	    if ($action->id == 'logout') {
 	    	$this->enableCsrfValidation = false;
 	    }
+	    if ($action->id == 'store-login') {
+	    	$this->enableCsrfValidation = false;
+	    }
 
 	    return parent::beforeAction($action);
 	}
@@ -92,6 +95,39 @@ class LoginController extends Controller
 				return Json::encode(['status' => false, 'data' => 'error_already_logged']);
 			}
 
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Sends a user login request, if the app's cache has the preferred info
+	 */
+	public function actionStoreLogin()
+	{
+		$request = Yii::$app->request;
+
+		if ($request->get()) {
+			if ($user = $this::findUser($request->get('email'))) {
+				if (!$user->is_logged) {
+					$user->is_logged = 1;
+					if ($user->save(false, ['is_logged'])) {
+						return Json::encode([
+							'status' => true, 
+							'data' => 'success_user_logged_on_cache', 
+							'message' => 'success_user_logged_on_cache', 
+							'userId' => $user->id,
+							'username' => $user->email
+						]);
+					} else {
+						return Json::encode(['status' => false, 'data' => 'error_internal_error']);
+					}
+				} else {
+					return Json::encode(['status' => false, 'data' => 'error_user_already_logged']);
+				}
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_user_not_found']);
+			}
 		} else {
 			return Json::encode(['status' => false, 'data' => 'error_no_request']);
 		}

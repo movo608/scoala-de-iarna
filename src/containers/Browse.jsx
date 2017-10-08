@@ -19,7 +19,7 @@ class Browse extends Component {
                     <h2>This is the Browse page only logged in users can see.</h2>
                 </div>
             </div>
-        )
+        );
     }
 }
 

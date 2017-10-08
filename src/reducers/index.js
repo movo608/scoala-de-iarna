@@ -4,13 +4,13 @@ import { combineReducers } from 'redux'
 import users from './users'
 import loggedNavbar from './logged_navbar'
 import getCategories from './get_categories'
-import createCategories from './create_categories'
+import getPosts from './get_posts'
 
 const rootReducer = combineReducers({
 	users,
   	loggedNavbar,
   	getCategories,
-  	createCategories
+  	getPosts
 });
 
 export default rootReducer;
