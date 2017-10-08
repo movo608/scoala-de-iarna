@@ -63,7 +63,7 @@ class CreatePosts extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		this.props.createPost(this.state.nameValue, this.state.bodyValue, this.state.categoryLabel);
+		this.props.createPost(this.state.nameValue, this.state.bodyValue, this.state.categoryValue);
 		customHistory.push('/view/posts');
 		console.log(this.state);
 	}
@@ -94,6 +94,7 @@ class CreatePosts extends Component {
 							  	value={ this.state.categoryValue }
 							  	options={ this.renderFormCategories() }
 							  	onChange={ this.handleCategoryChange }
+							  	clearable={ false }
 							  	required
 							/>
 						</div>

@@ -130,10 +130,6 @@ class ApiController extends Controller
 		if ($request->get()) {
 			$model = new Posts();
 
-			if (PostsCategories::find()->where(['id' => $request->get('category_id')])->one()) {
-				return Json::encode(['status' => false, 'data' => 'error_category_not_exists']);
-			}
-
 			$model->category_id = $request->get('category_id');
 			$model->name = $request->get('name');
 			$model->body = $request->get('body');

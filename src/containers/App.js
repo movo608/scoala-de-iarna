@@ -11,7 +11,7 @@ const customHistory = createHashHistory();
 
 class App extends  Component {
 	componentWillMount() {
-    	if (__storage.getObject('user') && this.props.users.isLoggedIn === false) {
+    	if (__storage.getObject('user').users && this.props.users.isLoggedIn === false) {
 			this.props.userStoreLogin(__storage.getObject('user').users.username);
 		}
     }

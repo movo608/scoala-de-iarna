@@ -7,7 +7,8 @@ import {
     GET_CATEGORIES,
     CREATE_CATEGORY,
     CREATE_POST,
-    USER_STORE_LOGIN
+    USER_STORE_LOGIN,
+    GET_CATEGORY
 } from '../constants/ActionTypes'
 
 import axios from 'axios';
@@ -257,4 +258,30 @@ export function deletePost(id) {
             }
         });
     };  
+}
+
+/**
+ * gets a category based on given id
+ */
+export function getCategory(id) {
+    return async (dispatch, getState) => {
+        let data = await axios({
+            headers: {
+                'content-type': 'application/json'
+            },
+            method: 'post',
+            url: `${ROOT_URL}api/get-category`
+        });
+        dispatch(dispatchGetCategory(data));
+    };
+}
+
+/**
+ * dispatches the fetched category towards the reducers
+ */
+function dispatchGetCategory(data) {
+    return {
+        type: GET_CATEGORY,
+        payload: data
+    };
 }
