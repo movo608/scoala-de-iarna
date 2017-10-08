@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2017 at 08:20 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Oct 08, 2017 at 03:11 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -29,17 +29,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `buttons_navbar_logged` (
   `id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `value_en` varchar(32) NOT NULL,
-  `value_ro` varchar(32) NOT NULL,
-  `value_hu` varchar(32) NOT NULL
+  `value` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `buttons_navbar_logged`
 --
 
-INSERT INTO `buttons_navbar_logged` (`id`, `name`, `value_en`, `value_ro`, `value_hu`) VALUES
-(1, '/create/category', 'Create Category', 'HOME_RO', 'HOME_HU');
+INSERT INTO `buttons_navbar_logged` (`id`, `name`, `value`) VALUES
+(1, '/create/category', 'Create Category'),
+(2, '/create/post', 'Create Post'),
+(3, '/view/categories', 'Categories'),
+(4, '/view/posts', 'Posts');
 
 -- --------------------------------------------------------
 
@@ -77,8 +78,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `category_id`, `name`, `body`) VALUES
-(1, 1, 'Lorem Ipsum Category 1', 'Lorem ipsum Category 1\r\nLorem ipsum Category 1\r\nLorem ipsum Category 1\r\nLorem ipsum Category 1\r\nLorem ipsum Category 1\r\nLorem ipsum Category 1\r\nLorem ipsum Category 1'),
-(2, 2, 'Lorem ipsum Category 2', 'Lorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2\r\nLorem ipsum Category 2');
+(2, 0, 'Derp', 'LOREM IPSUM DOLOR');
 
 -- --------------------------------------------------------
 
@@ -96,8 +96,9 @@ CREATE TABLE `posts_categories` (
 --
 
 INSERT INTO `posts_categories` (`id`, `name`) VALUES
-(2, 'Canguri'),
-(1, 'Poze');
+(2, 'ANOTHA DEUS VULT'),
+(3, 'DEUS VULT FOR LIONHEART'),
+(1, 'DEUS VULT HERETIC');
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `buttons_navbar_logged`
 --
 ALTER TABLE `buttons_navbar_logged`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `posts`
 --
@@ -175,7 +176,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts_categories`
 --
 ALTER TABLE `posts_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user`
 --
