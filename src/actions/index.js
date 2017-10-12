@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import {
 	ROOT_URL,
 	USER_LOGIN,
@@ -8,11 +10,9 @@ import {
     CREATE_CATEGORY,
     CREATE_POST,
     USER_STORE_LOGIN,
-    SUBMIT_POST
+    SEND_FORM,
+    GET_WORKSHOPS
 } from '../constants/ActionTypes'
-
-import axios from 'axios'
-import { async } from 'async'
 
 /**
  * Sends the login credentials to the reducers
@@ -177,7 +177,6 @@ export function createCategory(values) {
                 name: values
             }
         }).then((response) => {
-            alert(response.data.data);
             dispatch(dispatchCreateCategory(response.data));
         });
         
@@ -265,14 +264,53 @@ export function deletePost(id) {
 /**
  * Submits the completed form
  */
-export function submitForm({...values}) {
-    async.parallel([
-        (callback) => {
-            axios({
-                method: 'post',
-                url: `${ROOT_URL}/api/submit-form`,
-                params: values
-            }).then((response) => callback(false, response));
-        }
-    ]);
+export function sendForm({...values}) {
+    console.log(values)
+    return async (dispatch, getState) => {
+        let data = await axios({
+            headers: { 
+                'content-type': 'application/json'
+            },
+            method: 'post',
+            url: `${ROOT_URL}api/submit-form`,
+            params: {
+                name: values.name,
+                email: values.email,
+                city: values.city,
+                region: values.region,
+                workshop: values.workshop
+            }
+        });
+        dispatch(dispatchSendForm(data));
+    };
+}
+
+/**
+ * Dispatches the sent form to the reducers
+ */
+function dispatchSendForm(data) {
+    return {
+        type: SEND_FORM,
+        payload: data
+    };
+}
+
+/**
+ *  Fetches workshops from the database
+ */
+export function getWorkshops() {
+    return (dispatch) => {
+		axios.get(`${ROOT_URL}api/get-workshops`)
+			.then((data) => { dispatch(dispatchGetWorkshops(data)) });
+	};
+}
+
+/**
+ * Dispatches the fetched workshops towards the reducers
+ */
+function dispatchGetWorkshops(data) {
+    return {
+        type: GET_WORKSHOPS,
+        payload: data
+    }
 }

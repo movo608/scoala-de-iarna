@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "signup_form".
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property string $city

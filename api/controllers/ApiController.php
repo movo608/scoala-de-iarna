@@ -237,12 +237,11 @@ class ApiController extends Controller
 		$request = Yii::$app->request;
 
 		if ($request->get()) {
-			$model = new Workshops();
-
 			if (Workshops::find()->where(['name' => $request->get('name')])->one()) {
 				return Json::encode(['status' => false, 'data' => 'error_name_exists']);
 			}
 
+			$model = new Workshops();
 			$model->name = $request->get('name');
 
 			if ($model->save(false)) {

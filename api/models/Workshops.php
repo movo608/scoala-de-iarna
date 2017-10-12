@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "workshops".
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
  */
 class Workshops extends \yii\db\ActiveRecord
@@ -26,8 +26,7 @@ class Workshops extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'name'], 'required'],
-            [['id'], 'integer'],
+            [['name'], 'required'],
             [['name'], 'string', 'max' => 32],
         ];
     }

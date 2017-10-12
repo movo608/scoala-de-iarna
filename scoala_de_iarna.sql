@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2017 at 03:11 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Oct 12, 2017 at 08:05 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -78,7 +78,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `category_id`, `name`, `body`) VALUES
-(2, 0, 'Derp', 'LOREM IPSUM DOLOR');
+(8, 6, 'One', 'One'),
+(9, 5, 'One', 'One');
 
 -- --------------------------------------------------------
 
@@ -96,9 +97,38 @@ CREATE TABLE `posts_categories` (
 --
 
 INSERT INTO `posts_categories` (`id`, `name`) VALUES
-(2, 'ANOTHA DEUS VULT'),
-(3, 'DEUS VULT FOR LIONHEART'),
-(1, 'DEUS VULT HERETIC');
+(4, 'DEUS VULT'),
+(5, 'DEUS VULT FOR LEONHART'),
+(6, 'FUCK ME IN THE ASS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `signup_form`
+--
+
+CREATE TABLE `signup_form` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `city` varchar(64) NOT NULL,
+  `region` varchar(64) NOT NULL,
+  `workshop` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `signup_form`
+--
+
+INSERT INTO `signup_form` (`id`, `name`, `email`, `city`, `region`, `workshop`) VALUES
+(1, 'adsf', 'sadfas@asdfsa.com', 'asdfas', 'adsf', ''),
+(2, 'asdf', 'dfas@asdf.com', 'asdfas', 'adfsa', ''),
+(3, 'asdf', 'adf@adsf.com', 'asdfdas', 'adsfas', ''),
+(4, 'adsf', 'asf@adsf.com', 'adsf', 'adsfaa', ''),
+(5, 'asdf', 'asdf2@adsf.com', 'adsfa', 'adsf', ''),
+(6, 'adsf', 'adfs@adsf.com', 'dsaf', 'awdfasf', ''),
+(7, 'adsf', 'adffffs@adsf.com', 'asdf', 'asdf', ''),
+(8, 'adsf', 'adffs@adsf.com', 'asdf', 'adsf', '');
 
 -- --------------------------------------------------------
 
@@ -120,6 +150,17 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `access_token`, `password`, `is_logged`) VALUES
 (10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `workshops`
+--
+
+CREATE TABLE `workshops` (
+  `id` int(11) NOT NULL,
+  `name` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -152,11 +193,24 @@ ALTER TABLE `posts_categories`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `signup_form`
+--
+ALTER TABLE `signup_form`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `workshops`
+--
+ALTER TABLE `workshops`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -171,17 +225,27 @@ ALTER TABLE `buttons_navbar_logged`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `posts_categories`
 --
 ALTER TABLE `posts_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `signup_form`
+--
+ALTER TABLE `signup_form`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `workshops`
+--
+ALTER TABLE `workshops`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

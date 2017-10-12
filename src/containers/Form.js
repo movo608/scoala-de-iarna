@@ -4,10 +4,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 //import submit-form action
-import { submitForm } from '../actions'
+import { sendForm } from '../actions'
 
 const customHistory = createHashHistory();
 const IS_DISABLED = false;
+
+let allowMessage = false;
 
 class Form extends Component {
 	constructor(props) {
@@ -35,9 +37,13 @@ class Form extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this); 
 	}
 
+	componentWillReceiveProps(nextProps) {
+		allowMessage = true;
+	}
+
 	handleSubmit(event) {
 		event.preventDefault();
-		submitForm(this.state);
+		this.props.sendForm(this.state);
 	}
 
 	handleNameChange(event) {
@@ -67,7 +73,7 @@ class Form extends Component {
 				        </label>
 				        <label>
 				          	Email:
-				          	<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleEmailChange } required />
+				          	<input className="form-control" type="email" value={ this.state.value } onChange={ this.handleEmailChange } required />
 				        </label>
 				        <label>
 				          	City:
@@ -78,15 +84,34 @@ class Form extends Component {
 				          	<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleRegionChange } required />
 				        </label>
 			        </div>
-			        <input className="btn btn-default" type="submit" value="Submit" />
+					<input className="btn btn-default" type="submit" value="Submit" />
 			    </form>
 		    </section>
 		);
+	}
+
+	renderMessage() {
+		if (this.props.formResponse.sendForm.status === true) {
+			return (
+				<div className="alert alert-success alert-dismissable">
+					<a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Success!</strong> The information has been successfully submitted.
+				</div>
+			);
+		} else {
+			return (
+				<div className="alert alert-danger alert-dismissable">
+					<a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Error!</strong> The information could not be submitted or the e-mail address has already been used.
+				</div>
+			);
+		}
 	}
 	
 	render() {
 		return (
 			<section className="container">
+				{ allowMessage === true ? this.renderMessage() : null }
 				<div className="page-header"><h1>Sign up form</h1></div>
 				{ this.renderForm() }
 			</section>
@@ -95,12 +120,13 @@ class Form extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ submitForm }, dispatch);
+	return bindActionCreators({ sendForm }, dispatch);
 }
 
 function mapStateToProps(state) {
 	return {
-		users: state.users
+		users: state.users,
+		formResponse: state.submitForm
 	};
 }
 
