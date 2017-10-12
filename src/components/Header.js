@@ -39,33 +39,46 @@ class Header extends Component {
 		}
 	}
 
-	renderLoggedInButtons($flag_permission) {
+	renderLoggedInButtons() {
+		return _.map(this.props.navbarLogged.navbarLogged, (link) => {
+			return (
+				<li key={ link.id }>
+					<Link to={ link.name }>{ link.value }</Link>
+				</li>
+			);
+		});
+	}
+
+	renderAdminButton($flag_permission) {
 		if ($flag_permission === true) {
-			return _.map(this.props.navbarLogged.navbarLogged, (link) => {
-				return (
-					<li key={ link.id }>
-						<Link to={ link.name }>{ link.value }</Link>
-					</li>
-				);
-			});
+			return (
+				<li className="dropdown">
+		    		<a className="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+		    		<span className="caret"></span></a>
+		    		<ul className="dropdown-menu">
+			          	{ this.renderLoggedInButtons() }
+		    		</ul>
+		  		</li>
+			);
 		}
 	}
 
 	render() {
 		return (
 			<nav className="navbar navbar-inverse">
-			  <div className="container-fluid">
-				    <div className="navbar-header">
-				      	{ <Link className="navbar-brand" to="/">WebSiteName</Link> }
-				    </div>
-			    <ul className="nav navbar-nav navbar-right">
-			    	<li>
-						{ <Link to="/">Home</Link> }
-			    	</li>
-			    	{ this.renderButtons() }
-					{ this.renderLoggedInButtons(this.props.users.isLoggedIn) }
-			    </ul>
-			  </div>
+			  	<div className="container-fluid">
+			    	<div className="navbar-header">
+			      		{ <Link className="navbar-brand" to="/">WebSiteName</Link> }
+			    	</div>
+			    	<ul className="nav navbar-nav">
+			    		<li>{ <Link to="/">Home</Link> }</li>
+						<li>{ <Link to="form">Form</Link> }</li>
+			      		{ this.renderAdminButton(this.props.users.isLoggedIn) }
+			    	</ul>
+			    	<ul className="nav navbar-nav navbar-right">
+			    		{ this.renderButtons() }
+			    	</ul>
+			  	</div>
 			</nav>
 		);
 	}

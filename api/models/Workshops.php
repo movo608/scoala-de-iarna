@@ -5,19 +5,19 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "posts_categories".
+ * This is the model class for table "workshops".
  *
  * @property integer $id
  * @property string $name
  */
-class PostsCategories extends \yii\db\ActiveRecord
+class Workshops extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'posts_categories';
+        return 'workshops';
     }
 
     /**
@@ -26,9 +26,9 @@ class PostsCategories extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 64],
-            [['name'], 'unique'],
+            [['id', 'name'], 'required'],
+            [['id'], 'integer'],
+            [['name'], 'string', 'max' => 32],
         ];
     }
 

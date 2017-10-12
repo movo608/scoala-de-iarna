@@ -38,7 +38,8 @@ class ViewPosts extends Component {
 			return (
 				<li key={ gyuri.id } className="list-group-item col-md-12 col-sm-12">
 					<h3>{ gyuri.name }</h3>
-					<p>{ gyuri.body }</p>
+					<div className="col-md-12 col-sm-12"><p>{ gyuri.body }</p></div>
+					<div className="col-md-12 col-sm-12"><h3>Category: { gyuri.category_name }</h3></div>
 					<button ref="btn" className="btn btn-danger" style={{float: 'right'}} onClick={() => this.submitDeletion(gyuri.id) }>X</button>
 				</li>
 			);
@@ -56,13 +57,13 @@ class ViewPosts extends Component {
 				<div className="page-header"><h1>View Posts Component</h1></div>
 
 				<div className="row">
-					<div className="col-md-6 col-sm-6">
+					<div className="col-md-8 col-sm-8">
 				    	<ul className="list-group">
 				    		{ this.renderPosts() }
 				    	</ul>
 					</div>
 
-					<div className="col-md-6 col-sm-6">
+					<div className="col-md-3 col-sm-3">
 						<button 
 							className="btn btn-warning" 
 							value="submit" 

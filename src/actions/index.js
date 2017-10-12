@@ -8,10 +8,11 @@ import {
     CREATE_CATEGORY,
     CREATE_POST,
     USER_STORE_LOGIN,
-    GET_CATEGORY
+    SUBMIT_POST
 } from '../constants/ActionTypes'
 
-import axios from 'axios';
+import axios from 'axios'
+import { async } from 'async'
 
 /**
  * Sends the login credentials to the reducers
@@ -214,7 +215,7 @@ export function deleteCategory(id) {
 /**
  * Submits a created post
  */
-export function createPost(name, body, category_id) {
+export function createPost(name, body, category_id, category_name) {
     return async (dispatch, getState) => {
         let data = await axios({
             headers: { 
@@ -226,6 +227,7 @@ export function createPost(name, body, category_id) {
                 name,
                 body,
                 category_id,
+                category_name
             }
         });
         dispatch(dispatchCreatePost(data));
@@ -261,27 +263,16 @@ export function deletePost(id) {
 }
 
 /**
- * gets a category based on given id
+ * Submits the completed form
  */
-export function getCategory(id) {
-    return async (dispatch, getState) => {
-        let data = await axios({
-            headers: {
-                'content-type': 'application/json'
-            },
-            method: 'post',
-            url: `${ROOT_URL}api/get-category`
-        });
-        dispatch(dispatchGetCategory(data));
-    };
-}
-
-/**
- * dispatches the fetched category towards the reducers
- */
-function dispatchGetCategory(data) {
-    return {
-        type: GET_CATEGORY,
-        payload: data
-    };
+export function submitForm({...values}) {
+    async.parallel([
+        (callback) => {
+            axios({
+                method: 'post',
+                url: `${ROOT_URL}/api/submit-form`,
+                params: values
+            }).then((response) => callback(false, response));
+        }
+    ]);
 }

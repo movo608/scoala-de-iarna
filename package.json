@@ -8,6 +8,7 @@
     "react-scripts": "^1.0.2"
   },
   "dependencies": {
+    "async": "^2.5.0",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "history": "^4.6.1",

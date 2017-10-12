@@ -11,6 +11,8 @@ use app\models\ButtonsNavbar;
 use app\models\ButtonsNavbarNotLogged;
 use app\models\Posts;
 use app\models\PostsCategories;
+use app\models\Workshops;
+use app\models\SignupForm;
 
 /**
 * ApiController class, has a collection of all the possible API calls
@@ -34,10 +36,22 @@ class ApiController extends Controller
 	    		break;
 	    	case 'delete-category':
 	    		$this->enableCsrfValidation = false;
+	    		break;
 	    	case 'create-post':
 	    		$this->enableCsrfValidation = false;
+	    		break;
 	    	case 'delete-post':
 	    		$this->enableCsrfValidation = false;
+	    		break;
+	    	case 'get-category':
+	    		$this->enableCsrfValidation = false;
+	    		break;
+	    	case 'get-workshops':
+	    		$this->enableCsrfValidation = false;
+	    		break;
+	    	case 'submit-form':
+	    		$this->enableCsrfValidation = false;
+	    		break;
 	    }
 
 	    return parent::beforeAction($action);
@@ -130,7 +144,8 @@ class ApiController extends Controller
 		if ($request->get()) {
 			$model = new Posts();
 
-			$model->category_id = $request->get('category_id');
+			$model->category_id 	= $request->get('category_id');
+			$model->category_name 	= $request->get('category_name');
 			$model->name = $request->get('name');
 			$model->body = $request->get('body');
 
@@ -160,6 +175,80 @@ class ApiController extends Controller
 				}
 			} else {
 				return Json::encode(['status' => false, 'data' => 'error_post_not_found']);
+			}
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Gets all the workshops from the database
+	 */
+	public function actionGetWorkshops()
+	{
+		$workshopsModel = Workshops::find()->all();
+
+		return Json::encode(['status' => true, 'data' => $workshopsModel]);
+	}
+
+	/**
+	 * Saves te submitted form
+	 */
+	public function actionSubmitForm()
+	{
+		$request = Yii::$app->request;
+		
+		if ($request->get()) {
+			$information = [
+				'name' => $request->get('name'),
+				'email' => $request->get('email'),
+				'city' => $request->get('city'),
+				'region' => $request->get('region'),
+				'workshop' => $request->get('workshop')
+			];
+
+			if (SignupForm::find()->where(['email' => $information['email']])->one()) {
+				return Json::encode(['status' => false, 'data' => 'error_email_found']);
+			}
+
+			$model = new SignupForm();
+
+			$model->name 		= $information['name'];
+			$model->email 		= $information['email'];
+			$model->city 		= $information['city'];
+			$model->region 		= $information['region'];
+			$model->workshop 	= $information['workshop'];
+
+			if ($model->save(false)) {
+				return Json::encode(['status' => true, 'data' => 'success_submission_saved']);
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_not_saved']);
+			}
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Creates a workshop entry in the database
+	 */
+	public function actionCreateWorkshop()
+	{
+		$request = Yii::$app->request;
+
+		if ($request->get()) {
+			$model = new Workshops();
+
+			if (Workshops::find()->where(['name' => $request->get('name')])->one()) {
+				return Json::encode(['status' => false, 'data' => 'error_name_exists']);
+			}
+
+			$model->name = $request->get('name');
+
+			if ($model->save(false)) {
+				return Json::encode(['status' => true, 'data' => 'success']);
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_not_saved']);
 			}
 		} else {
 			return Json::encode(['status' => false, 'data' => 'error_no_request']);

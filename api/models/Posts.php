@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property integer $category_id
+ * @property string $category_name
  * @property string $name
  * @property string $body
  */
@@ -28,10 +29,10 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'name', 'body'], 'required'],
+            [['category_id', 'category_name', 'name', 'body'], 'required'],
             [['category_id'], 'integer'],
             [['body'], 'string'],
-            [['name'], 'string', 'max' => 64],
+            [['category_name', 'name'], 'string', 'max' => 64],
         ];
     }
 
@@ -43,6 +44,7 @@ class Posts extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'category_id' => 'Category ID',
+            'category_name' => 'Category Name',
             'name' => 'Name',
             'body' => 'Body',
         ];

@@ -42,11 +42,13 @@ class CreatePosts extends Component {
 		this.props.getCategories();
 	}
 
-	handleCategoryChange(value = { value: -1, label: '' }) {
-		this.setState({
-			categoryValue: parseInt(value.value),
-			categoryLabel: value.label
-		});
+	handleCategoryChange(value = { value: 0, label: '' }) {
+		if (value.value !== -1) {
+			this.setState({
+				categoryValue: value.value,
+				categoryLabel: value.label
+			});
+		}
 	}
 
 	handleNameChange(event) {
@@ -63,7 +65,14 @@ class CreatePosts extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		this.props.createPost(this.state.nameValue, this.state.bodyValue, this.state.categoryValue);
+
+		this.props.createPost(
+			this.state.nameValue, 
+			this.state.bodyValue, 
+			this.state.categoryValue,
+			this.state.categoryLabel
+		);
+
 		customHistory.push('/view/posts');
 		console.log(this.state);
 	}
@@ -82,7 +91,7 @@ class CreatePosts extends Component {
 				        <div className="form-group">
 					        <label>
 					          Body:
-					          <input className="form-control" type="text" value={ this.state.value } onChange={ this.handleBodyChange } required />
+					          <textarea cols="50" rows="4" className="form-control" type="text" value={ this.state.value } onChange={ this.handleBodyChange } required></textarea>
 					        </label>
 				        </div>
 				        <div className="form-group">
@@ -95,6 +104,7 @@ class CreatePosts extends Component {
 							  	options={ this.renderFormCategories() }
 							  	onChange={ this.handleCategoryChange }
 							  	clearable={ false }
+							  	searchable={ false }
 							  	required
 							/>
 						</div>
@@ -116,7 +126,7 @@ class CreatePosts extends Component {
 	render() {
 		return (
 			<div className="container">
-				<div>Create Posts Component</div>
+				<div className="page-header"><h1>Create Posts Component</h1></div>
 				<div>
 					{ this.renderForm() }
 				</div>
