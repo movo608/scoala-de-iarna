@@ -13,6 +13,8 @@ use app\models\Posts;
 use app\models\PostsCategories;
 use app\models\Workshops;
 use app\models\SignupForm;
+use app\models\Sponsors;
+use app\models\Contributors;
 
 /**
 * ApiController class, has a collection of all the possible API calls
@@ -51,7 +53,25 @@ class ApiController extends Controller
 	    		break;
 	    	case 'submit-form':
 	    		$this->enableCsrfValidation = false;
-	    		break;
+				break;
+			case 'delete-workshop':
+				$this->enableCsrfValidation = false;
+				break;
+			case 'create-workshop':
+				$this->enableCsrfValidation = false;
+				break;
+			case 'create-contributor':
+				$this->enableCsrfValidation = false;
+				break;
+			case 'delete-contributor':
+				$this->enableCsrfValidation = false;
+				break;
+			case 'create-sponsor':
+				$this->enableCsrfValidation = false;
+				break;
+			case 'delete-sponsor':
+				$this->enableCsrfValidation = false;
+				break;
 	    }
 
 	    return parent::beforeAction($action);
@@ -188,7 +208,7 @@ class ApiController extends Controller
 	{
 		$workshopsModel = Workshops::find()->all();
 
-		return Json::encode(['status' => true, 'data' => $workshopsModel]);
+		return Json::encode($workshopsModel);
 	}
 
 	/**
@@ -251,6 +271,119 @@ class ApiController extends Controller
 			}
 		} else {
 			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Deletes a workshop entry from the database
+	 */
+	public function actionDeleteWorkshop()
+	{
+		$request = Yii::$app->request;
+
+		if ($request->get()) {
+			$model = Workshops::find()->where(['id' => $request->get('id')])->one();
+			$model->delete();
+			return Json::encode(['status' => true, 'data' => 'success']);
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Gets the contributors from the database
+	 */
+	public function actionGetContributors()
+	{
+		$model = Contributors::find()->all();
+
+		return Json::encode($model);
+	}
+
+	/**
+	 * Gets the sponsors from the database
+	 */
+	public function actionGetSponsors()
+	{
+		$model = Sponsors::find()->all();
+
+		return Json::encode($model);
+	}
+
+	/**
+	 * Creates a contributor entry in the database
+	 */
+	public function actionCreateContributor()
+	{
+		$request = Yii::$app->request;
+
+		if ($request->get()) {
+			if (Contributors::find()->where(['name' => $request->get('name')])->name()) {
+				return Json::encode(['status' => false, 'data' => 'error_name_exists']);
+			}
+
+			$model = new Contributors();
+			$model->name = $request->get('name');
+
+			if ($model->save(false)) {
+				return Json::encode(['status' => true, 'data' => 'success']);
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_not_saved']);
+			}
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Deletes a contributor entry from the database
+	 */
+	public function actionDeleteContributor()
+	{
+		$request = Yii::$app->request;
+		
+		if ($request->get()) {
+			$model = Contributors::find()->where(['id' => $request->get('id')])->one();
+			$model->delete();
+
+			return Json::encode(['status' => true, 'data' => 'success']);
+		}
+	}
+
+	/**
+	 * Creates a sponsor entry in the database
+	 */
+	public function actionCreateSponsor()
+	{
+		$request = Yii::$app->request;
+		
+		if ($request->get()) {
+			if (Sponsors::find()->where(['name' => $request->get('name')])->name()) {
+				return Json::encode(['status' => false, 'data' => 'error_name_exists']);
+			}
+
+			$model = new Sponsors();
+			$model->name = $request->get('name');
+
+			if ($model->save(false)) {
+				return Json::encode(['status' => true, 'data' => 'success']);
+			} else {
+				return Json::encode(['status' => false, 'data' => 'error_not_saved']);
+			}
+		} else {
+			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Deletes a sponsor entry from the database
+	 */
+	public function actionDeleteSponsor()
+	{
+		$request = Yii::$app->request;
+		
+		if ($request->get()) {
+			
 		}
 	}
 }

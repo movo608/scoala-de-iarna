@@ -7,6 +7,7 @@ import getCategories from './get_categories'
 import getPosts from './get_posts'
 import submitForm from './submit_form'
 import getWorkshops from './get_workshops'
+import createWorkshop from './create_workshop'
 
 const rootReducer = combineReducers({
 	users,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   	getCategories,
 	getPosts,
 	submitForm,
-	getWorkshops
+	getWorkshops,
+	createWorkshop
 });
 
 export default rootReducer;

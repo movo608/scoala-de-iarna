@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2017 at 08:05 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Oct 13, 2017 at 02:45 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -40,7 +40,21 @@ INSERT INTO `buttons_navbar_logged` (`id`, `name`, `value`) VALUES
 (1, '/create/category', 'Create Category'),
 (2, '/create/post', 'Create Post'),
 (3, '/view/categories', 'Categories'),
-(4, '/view/posts', 'Posts');
+(4, '/view/posts', 'Posts'),
+(5, '/view/workshops', 'Workshops'),
+(6, '/create/workshops', 'Create Workshops'),
+(7, '/view/submissions', 'View Submissions');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contributors`
+--
+
+CREATE TABLE `contributors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -133,6 +147,18 @@ INSERT INTO `signup_form` (`id`, `name`, `email`, `city`, `region`, `workshop`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sponsors`
+--
+
+CREATE TABLE `sponsors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `image` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -149,7 +175,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `access_token`, `password`, `is_logged`) VALUES
-(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 1);
+(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 0);
 
 -- --------------------------------------------------------
 
@@ -172,6 +198,12 @@ CREATE TABLE `workshops` (
 ALTER TABLE `buttons_navbar_logged`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `contributors`
+--
+ALTER TABLE `contributors`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migration`
@@ -200,6 +232,12 @@ ALTER TABLE `signup_form`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `sponsors`
+--
+ALTER TABLE `sponsors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -220,7 +258,12 @@ ALTER TABLE `workshops`
 -- AUTO_INCREMENT for table `buttons_navbar_logged`
 --
 ALTER TABLE `buttons_navbar_logged`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `contributors`
+--
+ALTER TABLE `contributors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `posts`
 --
@@ -236,6 +279,11 @@ ALTER TABLE `posts_categories`
 --
 ALTER TABLE `signup_form`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `sponsors`
+--
+ALTER TABLE `sponsors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --

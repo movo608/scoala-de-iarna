@@ -19,9 +19,6 @@ class Form extends Component {
 			customHistory.push('/');
 		}
 
-		customHistory.push('/');
-		customHistory.push('/form');
-
 		this.state = {
 			name: '',
 			email: '',

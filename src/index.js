@@ -14,11 +14,14 @@ import App from './containers/App'
 import reducer from './reducers'
 import Login from './containers/Login.jsx'
 import Browse from './containers/Browse.jsx'
+import Form from './containers/Form'
 import CreateCategories from './containers/CreateCategories.js'
 import CreatePosts from './containers/CreatePosts.js'
+import CreateWorkshops from './containers/CreateWorkshops'
 import ViewCategories from './containers/ViewCategories'
 import ViewPosts from './containers/ViewPosts'
-import Form from './containers/Form'
+import ViewWorkshops from './containers/ViewWorkshops'
+import FormSubmissions from './containers/FormSubmissions'
 
 const middleware = applyMiddleware(thunkMiddleware);
 const customHistory = createHashHistory();
@@ -39,9 +42,12 @@ render(
 					<Route exact path='/login' render={() => <LandingLayout><Login /></LandingLayout>}/>
               	  	<Route exact path='/browse' render={() => <LandingLayout><Browse /></LandingLayout>} />
             	  	<Route exact path='/create/category' render={() => <LandingLayout><CreateCategories /></LandingLayout>} />
-                  	<Route exact path='/create/post' render={() => <LandingLayout><CreatePosts /></LandingLayout>} />
+					<Route exact path='/create/post' render={() => <LandingLayout><CreatePosts /></LandingLayout>} />
+					<Route exact path='/create/workshops' render={() => <LandingLayout><CreateWorkshops /></LandingLayout>} />  
               	  	<Route exact path='/view/categories' render={() => <LandingLayout><ViewCategories /></LandingLayout>} />
-              	  	<Route exact path='/view/posts' render={() => <LandingLayout><ViewPosts /></LandingLayout>} />
+					<Route exact path='/view/posts' render={() => <LandingLayout><ViewPosts /></LandingLayout>} /> 
+					<Route exact path='/view/workshops' render={() => <LandingLayout><ViewWorkshops /></LandingLayout>} />
+					<Route exact path='/view/submissions' render={() => <LandingLayout><FormSubmissions /></LandingLayout>} />
               	</Switch>
           	</div>
       	</Router>

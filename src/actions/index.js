@@ -11,7 +11,8 @@ import {
     CREATE_POST,
     USER_STORE_LOGIN,
     SEND_FORM,
-    GET_WORKSHOPS
+    GET_WORKSHOPS,
+    CREATE_WORKSHOP
 } from '../constants/ActionTypes'
 
 /**
@@ -265,7 +266,6 @@ export function deletePost(id) {
  * Submits the completed form
  */
 export function sendForm({...values}) {
-    console.log(values)
     return async (dispatch, getState) => {
         let data = await axios({
             headers: { 
@@ -313,4 +313,44 @@ function dispatchGetWorkshops(data) {
         type: GET_WORKSHOPS,
         payload: data
     }
+}
+
+/**
+ * Deletes a workshop from the database
+ */
+export function deleteWorkshop(id) {
+    return async (dispatch, getState) => {
+        await axios({
+            method: 'post',
+            url: `${ROOT_URL}api/delete-workshop`,
+            params: {
+                id
+            }
+        });
+    }
+}
+
+/**
+ * Creates a workshop in the database
+ */
+export function createWorkshop(name) {
+    return async (dispatch, getState) => {
+        await axios({
+            method: 'post',
+            url: `${ROOT_URL}api/create-workshop`,
+            params: {
+                name
+            }
+        }).then((response) => dispatch(dispatchCreateWorkshop(response)));
+    }
+}
+
+/**
+ * Dispatches the created workshop towards the reducers
+ */
+function dispatchCreateWorkshop(data) {
+    return {
+        type: CREATE_WORKSHOP,
+        payload: data
+    };
 }
