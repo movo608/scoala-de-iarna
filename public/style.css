@@ -1,0 +1,9 @@
+ul.contributors {
+	list-style-type: none;
+	margin-left: 50%;
+	margin-right: 50%;
+}
+
+ul.contributors li {
+	min-width: 500px;
+}

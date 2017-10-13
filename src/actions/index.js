@@ -12,7 +12,10 @@ import {
     USER_STORE_LOGIN,
     SEND_FORM,
     GET_WORKSHOPS,
-    CREATE_WORKSHOP
+    CREATE_WORKSHOP,
+    GET_SUBMISSIONS,
+    GET_CONTRIBUTORS,
+    GET_SPONSORS
 } from '../constants/ActionTypes'
 
 /**
@@ -351,6 +354,81 @@ export function createWorkshop(name) {
 function dispatchCreateWorkshop(data) {
     return {
         type: CREATE_WORKSHOP,
+        payload: data
+    };
+}
+
+/**
+ * Gets the submissions from the database
+ */
+export function getSubmissions() {
+    return (dispatch) => {
+        axios.get(`${ROOT_URL}api/get-submissions`)
+            .then((data) => dispatch(dispatchGetSubmissions(data)));
+    }
+}
+
+/**
+ * Dispatches fetched submissions towards the reducers
+ */
+function dispatchGetSubmissions(data) {
+    return {
+        type: GET_SUBMISSIONS,
+        payload: data
+    };
+}
+
+/**
+ * Deletes a form submission from the database
+ */
+export function deleteSubmission(id) {
+    return async (dispatch, getState) => {
+        await axios({
+            method: 'post',
+            url: `${ROOT_URL}api/delete-submission`,
+            params: {
+                id
+            }
+        }).then(response => console.log(response));
+    }
+}
+
+/**
+ * Fetches the contributors from the database
+ */
+export function getContributors() {
+    return (dispatch) => {
+        axios.get(`${ROOT_URL}api/get-contributors`)
+            .then((data) => dispatch(dispatchGetContributors(data)));
+    }
+}
+
+/**
+ * Dispatches contributors towards the reducers
+ */
+function dispatchGetContributors(data) {
+    return {
+        type: GET_CONTRIBUTORS,
+        payload: data
+    };
+}
+
+/**
+ * Fetches the sponsors from the database
+ */
+export function getSponsors() {
+    return (dispatch) => {
+        axios.get(`${ROOT_URL}api/get-sponsors`)
+            .then((data) => dispatchGetSponsors(data));
+    }
+}
+
+/**
+ * Dispatches sponsors towards the reducers
+ */
+function dispatchGetSponsors(data) {
+    return {
+        type: GET_SPONSORS,
         payload: data
     };
 }

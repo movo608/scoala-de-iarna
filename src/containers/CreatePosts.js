@@ -74,7 +74,6 @@ class CreatePosts extends Component {
 		);
 
 		customHistory.push('/view/posts');
-		console.log(this.state);
 	}
 
 	renderForm() {

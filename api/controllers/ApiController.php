@@ -72,6 +72,18 @@ class ApiController extends Controller
 			case 'delete-sponsor':
 				$this->enableCsrfValidation = false;
 				break;
+			case 'get-submissions':
+				$this->enableCsrfValidation = false;
+				break;
+			case 'delete-submission':
+				$this->enableCsrfValidation = false;
+				break;
+			case 'get-sponsors':
+				$this->enableCsrfValidation = false;
+				break;
+			case 'get-contributor':
+				$this->enableCsrfValidation = false;
+				break;
 	    }
 
 	    return parent::beforeAction($action);
@@ -212,6 +224,16 @@ class ApiController extends Controller
 	}
 
 	/**
+	 * Gets all the submissions from the database
+	 */
+	public function actionGetSubmissions()
+	{
+		$model = SignupForm::find()->all();
+
+		return Json::encode($model);
+	}
+
+	/**
 	 * Saves te submitted form
 	 */
 	public function actionSubmitForm()
@@ -246,6 +268,21 @@ class ApiController extends Controller
 			}
 		} else {
 			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+		}
+	}
+
+	/**
+	 * Deletes a form submission from the database
+	 */
+	public function actionDeleteSubmission()
+	{
+		$request = Yii::$app->request;
+
+		if ($request->get()) {
+			$model = SignupForm::find()->where(['id' => $request->get('id')])->one();
+			$model->delete();
+
+			return Json::encode(['status' => true, 'data' => 'success']);
 		}
 	}
 
@@ -383,7 +420,10 @@ class ApiController extends Controller
 		$request = Yii::$app->request;
 		
 		if ($request->get()) {
-			
+			$model = Sponsors::find()->where(['id' => $request->get('id')])->one();
+			$model->delete();
+
+			return Json::encode(['status' => true, 'data' => 'success']);
 		}
 	}
 }

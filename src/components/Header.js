@@ -72,7 +72,9 @@ class Header extends Component {
 			    	</div>
 			    	<ul className="nav navbar-nav">
 			    		<li>{ <Link to="/">Home</Link> }</li>
-						<li>{ <Link to="form">Form</Link> }</li>
+						<li>{ <Link to="/form">Form</Link> }</li>
+						<li>{ <Link to="/contributors">Contributors</Link> }</li>
+						<li>{ <Link to="/sponsors">Sponsors</Link> }</li>
 			      		{ this.renderAdminButton(this.props.users.isLoggedIn) }
 			    	</ul>
 			    	<ul className="nav navbar-nav navbar-right">
