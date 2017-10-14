@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2017 at 02:45 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Oct 13, 2017 at 06:50 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -55,6 +55,15 @@ CREATE TABLE `contributors` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contributors`
+--
+
+INSERT INTO `contributors` (`id`, `name`) VALUES
+(1, 'One'),
+(2, 'Two'),
+(3, 'Lorem Ipsum Dolor Sit Amet\r\n');
 
 -- --------------------------------------------------------
 
@@ -135,14 +144,24 @@ CREATE TABLE `signup_form` (
 --
 
 INSERT INTO `signup_form` (`id`, `name`, `email`, `city`, `region`, `workshop`) VALUES
-(1, 'adsf', 'sadfas@asdfsa.com', 'asdfas', 'adsf', ''),
-(2, 'asdf', 'dfas@asdf.com', 'asdfas', 'adfsa', ''),
-(3, 'asdf', 'adf@adsf.com', 'asdfdas', 'adsfas', ''),
-(4, 'adsf', 'asf@adsf.com', 'adsf', 'adsfaa', ''),
-(5, 'asdf', 'asdf2@adsf.com', 'adsfa', 'adsf', ''),
-(6, 'adsf', 'adfs@adsf.com', 'dsaf', 'awdfasf', ''),
-(7, 'adsf', 'adffffs@adsf.com', 'asdf', 'asdf', ''),
-(8, 'adsf', 'adffs@adsf.com', 'asdf', 'adsf', '');
+(14, 'asdfa', 'adsf@adsf.com', 'asdfa', 'asdf', ''),
+(17, 'asdf', 'asdf@asdf.com', 'fadf', 'adsf', ''),
+(18, 'sdf', 'adfsa@asdf.com', 'asdfas', 'adsf', ''),
+(19, 'asdf', 'adfsas@adsf.com', 'adsf', 'adsf', ''),
+(20, 'ddfs', 'asdf@ads.com', 'adsfa', 'adsf', ''),
+(21, 'asdf', 'asfa@adsf.com', 'adsfa', 'adsf', ''),
+(22, 'asdf', 'asfffffa@adsf.com', 'adsfa', 'adsf', ''),
+(23, 'adsfas', 'asdfasfasfs@adsf.com', 'adsfasfs', 'adsfas', ''),
+(24, 'dfdas', 'adsfas@asd.com', 'adsfas', 'adsf', ''),
+(25, 'adsfas', 'adsf@asdc.com', 'asdfads', 'asdfas', ''),
+(26, 'asdfsfa', 'asfffffffdf@asdf.com', 'asdf', 'adsf', ''),
+(27, 'adsfs', 'adsf@asdcccc.com', 'adsfa', 'adsf', ''),
+(28, 'adsf', 'cancer@cancer.com', 'adfa', 'adsfs', ''),
+(29, 'dsf', 'fff@adsf', 'adsf', 'asdf', 'Fotografie'),
+(30, 'adsfas', 'adsfads@asdfs.com', 'adsfas', 'adsfsa', '1'),
+(31, 'dsfsd', '32er3r@adsf.com', 'dsaa', 'dfsa', 'Pantomima'),
+(32, 'Lucifer Morningstar', 'Lucifer@morningStar.hell', 'Silver City', 'Heaven', 'Filmografie'),
+(33, 'adsf', '32e@af.com', 'adsf', 'adsf', 'Fotografie');
 
 -- --------------------------------------------------------
 
@@ -175,7 +194,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `access_token`, `password`, `is_logged`) VALUES
-(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 0);
+(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 1);
 
 -- --------------------------------------------------------
 
@@ -187,6 +206,15 @@ CREATE TABLE `workshops` (
   `id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `workshops`
+--
+
+INSERT INTO `workshops` (`id`, `name`) VALUES
+(1, 'Pantomima'),
+(2, 'Fotografie'),
+(3, 'Filmografie');
 
 --
 -- Indexes for dumped tables
@@ -263,7 +291,7 @@ ALTER TABLE `buttons_navbar_logged`
 -- AUTO_INCREMENT for table `contributors`
 --
 ALTER TABLE `contributors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `posts`
 --
@@ -278,7 +306,7 @@ ALTER TABLE `posts_categories`
 -- AUTO_INCREMENT for table `signup_form`
 --
 ALTER TABLE `signup_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `sponsors`
 --
@@ -293,7 +321,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `workshops`
 --
 ALTER TABLE `workshops`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -15,6 +15,8 @@ use app\models\Workshops;
 use app\models\SignupForm;
 use app\models\Sponsors;
 use app\models\Contributors;
+use yii\web\UploadedFile;
+use app\components\ImageUploadComponent;
 
 /**
 * ApiController class, has a collection of all the possible API calls
@@ -355,7 +357,7 @@ class ApiController extends Controller
 		$request = Yii::$app->request;
 
 		if ($request->get()) {
-			if (Contributors::find()->where(['name' => $request->get('name')])->name()) {
+			if (Contributors::find()->where(['name' => $request->get('name')])->one()) {
 				return Json::encode(['status' => false, 'data' => 'error_name_exists']);
 			}
 
@@ -395,14 +397,18 @@ class ApiController extends Controller
 		$request = Yii::$app->request;
 		
 		if ($request->get()) {
-			if (Sponsors::find()->where(['name' => $request->get('name')])->name()) {
+			if (Sponsors::find()->where(['name' => $request->get('name')])->one()) {
 				return Json::encode(['status' => false, 'data' => 'error_name_exists']);
 			}
 
 			$model = new Sponsors();
 			$model->name = $request->get('name');
 
-			if ($model->save(false)) {
+			$model->image = UploadedFile::getInstances($model, 'image');
+
+			var_dump($model); die;
+
+			if (ImageUploadComponent::upload($model)) {
 				return Json::encode(['status' => true, 'data' => 'success']);
 			} else {
 				return Json::encode(['status' => false, 'data' => 'error_not_saved']);

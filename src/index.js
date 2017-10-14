@@ -24,6 +24,9 @@ import ViewWorkshops from './containers/ViewWorkshops'
 import ViewSubmissions from './containers/ViewSubmissions'
 import Contributors from './containers/Contributors'
 import Sponsors from './containers/Sponsors'
+import CreateContributor from './containers/CreateContributor'
+import ViewContributors from './containers/ViewContributors'
+import CreateSponsor from './containers/CreateSponsor'
 
 const middleware = applyMiddleware(thunkMiddleware);
 const customHistory = createHashHistory();
@@ -43,15 +46,20 @@ render(
 					<Route exact path='/form' render={() => <LandingLayout><Form /></LandingLayout>} />
 					<Route exact path='/contributors' render={() => <LandingLayout><Contributors /></LandingLayout>} />
 					<Route exact path='/sponsors' render={() => <LandingLayout><Sponsors /></LandingLayout>} />
-					<Route exact path='/login' render={() => <LandingLayout><Login /></LandingLayout>}/>
-              	  	<Route exact path='/browse' render={() => <LandingLayout><Browse /></LandingLayout>} />
-            	  	<Route exact path='/create/category' render={() => <LandingLayout><CreateCategories /></LandingLayout>} />
+					<Route exact path='/login' render={() => <LandingLayout><Login /></LandingLayout>} />
+					<Route exact path='/browse' render={() => <LandingLayout><Browse /></LandingLayout>} />
+							  
+					<Route exact path='/create/category' render={() => <LandingLayout><CreateCategories /></LandingLayout>} />
+					<Route exact path='/create/contributor' render={() => <LandingLayout><CreateContributor /></LandingLayout>} />
 					<Route exact path='/create/post' render={() => <LandingLayout><CreatePosts /></LandingLayout>} />
-					<Route exact path='/create/workshops' render={() => <LandingLayout><CreateWorkshops /></LandingLayout>} />  
+					<Route exact path='/create/workshops' render={() => <LandingLayout><CreateWorkshops /></LandingLayout>} /> 
+					<Route exact path='/create/sponsor' render={() => <LandingLayout><CreateSponsor /></LandingLayout>} />  
+
               	  	<Route exact path='/view/categories' render={() => <LandingLayout><ViewCategories /></LandingLayout>} />
 					<Route exact path='/view/posts' render={() => <LandingLayout><ViewPosts /></LandingLayout>} /> 
 					<Route exact path='/view/workshops' render={() => <LandingLayout><ViewWorkshops /></LandingLayout>} />
 					<Route exact path='/view/submissions' render={() => <LandingLayout><ViewSubmissions /></LandingLayout>} />
+					<Route exact path='/view/contributors' render={() => <LandingLayout><ViewContributors /></LandingLayout>} />
               	</Switch>
           	</div>
       	</Router>

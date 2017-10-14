@@ -15,7 +15,9 @@ import {
     CREATE_WORKSHOP,
     GET_SUBMISSIONS,
     GET_CONTRIBUTORS,
-    GET_SPONSORS
+    GET_SPONSORS,
+    CREATE_CONTRIBUTOR,
+    CREATE_SPONSOR
 } from '../constants/ActionTypes'
 
 /**
@@ -431,4 +433,72 @@ function dispatchGetSponsors(data) {
         type: GET_SPONSORS,
         payload: data
     };
+}
+
+/**
+ * Creates a contributor entry in the database
+ */
+export function createContributor(values) {
+    return async (dispatch, getState) => {
+        await axios({
+            url: `${ROOT_URL}api/create-contributor`,
+            method: 'post',
+            params: {
+                name: values.name
+            }
+        }).then((response) => dispatch(dispatchCreateContributor(response)));
+    };
+}
+/**
+ * Dispatches the created contributor towards the reducers
+ */
+function dispatchCreateContributor(data) {
+    return {
+        type: CREATE_CONTRIBUTOR,
+        payload: data
+    };
+}
+
+/**
+ * Deletes a contributor from the database
+ */
+export function deleteContributor(id) {
+    return async (dispatch, getState) => {
+        await axios({
+            url: `${ROOT_URL}api/delete-contributor`,
+            method: 'post',
+            params: {
+                id
+            }
+        });
+    }
+}
+
+/**
+ * Creates a sponsor entry in the database
+ */
+export function createSponsor(values) {
+    return async (dispatch, getState) => {
+        let params = {
+            name: values.name,
+            image: values.pictures
+        };
+        console.log(params);
+        await axios({
+                url: `${ROOT_URL}api/create-sponsor`,
+                method: 'post',
+                params
+            })
+            .then((response) => dispatch(dispatchCreateSponsor(response)));
+    }
+}
+
+/**
+ * Dispatches the created sponsor towards the reducers
+ */
+function dispatchCreateSponsor(data) {
+    return {
+        type: CREATE_SPONSOR,
+        payload: data
+    }
 }

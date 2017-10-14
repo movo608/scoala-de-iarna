@@ -13,6 +13,10 @@ $config = [
             'class' => 'app\components\SecurityServiceComponent'
         ],
 
+        'ImageUploadComponent' => [
+            'class' => 'app\components\ImageUploadComponent'
+        ],
+
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '6nWkfMUqILSBcEiaBvS12INveqgSjm6B',

@@ -11,6 +11,8 @@ import createWorkshop from './create_workshop'
 import getSubmissions from './get_submissions'
 import getContributors from './get_contributors'
 import getSponsors from './get_sponsors'
+import createContributor from './create_contributor'
+import createSponsor from './create_sponsor'
 
 const rootReducer = combineReducers({
 	users,
@@ -22,7 +24,9 @@ const rootReducer = combineReducers({
 	createWorkshop,
 	getSubmissions,
 	getSponsors,
-	getContributors
+	getContributors,
+	createContributor,
+	createSponsor
 });
 
 export default rootReducer;
