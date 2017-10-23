@@ -404,9 +404,9 @@ class ApiController extends Controller
 			$model = new Sponsors();
 			$model->name = $request->get('name');
 
-			$model->image = UploadedFile::getInstances($model, 'image');
+			$model->image = UploadedFile::getInstancesByName('images');
 
-			var_dump($model); die;
+			var_dump($model->image); die;
 
 			if (ImageUploadComponent::upload($model)) {
 				return Json::encode(['status' => true, 'data' => 'success']);

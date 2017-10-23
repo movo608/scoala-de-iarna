@@ -3,11 +3,22 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { createHashHistory } from 'history'
 
-//import image upload
-import ImageUploader from 'react-images-upload'
+//import dropZone
+import Dropzone from 'react-dropzone'
 
-//import action
+// import Material-UI
+import FontIcon from 'material-ui/FontIcon'
+import { blue500, red500, greenA200 } from 'material-ui/styles/colors'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+// import action
 import { createSponsor } from '../actions'
+
+// import root url
+import { ROOT_URL } from '../constants/ActionTypes'
+
+// require 'superagent' module for request invocation
+let request = require('superagent');
 
 const customHistory = createHashHistory();
 
@@ -17,7 +28,9 @@ class CreateSponsor extends Component {
 
 		this.state = {
 			name: '',
-			pictures: []
+			filesPreview: [],
+			filesToBeSent: [],
+			count: 10
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -47,15 +60,50 @@ class CreateSponsor extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		console.log(this.state)
+
+		const self = this;
+
+		/*if (this.state.filesToBeSent.length > 0) {
+			let filesArray = this.state.filesToBeSent;
+			const req = request.post(`${ROOT_URL}api/create-sponsor`);
+			for (let i in filesArray) {
+				req.attach(filesArray[i][0].name, filesArray[i][0]);
+			}
+			req.end((error, response) => {
+				console.log('response', response);
+			});
+		}*/
 		this.props.createSponsor(this.state);
 	}
 
-	onDrop(picture) {
-		this.setState({
-			pictures: this.state.pictures.concat(picture)
-			//pictures: picture
-		});
+	onDrop(acceptedFiles, rejectedFiles) {
+		let filesToBeSent = this.state.filesToBeSent;
+		if (filesToBeSent.length < this.state.count) {
+			filesToBeSent.push(acceptedFiles);
+			let filesPreview = [];
+			for (let i in filesToBeSent) {
+				filesPreview.push(
+					<div>
+						<div>{ filesToBeSent[i][0].name }</div>
+						<MuiThemeProvider>
+							<a href="#">
+								<FontIcon
+									key={ i }
+									className="material-icons customstyle"
+									color={ blue500 }
+									styles={{ top: 10}}
+								>
+									clear
+								</FontIcon>
+						</a>
+						</MuiThemeProvider>
+					</div>
+				);
+			}
+			this.setState({ filesToBeSent, filesPreview });
+		} else {
+			alert("Limit of uploadable photos reached.");
+		}
 	}
 
 	renderForm() {
@@ -68,20 +116,15 @@ class CreateSponsor extends Component {
 					          	Name:
 					          	<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
 							</label>
-							<ImageUploader
-								name='image'
-								withIcon={ true }
-								buttonText='Choose images'
-								onChange={ this.onDrop }
-								imgExtension={ ['.jpg', '.png'] }
-								maxFileSize={ 1048576 }
-								withPreview={ true }
-								label='Max file size: 10mb, accepted: jpg, png'
-								fileSizeError='File is too big.'
-								fileTypeError=': not supported extension.'
-							/>
-				        </div>
-				        <input className="btn btn-default" type="submit" value="Submit" />
+							<Dropzone onDrop={(files) => this.onDrop(files)}>
+								<div>Try dropping some files here, or click to select files to upload.</div>
+							</Dropzone>
+							<div className="uploaded-files-preview">
+								Files to be uploaded: 
+								{ this.state.filesPreview }
+							</div>
+						</div>
+						<button className="btn btn-primary" onClick={ () => this.handleSubmit }>Submit</button>
 				    </form>
 			    </div>
 		    </section>

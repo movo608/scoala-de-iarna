@@ -391,7 +391,7 @@ export function deleteSubmission(id) {
             params: {
                 id
             }
-        }).then(response => console.log(response));
+        });
     }
 }
 
@@ -421,7 +421,7 @@ function dispatchGetContributors(data) {
 export function getSponsors() {
     return (dispatch) => {
         axios.get(`${ROOT_URL}api/get-sponsors`)
-            .then((data) => dispatchGetSponsors(data));
+            .then((data) => dispatch(dispatchGetSponsors(data)));
     }
 }
 
@@ -479,17 +479,16 @@ export function deleteContributor(id) {
  */
 export function createSponsor(values) {
     return async (dispatch, getState) => {
-        let params = {
-            name: values.name,
-            image: values.pictures
-        };
-        console.log(params);
-        await axios({
+        let data = await axios({
                 url: `${ROOT_URL}api/create-sponsor`,
                 method: 'post',
-                params
+                params: {
+                    name: values.name,
+                    images: values.filesToBeSent
+                }
             })
-            .then((response) => dispatch(dispatchCreateSponsor(response)));
+            //.then((response) => dispatch(dispatchCreateSponsor(response)));
+            console.log(data);
     }
 }
 
@@ -500,5 +499,20 @@ function dispatchCreateSponsor(data) {
     return {
         type: CREATE_SPONSOR,
         payload: data
+    }
+}
+
+/**
+ * Deletes a sponsor from the database
+ */
+export function deleteSponsor(id) {
+    return async (getState, dispatch) => {
+        await axios({
+            url: `${ROOT_URL}api/delete-sponsor`,
+            method: 'post',
+            params: {
+                id
+            }
+        });
     }
 }

@@ -11,9 +11,11 @@
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "history": "^4.6.1",
+    "material-ui": "^0.19.4",
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
+    "react-dropzone": "^4.2.1",
     "react-images-upload": "^1.1.1",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
@@ -25,6 +27,7 @@
     "redux-form": "^7.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "superagent": "^3.7.0",
     "todomvc-app-css": "^2.1.0"
   },
   "scripts": {
