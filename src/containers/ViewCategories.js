@@ -32,9 +32,9 @@ class ViewCategories extends Component {
 	renderCategories() {
 		return _.map(this.props.categories.categories, (pista) => {
 			return (
-				<li key={ pista.id } className="list-group-item col-md-12 col-sm-12">
+				<li style={{minHeight: '60px'}} key={ pista.id }>
 					<span>{ pista.name }</span>
-					<button ref="btn" className="btn btn-danger" style={{float: 'right'}} onClick={() => this.submitDeletion(pista.id) }>X</button>
+					<button style={{float: 'right'}} onClick={() => this.submitDeletion(pista.id) }>X</button>
 				</li>
 			);
 		});
@@ -47,22 +47,21 @@ class ViewCategories extends Component {
 
 	render() {
 		return (
-			<section className="view-categories index container col-md-12 col-sm-12">
-				<div className="page-header"><h1>View Categories Component</h1></div>
-				
-				<div className="col-md-6 col-sm-6">
-				    	<ul className="list-group">
-				    		{ this.renderCategories() }
-				    	</ul>
-				</div>
-
-				<div className="col-md-6 col-sm-6">
-					<button 
-						className="btn btn-warning" 
-						onClick={ () => this.refreshCategories() } 
-						value="submit">
-							Refresh Categories
-					</button>
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>in this section you can see all the categories</p>
+								<h2>View Categories</h2>
+							</header>
+							<button style={{marginBottom: '25px', marginRight: '10px'}} onClick={ () => this.refreshCategories() }>Refresh</button>
+							<button style={{marginBottom: '25px'}} onClick={ () => customHistory.push('/create/category') }>Create</button>
+							<ul className="alt categories-list uniform">
+								{ this.renderCategories() }
+							</ul>
+						</div>
+					</div>
 				</div>
 			</section>
 		);

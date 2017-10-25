@@ -39,7 +39,6 @@ class Header extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		USER_ID = nextProps.users.userId;
-		console.log(USER_ID);
 	}
 	
 	renderButtons() {

@@ -24,9 +24,31 @@ class App extends  Component {
 
 	render() {
 		return(
-			<div className="app-index index">
-				<h1>Landing Page</h1>
-			</div>
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>This is the bloody landing page</p>
+								<h2>Landing Page</h2>
+							</header>
+							<p>
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+								LOREM IPSUM DOLOR SIT AMET
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
 		);
 	}
 }

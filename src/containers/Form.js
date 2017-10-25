@@ -52,6 +52,8 @@ class Form extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.formResponse.sendForm.data !== 'no_request') {
 			allowMessage = true;
+		} else {
+			allowMessage = false;
 		}
 	}	
 
@@ -85,49 +87,42 @@ class Form extends Component {
 
 	renderForm() {
 		return (
-			<section className="col-md-12 col-sm-12">
-				<form className="col-md-12 col-sm-12" onSubmit={ this.handleSubmit }>
-					<div className="form-group">
-				        <label>
-				          	Name:
-				          	<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleNameChange } required />
-						</label>
+			<div>
+				<form>
+					<div className="form-signin row uniform">
+						<label className="sr-only">Name</label>
+						<div className="12u 12u$(xsmall)">
+							<input placeholder="Name" className="form-control" type="text" value={ this.state.value } onChange={ this.handleNameChange } required />
+						</div>								
+						<label className="sr-only">Email</label>
+						<div className="12u 12u$(xsmall)">
+							<input placeholder="Email" className="form-control" type="email" value={ this.state.value } onChange={ this.handleEmailChange } required />
+						</div>
+						<label className="sr-only">City</label>
+						<div className="12u 12u$(xsmall)">
+							<input placeholder="City" className="form-control" type="text" value={ this.state.value } onChange={ this.handleCityChange } required />
+						</div>
+						<label className="sr-only">Region</label>
+						<div className="12u 12u$(xsmall)">
+							<input placeholder="Region" className="form-control" type="text" value={ this.state.value } onChange={ this.handleRegionChange } required />
+						</div>
+						<label className="sr-only">Workshop</label>
+						<div className="12u 12u$(xsmall)">
+							<Select
+								name="form-field-workshop"
+								placeholder="Select Workshop..."
+								value={ this.state.workshopId }
+								onChange={ this.handleWorkshopChange }
+								options={ this.renderFormWorkshops() }
+								clearable={ false }
+								searchable={ false }
+								required
+							/>
+						</div>
 					</div>
-					<div className="form-group">
-				        <label>
-				          	Email:
-				          	<input className="form-control" type="email" value={ this.state.value } onChange={ this.handleEmailChange } required />
-						</label>
-					</div>
-					<div className="form-group">
-				        <label>
-				          	City:
-				          	<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleCityChange } required />
-						</label>
-					</div>
-					<div className="form-group">
-				        <label>
-				          	Region:
-				          	<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleRegionChange } required />
-				        </label>
-					</div>
-					<div className="form-group">
-				        <label>
-				          	Workshop:
-						</label>
-						<Select
-							name="form-field-workshop"
-							value={ this.state.workshopId }
-							onChange={ this.handleWorkshopChange }
-							options={ this.renderFormWorkshops() }
-							clearable={ false }
-							searchable={ false }
-							required
-						/>
-					</div>
-					<input className="btn btn-default" type="submit" value="Submit" />
-			    </form>
-		    </section>
+				</form>
+				<input onClick={ this.handleSubmit } className="btn btn-default" type="submit" value="Submit" />
+			</div>
 		);
 	}
 
@@ -142,27 +137,38 @@ class Form extends Component {
 	renderMessage() {
 		if (this.props.formResponse.sendForm.status === true) {
 			return (
-				<div className="alert alert-success alert-dismissable">
-					<a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Success!</strong> The information has been successfully submitted.
-				</div>
+				<div className="alert-success">
+					<strong>Success!</strong> The request has been successfully sent.
+			  	</div>
 			);
 		} else {
 			return (
-				<div className="alert alert-danger alert-dismissable">
-					<a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Error!</strong> The email address has already been used.
-				</div>
+				<div className="alert-danger">
+					<strong>Error!</strong> Email address has already been used.
+			  	</div>
 			);
 		}
+	}
+
+	hide(event) {
+		console.log(event);
 	}
 	
 	render() {
 		return (
-			<section className="container">
-				{ allowMessage === true ? this.renderMessage() : null }
-				<div className="page-header"><h1>Sign up form</h1></div>
-				{ this.renderForm() }
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>this is the sign-up form one can use to sign up for the camp</p>
+								<h2>Sign Up Form</h2>
+							</header>
+							{ allowMessage === true ? this.renderMessage() : null }
+							{ this.renderForm() }
+						</div>
+					</div>
+				</div>
 			</section>
 		);
 	}
