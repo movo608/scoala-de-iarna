@@ -61,8 +61,6 @@ class CreateSponsor extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 
-		const self = this;
-
 		/*if (this.state.filesToBeSent.length > 0) {
 			let filesArray = this.state.filesToBeSent;
 			const req = request.post(`${ROOT_URL}api/create-sponsor`);

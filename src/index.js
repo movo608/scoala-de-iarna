@@ -28,6 +28,7 @@ import CreateContributor from './containers/CreateContributor'
 import ViewContributors from './containers/ViewContributors'
 import CreateSponsor from './containers/CreateSponsor'
 import ViewSponsors from './containers/ViewSponsors'
+import About from './containers/About'
 
 const middleware = applyMiddleware(thunkMiddleware);
 const customHistory = createHashHistory();
@@ -47,8 +48,10 @@ render(
 					<Route exact path='/form' render={() => <LandingLayout><Form /></LandingLayout>} />
 					<Route exact path='/contributors' render={() => <LandingLayout><Contributors /></LandingLayout>} />
 					<Route exact path='/sponsors' render={() => <LandingLayout><Sponsors /></LandingLayout>} />
+					<Route exact path='/about' render={() => <LandingLayout><About /></LandingLayout>} />
+
 					<Route exact path='/login' render={() => <LandingLayout><Login /></LandingLayout>} />
-					<Route exact path='/browse' render={() => <LandingLayout><Browse /></LandingLayout>} />
+					<Route exact path='/admin' render={() => <LandingLayout><Browse /></LandingLayout>} />
 							  
 					<Route exact path='/create/category' render={() => <LandingLayout><CreateCategories /></LandingLayout>} />
 					<Route exact path='/create/contributor' render={() => <LandingLayout><CreateContributor /></LandingLayout>} />

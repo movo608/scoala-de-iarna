@@ -486,8 +486,7 @@ export function createSponsor(values) {
                     name: values.name,
                     images: values.filesToBeSent
                 }
-            })
-            //.then((response) => dispatch(dispatchCreateSponsor(response)));
+            }).then((response) => dispatch(dispatchCreateSponsor(response)));
             console.log(data);
     }
 }

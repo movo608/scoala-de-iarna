@@ -25,7 +25,7 @@ class Login extends Component {
 
     componentWillMount() {
     	if (this.props.users.isLoggedIn) {
-    		customHistory.push('/browse');
+    		customHistory.push('/admin');
     	}
     }
 
@@ -44,30 +44,38 @@ class Login extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.users.isLoggedIn === true) {
 			__storage.setObject('user', { users: this.props.users });
-			customHistory.push('/browse');
+			customHistory.push('/admin');
 		}
 	}
 
     render() {
-        return (
-            <div className="container">
-                <div className="col-md-6 col-md-offset-3 text-center">
-                    <div className="form-signin">
-                        <h2 className="form-signin-heading">Please sign in</h2>
-                        <label className="sr-only">Email address</label>
-                        <input onChange={ this.changeEmail } type="email" id="inputEmail" className="form-control" placeholder="Email address" required="" />
-						<label className="sr-only">Password</label>
-						<input onChange={ this.changePassword } type="password" id="inputPassword" className="form-control" placeholder="Password" required="" />
-						<div className="checkbox">
-							<label>
-								<input type="checkbox" value="remember-me" /> Remember me
-							</label>
+        return ( 
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>please sign in in order to proceed to the admin panel</p>
+								<h2>Sign in</h2>
+							</header>
+							<form>
+								<div className="form-signin row uniform">
+									<label className="sr-only">Email address</label>
+									<div className="12u 12u$(xsmall)">
+										<input onChange={ this.changeEmail } type="email" id="inputEmail" className="form-control" placeholder="Email address" required="" />
+									</div>								
+									<label className="sr-only">Password</label>
+									<div className="12u 12u$(xsmall)">
+										<input onChange={ this.changePassword } type="password" id="inputPassword" className="form-control" placeholder="Password" required="" />									
+									</div>
+								</div>
+							</form>
+							<button onClick={ this.submitLogin } className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 						</div>
-						<button onClick={ this.submitLogin } className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    </div>
-                </div>
-            </div>
-        )
+					</div>
+				</div>
+			</section>
+        );
     }
 }
 

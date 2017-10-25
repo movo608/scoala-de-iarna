@@ -137,7 +137,6 @@ class LoginController extends Controller
 	 * Logs an user out, rendering the (model)$user -> `is_logged` to 0 
 	 */
 	public function actionLogout() {
-
 		if (Yii::$app->request->get()) {
 			$model = User::find()->where(['id' => Yii::$app->request->get('id')])->one();
 			$model->is_logged = 0;

@@ -4,6 +4,13 @@ import { connect } from 'react-redux'
 import { createHashHistory } from 'history'
 import { bindActionCreators } from 'redux'
 import _ from 'lodash'
+import axios from 'axios'
+
+// import root url
+import {
+	ROOT_FRONTEND as __frontend,
+	ROOT_URL as __api
+} from '../constants/ActionTypes'
 
 /*
  * Import actions
@@ -12,6 +19,7 @@ import { getLoggedNavbar } from '../actions'
 import { userLogout } from '../actions/index'
 
 const customHistory = createHashHistory();
+let USER_ID = -1;
 
 class Header extends Component {
 	constructor(props) {
@@ -28,14 +36,21 @@ class Header extends Component {
 		this.props.userLogout(this.props.users.userId);
 		customHistory.push('/');
 	}
+
+	componentWillReceiveProps(nextProps) {
+		USER_ID = nextProps.users.userId;
+		console.log(USER_ID);
+	}
 	
 	renderButtons() {
 		if(this.props.users.isLoggedIn === true) {
-			return ( <button onClick={ this.submitLogout } className="btn btn-default navbar-btn login-btn">
-						Logout ({ this.props.users.username.substring(0, this.props.users.username.indexOf('@')) })
-					</button> );
+			return (
+				<button onClick={ this.submitLogout } className="btn btn-default navbar-btn logout-btn">
+					Logout ({ this.props.users.username.substring(0, this.props.users.username.indexOf('@')) })
+				</button> 
+			);
 		} else {
-			return <li><Link to="/login">Login</Link></li>
+			return <ul className="links"><li><Link to="/login">Login</Link></li></ul>;
 		}
 	}
 
@@ -52,36 +67,68 @@ class Header extends Component {
 	renderAdminButton($flag_permission) {
 		if ($flag_permission === true) {
 			return (
-				<li className="dropdown">
-		    		<a className="dropdown-toggle" data-toggle="dropdown" href="#">Admin
-		    		<span className="caret"></span></a>
-		    		<ul className="dropdown-menu">
-			          	{ this.renderLoggedInButtons() }
-		    		</ul>
-		  		</li>
+				<ul className="links">
+					<li className="dropdown">
+						<a className="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+						<span className="caret"></span></a>
+						<ul className="dropdown-menu">
+							{ this.renderLoggedInButtons() }
+						</ul>
+					</li>
+				</ul>
 			);
 		}
 	}
 
+	openFrontendWindow() {
+		window.open(__frontend);
+	}
+
+	renderAdmin() {
+		return (
+			<div>
+				<header id="header" className="">
+					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
+					{ this.renderButtons() }
+					<a href="#menu">Menu</a>
+				</header>
+				<nav id="menu">
+					<button onClick={ () => this.openFrontendWindow() }>To Frontend</button>
+					{ this.renderAdminButton(this.props.users.isLoggedIn) }
+				</nav>
+			</div>
+		);
+	}
+
+	renderStaticNavigation() {
+		return (
+			<ul className="links">
+				<li>{ <Link to="/">Home</Link> }</li>
+				<li>{ <Link to="/about">About</Link> }</li>
+				<li>{ <Link to="/form">Form</Link> }</li>
+				<li>{ <Link to="/contributors">Contributors</Link> }</li>
+				<li>{ <Link to="/sponsors">Sponsors</Link> }</li>
+			</ul>
+		);
+	}
+
+	renderMain() {
+		return (
+			<div>
+				<header id="header" className="">
+					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
+					<a href="#menu">Menu</a>
+				</header>
+				<nav id="menu">
+					{ this.renderStaticNavigation() }					
+				</nav>
+			</div>
+		);
+	}
+
 	render() {
 		return (
-			<nav className="navbar navbar-inverse">
-			  	<div className="container-fluid">
-			    	<div className="navbar-header">
-			      		{ <Link className="navbar-brand" to="/">WebSiteName</Link> }
-			    	</div>
-			    	<ul className="nav navbar-nav">
-			    		<li>{ <Link to="/">Home</Link> }</li>
-						<li>{ <Link to="/form">Form</Link> }</li>
-						<li>{ <Link to="/contributors">Contributors</Link> }</li>
-						<li>{ <Link to="/sponsors">Sponsors</Link> }</li>
-			      		{ this.renderAdminButton(this.props.users.isLoggedIn) }
-			    	</ul>
-			    	<ul className="nav navbar-nav navbar-right">
-			    		{ this.renderButtons() }
-			    	</ul>
-			  	</div>
-			</nav>
+			this.props.users.isLoggedIn ? this.renderAdmin() : this.renderMain()
 		);
 	}
 }
@@ -98,3 +145,23 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+onbeforeunload = function() {
+	axios({
+		method: 'get',
+		url: `${__api}/login/logout`,
+		params: {
+			id: USER_ID
+		}
+	});
+}
+
+window.onunload = function() {
+	axios({
+		method: 'get',
+		url: `${__api}/login/logout`,
+		params: {
+			id: USER_ID
+		}
+	});
+}

@@ -14,11 +14,11 @@ class App extends  Component {
     	if (__storage.getObject('user').users && this.props.users.isLoggedIn === false) {
 			this.props.userStoreLogin(__storage.getObject('user').users.username);
 		}
-    }
+	}
 
     componentWillReceiveProps(nextProps) {
 		if (nextProps.users.isLoggedIn === true) {
-			customHistory.push('/browse');
+			customHistory.push('/admin');
 		}
 	}
 
