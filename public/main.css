@@ -19,3 +19,9 @@
 .categories-list li span {
 	font-size: 1.4em;
 }
+
+.contributors-list {
+	color: rgba(red, green, blue, 0.8) !important;
+	font-size: 1.2em !important;
+	font-weight: 600 !important;
+}

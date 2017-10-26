@@ -51,21 +51,20 @@ class ViewContributors extends Component {
 
 	render() {
 		return (
-			<section className="view-contributors contianer col-md-12 col-sm-12">
-				<div className="page-header"><h1>ViewContributors Component</h1></div>
-				<div className="view-contributors col-md-12 col-sm-12">
-					<div className="col-md-8 col-sm-8">
-						<ul className="list-group">
-							{ this.renderContributors() }
-						</ul>
-					</div>
-					<div className="col-md-4 col-sm-4">
-						<button 
-							className="btn btn-warning" 
-							onClick={ this.refreshContributors }
-							value="submit">
-								Refresh
-						</button>
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>in this section you can see all the categories</p>
+								<h2>View Categories</h2>
+							</header>
+							<button style={{marginBottom: '25px', marginRight: '10px'}} onClick={ () => this.refreshContributors() }>Refresh</button>
+							<button style={{marginBottom: '25px'}} onClick={ () => customHistory.push('/create/contributor') }>Create</button>
+							<ul className="alt categories-list uniform">
+								{ this.renderContributors() }
+							</ul>
+						</div>
 					</div>
 				</div>
 			</section>

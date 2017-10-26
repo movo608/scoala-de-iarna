@@ -1,14 +1,14 @@
 import React from 'react'
 
-export function Powered() {
+export function Author() {
 	return (
-		<span>Powered by <em><a href="https://www.facebook.com/moldovan.andrei.391">Moldo Andrei</a></em>.</span>
+		<span>Built by <em><a href="https://www.facebook.com/moldovan.andrei.391">Moldo Andrei</a></em>.</span>
 	);
 }
 
-export function usingReact() {
+export function Powered() {
 	return (
-		<span>Built on <em><a href="https://reactjs.org/">React JS</a>.</em></span>
+		<span>Powered by <em><a href="https://reactjs.org/">React JS</a>.</em></span>
 	);
 }
 

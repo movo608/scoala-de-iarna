@@ -44,7 +44,7 @@ class Contributors extends Component {
 						<div className="content">
 							<header className="align-center">
 								<p>this page is still under development</p>
-								<h2>PAGE UNDER DEVELOPMENT</h2>
+								<h2>CONTRIBUTORS (PAGE UNDER DEVELOPMENT)</h2>
 							</header>
 							<p>
 								Since the current page is under development, it will become available 
@@ -56,6 +56,13 @@ class Contributors extends Component {
 								LOREM IPSUM DOLOR SIT AMET, CONSECTETUR CESAERE IMPERATORUS ROMANI
 								LOREM IPSUM DOLOR SIT AMET, CONSECTETUR CESAERE IMPERATORUS ROMANI
 							</p>
+							<div className="12u 12u$(medium) uniform contributors-list">
+								<center>
+									<ul className="alt 6u 6u$(medium)">
+										{ this.renderContributors() }
+									</ul>
+								</center>
+							</div>
 						</div>
 					</div>
 				</div>

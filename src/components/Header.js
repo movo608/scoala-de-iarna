@@ -41,15 +41,13 @@ class Header extends Component {
 		USER_ID = nextProps.users.userId;
 	}
 	
-	renderButtons() {
+	renderLogout() {
 		if(this.props.users.isLoggedIn === true) {
 			return (
-				<button onClick={ this.submitLogout } className="btn btn-default navbar-btn logout-btn">
+				<button style={{ marginRight: '10px' }} onClick={ this.submitLogout } className="btn btn-default navbar-btn logout-btn">
 					Logout ({ this.props.users.username.substring(0, this.props.users.username.indexOf('@')) })
 				</button> 
 			);
-		} else {
-			return <ul className="links"><li><Link to="/login">Login</Link></li></ul>;
 		}
 	}
 
@@ -67,13 +65,7 @@ class Header extends Component {
 		if ($flag_permission === true) {
 			return (
 				<ul className="links">
-					<li className="dropdown">
-						<a className="dropdown-toggle" data-toggle="dropdown" href="#">Admin
-						<span className="caret"></span></a>
-						<ul className="dropdown-menu">
-							{ this.renderLoggedInButtons() }
-						</ul>
-					</li>
+					{ this.renderLoggedInButtons() }
 				</ul>
 			);
 		}
@@ -88,11 +80,11 @@ class Header extends Component {
 			<div>
 				<header id="header" className="">
 					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
-					{ this.renderButtons() }
+					{ this.renderLogout() }
+					<button onClick={ () => this.openFrontendWindow() }>To Frontend</button>
 					<a href="#menu">Menu</a>
 				</header>
 				<nav id="menu">
-					<button onClick={ () => this.openFrontendWindow() }>To Frontend</button>
 					{ this.renderAdminButton(this.props.users.isLoggedIn) }
 				</nav>
 			</div>

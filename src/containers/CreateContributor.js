@@ -47,19 +47,29 @@ class CreateContributor extends Component {
 
 	renderForm() {
 		return (
-			<section className="col-md-12 col-sm-12">
-				<div className="col-md-6 col-sm-6">
-					<form onSubmit={ this.handleSubmit }>
-						<div className="form-group">
-					        <label>
-					          Name:
-					          <input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
-					        </label>
-				        </div>
-				        <input className="btn btn-default" type="submit" value="Submit" />
-				    </form>
-			    </div>
-		    </section>
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>this section is used to create a contributor</p>
+								<h2>Create Contributor</h2>
+							</header>
+							<form onSubmit={ this.handleSubmit }>
+								<div className="form-create-categories row uniform">
+									<label className="sr-only">Name</label>
+									<div className="12u 12u$(xsmall)">
+										<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
+									</div>	
+									<div className="12u 12u$(small)">
+										<input className="button" type="submit" value="Submit" />
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
 		);
 	}
 

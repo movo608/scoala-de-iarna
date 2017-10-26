@@ -46,7 +46,7 @@ class CreateCategories extends Component {
 								<p>this section is used to create a post category</p>
 								<h2>Create Category</h2>
 							</header>
-							<form>
+							<form onSubmit={ this.handleSubmit }>
 								<div className="form-create-categories row uniform">
 									<label className="sr-only">Name</label>
 									<div className="12u 12u$(xsmall)">
@@ -54,7 +54,7 @@ class CreateCategories extends Component {
 									</div>								
 								</div>
 							</form>
-							<input onClick={ this.handleSubmit } className="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />
+							<input className="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />
 						</div>
 					</div>
 				</div>

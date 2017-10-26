@@ -14,17 +14,13 @@ import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 
 const customHistory = createHashHistory();
-const IS_DISABLED = false;
+const IS_DISABLED = true;
 
 let allowMessage = false;
 
 class Form extends Component {
 	constructor(props) {
 		super(props);
-		
-		if (IS_DISABLED === true) {
-			customHistory.push('/');
-		}
 
 		this.state = {
 			name: '',
@@ -153,8 +149,8 @@ class Form extends Component {
 	hide(event) {
 		console.log(event);
 	}
-	
-	render() {
+
+	renderAvailable() {
 		return (
 			<section id="two" className="wrapper style2">
 				<div className="inner">
@@ -170,6 +166,44 @@ class Form extends Component {
 					</div>
 				</div>
 			</section>
+		);
+	}
+
+	renderDisabled() {
+		return (
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>
+									this is the sign-up form one can use to sign up for the camp.
+									it is currently unavailable.
+								</p>
+								<h2>Sign Up Form (Not Available)</h2>
+							</header>
+							<p>
+								This is the sign-up form one can use to sign up for the participation in
+								<em>AGA</em>'s winter edition camp.
+							</p>
+							<p>
+								Due to further development, this section of the website is prohibited
+								to public access and use.
+							</p>
+							<h4>
+								Please refer to this section on a further date in order to be able to have 
+								access to its full functionality.
+							</h4>
+						</div>
+					</div>
+				</div>
+			</section>
+		);
+	}
+	
+	render() {
+		return (
+			IS_DISABLED ? this.renderDisabled() : this.renderAvailable()
 		);
 	}
 }
