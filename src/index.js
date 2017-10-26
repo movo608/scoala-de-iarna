@@ -41,7 +41,7 @@ const store = createStore (
 
 render(
   <Provider store={ store }>
-      	<Router history={ customHistory }>
+      	<Router history={ customHistory } >
           	<div>
               	<Switch>
 					<Route exact path='/' render={() => <LandingLayout><App /></LandingLayout>}/>
