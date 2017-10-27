@@ -33,7 +33,6 @@ class ViewWorkshops extends Component {
 	}
 
 	submitDeletion(id) {
-		console.log(id);
 		this.props.deleteWorkshop(id);
 		this.refreshWorkshops();
 	}
@@ -41,7 +40,7 @@ class ViewWorkshops extends Component {
 	renderWorkshops() {
 		return _.map(this.props.workshops.workshops, (it) => {
 			return (
-				<li key={ it.id } className="list-group-item col-md-12 col-sm-12">
+				<li key={ it.id } style={{minHeight: '60px'}}>
 					<span>{ it.name }</span>
 					<button ref="btn" className="btn btn-danger" style={{float: 'right'}} onClick={() => this.submitDeletion(it.id) }>X</button>
 				</li>
@@ -51,21 +50,20 @@ class ViewWorkshops extends Component {
 
 	render() {
 		return (
-			<section className="view-workshops contianer col-md-12 col-sm-12">
-				<div className="page-header"><h1>ViewWorkshops Component</h1></div>
-				<div className="view-workshops col-md-12 col-sm-12">
-					<div className="col-md-8 col-sm-8">
-						<ul className="list-group">
-							{ this.renderWorkshops() }
-						</ul>
-					</div>
-					<div className="col-md-4 col-sm-4">
-						<button 
-							className="btn btn-warning" 
-							onClick={ this.refreshWorkshops }
-							value="submit">
-								Refresh
-						</button>
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>in this section you can see all the workshops</p>
+								<h2>View Workshops</h2>
+							</header>
+							<button style={{marginBottom: '25px', marginRight: '10px'}} onClick={ () => this.refreshWorkshops() }>Refresh</button>
+							<button style={{marginBottom: '25px'}} onClick={ () => customHistory.push('/create/workshop') }>Create</button>
+							<ul className="alt categories-list uniform">
+								{ this.renderWorkshops() }
+							</ul>
+						</div>
 					</div>
 				</div>
 			</section>

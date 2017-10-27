@@ -40,10 +40,18 @@ class ViewSponsors extends Component {
 	renderSponsors() {
 		return _.map(this.props.sponsors, (it) => {
 			return (
-				<li key={ it.id } className="list-group-item col-md-12 col-sm-12 col-xs-12 col-lg-12">
-					<span className="col-md-6 col-sm-6 col-xs-6 col-lg-6">{ it.name }</span>
-					<img className="col-md-3 col-sm-3 col-xs-3 col-lg-6" src={ it.image } alt="image_not_found" />
-					<button className="btn btn-danger pull-right" onClick={ () => this.submitDeletion(it.id) }>&times;</button>
+				<li key={ it.id } style={{minHeight: "150px"}}>
+					<div className="uniform">
+						<div className="12u 12u$(medium)">
+							<h3>Name: { it.name }</h3>
+						</div>
+						<div className="12u 12u$(medium)">
+							<img src={ it.image } alt="image_not_found" />
+						</div>
+						<div class="12u 12u$(medium)">
+							<button ref="btn" className="btn btn-danger" style={{float: 'right'}} onClick={() => this.submitDeletion(it.id) }>X</button>
+						</div>
+					</div>
 				</li>
 			);
 		});
@@ -51,21 +59,20 @@ class ViewSponsors extends Component {
 
 	render() {
 		return (
-			<section className="view-submissions contianer col-md-12 col-sm-12">
-				<div className="page-header">
-					<h1>ViewSubmissions Component</h1>
-					<button
-						className="btn btn-warning" 
-						onClick={ this.refreshSponsors }
-						value="submit">
-							Refresh
-					</button>
-				</div>
-				<div className="view-workshops col-md-12 col-sm-12">
-					<div className="col-md-12 col-sm-12">
-						<ul className="list-group">
-							{ this.renderSponsors() }
-						</ul>
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>in this section you can see all the sponsors</p>
+								<h2>View Sponsors</h2>
+							</header>
+							<button style={{marginBottom: '25px', marginRight: '10px'}} onClick={ () => this.refreshSponsors() }>Refresh</button>
+							<button style={{marginBottom: '25px'}} onClick={ () => customHistory.push('/create/sponsor') }>Create</button>
+							<ul className="alt categories-list uniform">
+								{ this.renderSponsors() }
+							</ul>
+						</div>
 					</div>
 				</div>
 			</section>

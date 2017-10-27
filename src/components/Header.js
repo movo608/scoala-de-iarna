@@ -146,13 +146,3 @@ onbeforeunload = function() {
 		}
 	});
 }
-
-window.onunload = function() {
-	axios({
-		method: 'get',
-		url: `${__api}/login/logout`,
-		params: {
-			id: USER_ID
-		}
-	});
-}

@@ -49,27 +49,34 @@ class CreateWorkshops extends Component {
 
 	renderForm() {
 		return (
-			<section className="col-md-12 col-sm-12">
-				<div className="col-md-6 col-sm-6">
-					<form onSubmit={ this.handleSubmit }>
-						<div className="form-group">
-					        <label>
-					          Name:
-					          <input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
-					        </label>
-				        </div>
-				        <input className="btn btn-default" type="submit" value="Submit" />
-				    </form>
-			    </div>
-		    </section>
+			<form onSubmit={ this.handleSubmit }>
+				<div className="form-create-categories row uniform">
+					<label className="sr-only">Name</label>
+					<div className="12u 12u$(xsmall)">
+						<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
+					</div>	
+					<div className="12u 12u$(small)">
+						<input className="button" type="submit" value="Submit" />
+					</div>
+				</div>
+			</form>
 		);
 	}
 
 	render() {
 		return (
-			<section className="create-workshops index">
-				<div className="page-header"><h1>CreateWorkshops Component</h1></div>
-				{ this.renderForm() }
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>this section is used to create a workshop</p>
+								<h2>Create Workshop</h2>
+							</header>
+							{ this.renderForm() }
+						</div>
+					</div>
+				</div>
 			</section>
 		);
 	}

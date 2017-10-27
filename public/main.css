@@ -25,3 +25,17 @@
 	font-size: 1.2em !important;
 	font-weight: 600 !important;
 }
+
+textarea {
+	resize: none;
+}
+
+.post-body {
+	word-wrap: break-word;
+}
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

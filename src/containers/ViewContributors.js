@@ -41,7 +41,7 @@ class ViewContributors extends Component {
 	renderContributors() {
 		return _.map(this.props.contributors, (it) => {
 			return (
-				<li key={ it.id } className="list-group-item col-md-12 col-sm-12">
+				<li style={{minHeight: '50px'}} key={ it.id }>
 					<span>{ it.name }</span>
 					<button ref="btn" className="btn btn-danger" style={{float: 'right'}} onClick={() => this.submitDeletion(it.id) }>X</button>
 				</li>
@@ -56,8 +56,8 @@ class ViewContributors extends Component {
 					<div className="box">
 						<div className="content">
 							<header className="align-center">
-								<p>in this section you can see all the categories</p>
-								<h2>View Categories</h2>
+								<p>in this section you can see all the contributors</p>
+								<h2>View Contributors</h2>
 							</header>
 							<button style={{marginBottom: '25px', marginRight: '10px'}} onClick={ () => this.refreshContributors() }>Refresh</button>
 							<button style={{marginBottom: '25px'}} onClick={ () => customHistory.push('/create/contributor') }>Create</button>

@@ -56,12 +56,10 @@ class Contributors extends Component {
 								LOREM IPSUM DOLOR SIT AMET, CONSECTETUR CESAERE IMPERATORUS ROMANI
 								LOREM IPSUM DOLOR SIT AMET, CONSECTETUR CESAERE IMPERATORUS ROMANI
 							</p>
-							<div className="12u 12u$(medium) uniform contributors-list">
-								<center>
-									<ul className="alt 6u 6u$(medium)">
-										{ this.renderContributors() }
-									</ul>
-								</center>
+							<div className="12u 12u$(medium) uniform contributors-list Aligner align-center">
+								<ul className="alt 6u 6u$(medium) contributors-list">
+									{ this.renderContributors() }
+								</ul>
 							</div>
 						</div>
 					</div>

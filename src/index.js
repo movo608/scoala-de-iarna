@@ -56,7 +56,7 @@ render(
 					<Route exact path='/create/category' render={() => <LandingLayout><CreateCategories /></LandingLayout>} />
 					<Route exact path='/create/contributor' render={() => <LandingLayout><CreateContributor /></LandingLayout>} />
 					<Route exact path='/create/post' render={() => <LandingLayout><CreatePosts /></LandingLayout>} />
-					<Route exact path='/create/workshops' render={() => <LandingLayout><CreateWorkshops /></LandingLayout>} /> 
+					<Route exact path='/create/workshop' render={() => <LandingLayout><CreateWorkshops /></LandingLayout>} /> 
 					<Route exact path='/create/sponsor' render={() => <LandingLayout><CreateSponsor /></LandingLayout>} />  
 
               	  	<Route exact path='/view/categories' render={() => <LandingLayout><ViewCategories /></LandingLayout>} />

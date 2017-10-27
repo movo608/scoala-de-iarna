@@ -33,7 +33,7 @@ class CreatePosts extends Component {
 	}
 
 	componentWillMount() {
-		if(!this.props.users.isLoggedIn) {
+		if (!this.props.users.isLoggedIn) {
 			customHistory.push('/');
 		}
 	}
@@ -78,58 +78,65 @@ class CreatePosts extends Component {
 
 	renderForm() {
 		return (
-			<section className="col-md-12 col-sm-12">
-				<div className="col-md-6 col-sm-6">
-					<form onSubmit={ this.handleSubmit }>
-				        <div className="form-group">
-					        <label>
-					          Name:
-					          <input className="form-control" type="text" value={ this.state.value } onChange={ this.handleNameChange } required />
-					        </label>
-				        </div>
-				        <div className="form-group">
-					        <label>
-					          Body:
-					          <textarea cols="50" rows="4" className="form-control" type="text" value={ this.state.value } onChange={ this.handleBodyChange } required></textarea>
-					        </label>
-				        </div>
-				        <div className="form-group">
-				        	<label>
-				        		Category
-				        	</label>
-					        <Select
-							  	name="form-field-name"
-							  	value={ this.state.categoryValue }
-							  	options={ this.renderFormCategories() }
-							  	onChange={ this.handleCategoryChange }
-							  	clearable={ false }
-							  	searchable={ false }
-							  	required
+			<form onSubmit={ this.handleSubmit }>
+				<div className="row uniform">
+					<div className="12u 12u$(medium)">
+						<label className="sr-only">Name</label>
+						<input placeholder="Name" className="form-control" type="text" value={ this.state.value } onChange={ this.handleNameChange } required />
+					</div>
+					<div className="12u 12u$(medium)">
+						<label className="sr-only">Body</label>
+						<textarea placeholder="Body" cols="50" rows="25" className="form-control" type="text" value={ this.state.value } onChange={ this.handleBodyChange } required></textarea>
+					</div>
+					<div className="12u 12u$(medium)">
+						<label className="sr-only">
+							Category
+						</label>
+						<div className="12u 12u$(medium)">
+							<Select
+								className="12u 12u$(medium)"
+								name="form-field-name"
+								value={ this.state.categoryValue }
+								options={ this.renderFormCategories() }
+								onChange={ this.handleCategoryChange }
+								clearable={ false }
+								searchable={ false }
+								placeholder="Select Category..."
+								required
 							/>
 						</div>
-				        <input className="btn btn-default" type="submit" value="Submit" />
-				    </form>
-			    </div>
-		    </section>
+					</div>
+				</div>
+				<div style={{marginTop: '20px'}} className="12u 12u$(medium)">
+					<input type="submit" value="Submit" />
+				</div>
+			</form>		
 		);
 	}
 
 	renderFormCategories() {
 		return _.map(this.props.categories.categories, (pista) => {
 			return (
-				{ value: pista.id, label:pista.name }
+				{ value: pista.id, label: pista.name }
 			);	
 		});
 	}
 
 	render() {
 		return (
-			<div className="container">
-				<div className="page-header"><h1>Create Posts Component</h1></div>
-				<div>
-					{ this.renderForm() }
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>this section is used to create a post</p>
+								<h2>Create Post</h2>
+							</header>
+							{ this.renderForm() }
+						</div>
+					</div>
 				</div>
-			</div>
+			</section>
 		);
 	}
 }
