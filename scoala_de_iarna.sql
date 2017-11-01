@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2017 at 06:50 PM
+-- Generation Time: Nov 01, 2017 at 08:49 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -42,8 +42,11 @@ INSERT INTO `buttons_navbar_logged` (`id`, `name`, `value`) VALUES
 (3, '/view/categories', 'Categories'),
 (4, '/view/posts', 'Posts'),
 (5, '/view/workshops', 'Workshops'),
-(6, '/create/workshops', 'Create Workshops'),
-(7, '/view/submissions', 'View Submissions');
+(6, '/create/workshop', 'Create Workshops'),
+(7, '/view/submissions', 'View Submissions'),
+(8, '/create/contributor', 'Create Contributors'),
+(9, '/view/contributors', 'View Contributors'),
+(10, '/view/sponsors', 'View Sponsors');
 
 -- --------------------------------------------------------
 
@@ -63,7 +66,22 @@ CREATE TABLE `contributors` (
 INSERT INTO `contributors` (`id`, `name`) VALUES
 (1, 'One'),
 (2, 'Two'),
-(3, 'Lorem Ipsum Dolor Sit Amet\r\n');
+(3, 'Lorem Ipsum Dolor Sit Amet\r\n'),
+(4, 'dfss'),
+(6, 'Satan'),
+(14, 'Molfenstein');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `critical_security_service`
+--
+
+CREATE TABLE `critical_security_service` (
+  `id` int(11) NOT NULL,
+  `critical_password` varchar(128) NOT NULL,
+  `critical_username` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -92,17 +110,19 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
+  `category_name` varchar(32) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `body` text NOT NULL
+  `body` text NOT NULL,
+  `image` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `category_id`, `name`, `body`) VALUES
-(8, 6, 'One', 'One'),
-(9, 5, 'One', 'One');
+INSERT INTO `posts` (`id`, `category_id`, `category_name`, `name`, `body`, `image`) VALUES
+(11, 4, 'DEUS VULT', 'asdfads', 'FJKPADSFASFSFALFADSK;OFLJKLSFADSK;LFJKPADSFASFSFALFADSK;OFLJKLSFADSK;LFJKPADSFASFSFALFADSK;OFLJKLSFADSK;LFJKPADSFASFSFALFADSK;OFLJKLSFADSK;LFJKPADSFASFSFALFADSK;OFLJKLSFADSK;L', ''),
+(12, 5, 'DEUS VULT FOR LEONHART', 'dsfas', 'adsfas', '');
 
 -- --------------------------------------------------------
 
@@ -144,21 +164,7 @@ CREATE TABLE `signup_form` (
 --
 
 INSERT INTO `signup_form` (`id`, `name`, `email`, `city`, `region`, `workshop`) VALUES
-(14, 'asdfa', 'adsf@adsf.com', 'asdfa', 'asdf', ''),
-(17, 'asdf', 'asdf@asdf.com', 'fadf', 'adsf', ''),
-(18, 'sdf', 'adfsa@asdf.com', 'asdfas', 'adsf', ''),
-(19, 'asdf', 'adfsas@adsf.com', 'adsf', 'adsf', ''),
-(20, 'ddfs', 'asdf@ads.com', 'adsfa', 'adsf', ''),
-(21, 'asdf', 'asfa@adsf.com', 'adsfa', 'adsf', ''),
-(22, 'asdf', 'asfffffa@adsf.com', 'adsfa', 'adsf', ''),
-(23, 'adsfas', 'asdfasfasfs@adsf.com', 'adsfasfs', 'adsfas', ''),
-(24, 'dfdas', 'adsfas@asd.com', 'adsfas', 'adsf', ''),
-(25, 'adsfas', 'adsf@asdc.com', 'asdfads', 'asdfas', ''),
-(26, 'asdfsfa', 'asfffffffdf@asdf.com', 'asdf', 'adsf', ''),
-(27, 'adsfs', 'adsf@asdcccc.com', 'adsfa', 'adsf', ''),
-(28, 'adsf', 'cancer@cancer.com', 'adfa', 'adsfs', ''),
 (29, 'dsf', 'fff@adsf', 'adsf', 'asdf', 'Fotografie'),
-(30, 'adsfas', 'adsfads@asdfs.com', 'adsfas', 'adsfsa', '1'),
 (31, 'dsfsd', '32er3r@adsf.com', 'dsaa', 'dfsa', 'Pantomima'),
 (32, 'Lucifer Morningstar', 'Lucifer@morningStar.hell', 'Silver City', 'Heaven', 'Filmografie'),
 (33, 'adsf', '32e@af.com', 'adsf', 'adsf', 'Fotografie');
@@ -174,6 +180,13 @@ CREATE TABLE `sponsors` (
   `name` varchar(128) NOT NULL,
   `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sponsors`
+--
+
+INSERT INTO `sponsors` (`id`, `name`, `image`) VALUES
+(1, 'fdsf', 'uploads/pic01.jpg');
 
 -- --------------------------------------------------------
 
@@ -194,7 +207,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `access_token`, `password`, `is_logged`) VALUES
-(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 1);
+(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 0);
 
 -- --------------------------------------------------------
 
@@ -213,8 +226,7 @@ CREATE TABLE `workshops` (
 
 INSERT INTO `workshops` (`id`, `name`) VALUES
 (1, 'Pantomima'),
-(2, 'Fotografie'),
-(3, 'Filmografie');
+(4, 'Satanism');
 
 --
 -- Indexes for dumped tables
@@ -231,6 +243,12 @@ ALTER TABLE `buttons_navbar_logged`
 -- Indexes for table `contributors`
 --
 ALTER TABLE `contributors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `critical_security_service`
+--
+ALTER TABLE `critical_security_service`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -286,17 +304,22 @@ ALTER TABLE `workshops`
 -- AUTO_INCREMENT for table `buttons_navbar_logged`
 --
 ALTER TABLE `buttons_navbar_logged`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `contributors`
 --
 ALTER TABLE `contributors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `critical_security_service`
+--
+ALTER TABLE `critical_security_service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `posts_categories`
 --
@@ -311,7 +334,7 @@ ALTER TABLE `signup_form`
 -- AUTO_INCREMENT for table `sponsors`
 --
 ALTER TABLE `sponsors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -321,7 +344,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `workshops`
 --
 ALTER TABLE `workshops`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
