@@ -40,20 +40,25 @@ class ViewSubmissions extends Component {
 	renderSubmissions() {
 		return _.map(this.props.submissions, (it) => {
 			return (
-				<li key={ it.id } className="list-group-item col-md-12 col-sm-12">
-					<div>
-						<div className="page-header">
+				<li key={ it.id }>
+					<div className="uniform">
+						<div className="12u 12u$(medium)">
 							<h3>Name: { it.name }</h3>
+						</div>
+						<div className="12u 12u$(medium)">
 							<h3>Email: { it.email }</h3>
+						</div>
+						<div className="12u 12u$(medium)">
 							<h3>City: { it.city }</h3>
+						</div>
+						<div className="12u 12u$(medium)">
 							<h3>Region: { it.region }</h3>
+						</div>
+						<div className="12u 12u$(medium)">
 							<h3>Workshop: { it.workshop }</h3>
 						</div>
-						<div>
-							### Application Info ###
-						</div>
+						<button className="12u 12u$(medium)" ref="btn" onClick={() => this.submitDeletion(it.id) }>Remove</button>
 					</div>
-					<button ref="btn" className="btn btn-danger" style={{float: 'right'}} onClick={() => this.submitDeletion(it.id) }>X</button>
 				</li>
 			);
 		});
@@ -61,21 +66,20 @@ class ViewSubmissions extends Component {
 
 	render() {
 		return (
-			<section className="view-submissions contianer col-md-12 col-sm-12">
-				<div className="page-header">
-					<h1>ViewSubmissions Component</h1>
-					<button
-						className="btn btn-warning" 
-						onClick={ this.refreshSubmissions }
-						value="submit">
-							Refresh
-					</button>
-				</div>
-				<div className="view-workshops col-md-12 col-sm-12">
-					<div className="col-md-12 col-sm-12">
-						<ul className="list-group">
-							{ this.renderSubmissions() }
-						</ul>
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>in this section you can see all the form submissions</p>
+								<h2>View Form Submissions</h2>
+							</header>
+							<button style={{marginBottom: '25px', marginRight: '10px'}} onClick={ () => this.refreshSubmissions() }>Refresh</button>
+							<hr />
+							<ul className="alt categories-list uniform">
+								{ this.renderSubmissions() }
+							</ul>
+						</div>
 					</div>
 				</div>
 			</section>

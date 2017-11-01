@@ -13,12 +13,6 @@ class App extends  Component {
 		}
 	}
 
-    /*componentWillReceiveProps(nextProps) {
-		if (nextProps.users.isLoggedIn === true) {
-			customHistory.push('/admin');
-		}
-	}*/
-
 	renderBanner() {
 		return (
 			<section className="banner full">
@@ -26,7 +20,7 @@ class App extends  Component {
 					<img src="images/slide01.jpg" alt="" />
 					<div className="inner">
 						<header>
-							<p>A free responsive web site template by <a href="https://templated.co">TEMPLATED</a></p>
+							<p>Niggaaaaaa</p>
 							<h2>Hielo</h2>
 						</header>
 					</div>

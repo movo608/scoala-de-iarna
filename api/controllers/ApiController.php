@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
 use Yii;
 use yii\web\Controller;
 // JSON Helper
@@ -395,18 +398,18 @@ class ApiController extends Controller
 	public function actionCreateSponsor()
 	{
 		$request = Yii::$app->request;
+
+		var_dump($request->get());
 		
-		if ($request->get()) {
-			if (Sponsors::find()->where(['name' => $request->get('name')])->one()) {
+		if ($request->post()) {
+			if (Sponsors::find()->where(['name' => $request->post('name')])->one()) {
 				return Json::encode(['status' => false, 'data' => 'error_name_exists']);
 			}
 
 			$model = new Sponsors();
-			$model->name = $request->get('name');
+			$model->name = $request->post('name');
 
 			$model->image = UploadedFile::getInstancesByName('images');
-
-			var_dump($model->image); die;
 
 			if (ImageUploadComponent::upload($model)) {
 				return Json::encode(['status' => true, 'data' => 'success']);

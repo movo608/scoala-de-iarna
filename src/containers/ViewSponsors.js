@@ -40,19 +40,21 @@ class ViewSponsors extends Component {
 	renderSponsors() {
 		return _.map(this.props.sponsors, (it) => {
 			return (
-				<li key={ it.id } style={{minHeight: "150px"}}>
-					<div className="uniform">
-						<div className="12u 12u$(medium)">
-							<h3>Name: { it.name }</h3>
-						</div>
-						<div className="12u 12u$(medium)">
-							<img src={ it.image } alt="image_not_found" />
-						</div>
-						<div class="12u 12u$(medium)">
-							<button ref="btn" className="btn btn-danger" style={{float: 'right'}} onClick={() => this.submitDeletion(it.id) }>X</button>
-						</div>
+				<div key={ it.id } className="box">
+					<div className="content">
+						<li style={{minHeight: "150px"}}>
+							<div className="uniform">
+								<div className="12u 12u$(medium)">
+									<h3>Name: { it.name }</h3>
+								</div>
+								<div className="12u 12u$(medium)">
+									<img className="12u 12u$(medium)" src={ it.image } alt="image_not_found" />
+								</div>
+								<button ref="btn" className="12u 12u$(medium)" style={{float: 'right'}} onClick={() => this.submitDeletion(it.id) }>X</button>
+							</div>
+						</li>
 					</div>
-				</li>
+				</div>
 			);
 		});
 	}
@@ -69,11 +71,11 @@ class ViewSponsors extends Component {
 							</header>
 							<button style={{marginBottom: '25px', marginRight: '10px'}} onClick={ () => this.refreshSponsors() }>Refresh</button>
 							<button style={{marginBottom: '25px'}} onClick={ () => customHistory.push('/create/sponsor') }>Create</button>
-							<ul className="alt categories-list uniform">
-								{ this.renderSponsors() }
-							</ul>
 						</div>
 					</div>
+					<ul className="alt uniform">
+						{ this.renderSponsors() }
+					</ul>
 				</div>
 			</section>
 		);

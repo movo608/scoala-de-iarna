@@ -479,15 +479,15 @@ export function deleteContributor(id) {
  */
 export function createSponsor(values) {
     return async (dispatch, getState) => {
-        let data = await axios({
-                url: `${ROOT_URL}api/create-sponsor`,
-                method: 'post',
-                params: {
-                    name: values.name,
-                    images: values.filesToBeSent
-                }
-            }).then((response) => dispatch(dispatchCreateSponsor(response)));
-            console.log(data);
+        await axios({
+            url: `${ROOT_URL}api/create-sponsor`,
+            method: 'post',
+            data: {
+                name: values.name,
+                images: values.images
+            }
+        })//.then((response) => dispatch(dispatchCreateSponsor(response)));
+        .then((response) => console.log(response))
     }
 }
 

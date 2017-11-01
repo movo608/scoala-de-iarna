@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { createHashHistory } from 'history'
+import $ from 'jquery'
+import axios from 'axios'
 
 // import action
 import { createSponsor } from '../actions'
 
-// import root url
-import { ROOT_URL } from '../constants/ActionTypes'
+// import image uploader
+import ImageUploader from 'react-images-upload'
 
 const customHistory = createHashHistory();
 
@@ -17,13 +19,12 @@ class CreateSponsor extends Component {
 
 		this.state = {
 			name: '',
-			filesPreview: [],
-			filesToBeSent: [],
-			count: 10
+			images: []
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.onDrop = this.onDrop.bind(this);
 	}
 
 	componentWillMount() {
@@ -43,30 +44,51 @@ class CreateSponsor extends Component {
 		this.props.createSponsor(this.state);
 	}
 
+	onDrop(picture) {
+		this.setState({
+			images: this.state.images.concat(picture)
+		});
+	}
+
 	renderForm() {
 		return (
-			<section className="col-md-12 col-sm-12">
-				<div className="col-md-6 col-sm-6">
-					<form onSubmit={ this.handleSubmit }>
-						<div className="form-group">
-					        <label>
-					          	Name:
-					          	<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
-							</label>
-							{ /* ADD PHOTO COLLECTOR */ }
+			<div>
+				<form onSubmit={ this.handleSubmit }>
+					<div className="uniform">
+						<label className="sr-only">Name</label>
+						<div className="12u 12u$(xsmall)">
+							<input className="form-control" placeholder="Name" type="text" value={ this.state.value } onChange={ this.handleChange } required />
 						</div>
-						<input value="Submit" name="submit"/>
-				    </form>
-			    </div>
-		    </section>
+						<div className="12u 12u%(medium)">
+							<ImageUploader 
+								withIcon={ true }
+								buttonText='Upload'
+								onChange={ this.onDrop }
+								imgExtension={ ['.jpg', '.png'] }
+								maxFileSize={ 6291456 }
+							/>
+						</div>
+					</div>
+					<input type="submit" name="submit" value="Submit" />
+				</form>
+			</div>
 		);
 	}
 
 	render() {
 		return (
-			<section className="create-sponsors index">
-				<div className="page-header"><h1>CreateSponsor Component</h1></div>
-				{ this.renderForm() }
+			<section id="two" className="wrapper style2">
+				<div className="inner">
+					<div className="box">
+						<div className="content">
+							<header className="align-center">
+								<p>this section is used to create a sponsor</p>
+								<h2>Create Sponsor</h2>
+							</header>
+							{ this.renderForm() }
+						</div>
+					</div>
+				</div>
 			</section>
 		);
 	}

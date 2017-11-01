@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { createHashHistory } from 'history'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import _ from 'lodash'
@@ -13,7 +12,6 @@ import Select from 'react-select'
 // import react select css
 import 'react-select/dist/react-select.css'
 
-const customHistory = createHashHistory();
 const IS_DISABLED = true;
 
 let allowMessage = false;

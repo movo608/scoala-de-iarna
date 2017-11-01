@@ -50,11 +50,11 @@ class CreateCategories extends Component {
 								<div className="form-create-categories row uniform">
 									<label className="sr-only">Name</label>
 									<div className="12u 12u$(xsmall)">
-									<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
+										<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
 									</div>								
 								</div>
 							</form>
-							<input className="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />
+							<input type="submit" value="Submit" />
 						</div>
 					</div>
 				</div>
