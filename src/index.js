@@ -29,6 +29,9 @@ import ViewContributors from './containers/ViewContributors'
 import CreateSponsor from './containers/CreateSponsor'
 import ViewSponsors from './containers/ViewSponsors'
 import About from './containers/About'
+import Camps from './containers/Camps'
+import SDI from './containers/SDI'
+import SDV from './containers/SDV'
 
 const middleware = applyMiddleware(thunkMiddleware);
 const customHistory = createHashHistory();
@@ -49,6 +52,9 @@ render(
 					<Route exact path='/contributors' render={() => <LandingLayout><Contributors /></LandingLayout>} />
 					<Route exact path='/sponsors' render={() => <LandingLayout><Sponsors /></LandingLayout>} />
 					<Route exact path='/about' render={() => <LandingLayout><About /></LandingLayout>} />
+					<Route exact path='/camps' render={() => <LandingLayout><Camps /></LandingLayout>} />
+					<Route exact path='/sdi' render={() => <LandingLayout><SDI /></LandingLayout>} />
+					<Route exact path='/sdv' render={() => <LandingLayout><SDV /></LandingLayout>} />
 
 					<Route exact path='/login' render={() => <LandingLayout><Login /></LandingLayout>} />
 					<Route exact path='/admin' render={() => <LandingLayout><Browse /></LandingLayout>} />

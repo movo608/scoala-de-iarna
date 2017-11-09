@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 
-export default class About extends Component {
+class SDV extends Component {
 	render() {
 		return (
 			<div></div>
 		);
 	}
 }
+
+export default SDV;

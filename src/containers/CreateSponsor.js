@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { createHashHistory } from 'history'
-import $ from 'jquery'
 import axios from 'axios'
 
 // import action

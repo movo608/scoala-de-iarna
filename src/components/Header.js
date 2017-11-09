@@ -5,6 +5,7 @@ import { createHashHistory } from 'history'
 import { bindActionCreators } from 'redux'
 import _ from 'lodash'
 import axios from 'axios'
+import $ from 'jquery'
 
 // import root url
 import {
@@ -96,6 +97,7 @@ class Header extends Component {
 			<ul className="links">
 				<li>{ <Link to="/">Home</Link> }</li>
 				<li>{ <Link to="/about">About</Link> }</li>
+				<li>{ <Link to="/camps">Camps</Link> }</li>
 				<li>{ <Link to="/form">Form</Link> }</li>
 				<li>{ <Link to="/contributors">Contributors</Link> }</li>
 				<li>{ <Link to="/sponsors">Sponsors</Link> }</li>
@@ -110,7 +112,7 @@ class Header extends Component {
 					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
 					<a href="#menu">Menu</a>
 				</header>
-				<nav id="menu">
+				<nav id="menu" className="">
 					{ this.renderStaticNavigation() }					
 				</nav>
 			</div>
@@ -137,7 +139,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
-onbeforeunload = function() {
+onbeforeunload = () => {
 	axios({
 		method: 'get',
 		url: `${__api}/login/logout`,
