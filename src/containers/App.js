@@ -3,83 +3,22 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reactLocalStorage as __storage } from 'reactjs-localstorage'
 import $ from 'jquery'
+import { createScript } from '../helpers/CustomHelpers'
 
 // import actions
 import { userStoreLogin } from '../actions'
 
 class App extends  Component {
-	constructor(props) {
-		super(props);
-
-		this.getInitialState();
-	}
-
-	getInitialState() {
-		this.state = {
-			scriptIsLoaded: false,
-			scriptIsRemoved: false
-		};
-	}
-
 	componentWillMount() {
     	if (__storage.getObject('user').users && this.props.users.isLoggedIn === false) {
 			this.props.userStoreLogin(__storage.getObject('user').users.username);
 		}
-
-		this.removeScripts();
-		this.loadScripts();
-		this.removeScripts();
 	}
 
-	loadScripts() {
-		const menu = document.createElement('script');
-		menu.type = 'text/javascript';
-		menu.src = '/assets/js/main.js';
-		menu.id = 'menu';
-
-		const scrollex = document.createElement('script');
-		scrollex.type = 'text/javascript';
-		scrollex.src = '/assets/js/jquery.scrollex.min.js';
-		scrollex.id = 'scrollex';
-		scrollex.async = true;
-
-		const util = document.createElement('script');
-		util.type = 'text/javascript';
-		util.src = '/assets/js/util.js';
-		util.id = 'util';
-		util.async = true;
-
-		const skel = document.createElement('script');
-		skel.type = 'text/javascript';
-		skel.src = '/assets/js/skel.min.js';
-		skel.id = 'skel';
-		skel.async = true;
-
-		/**
-		 *@BUG: SCRIPTS ARE PREPENDED BEFORE THE React.CreateElement({ <nav></nav> })
-		 */
-
-		document.body.appendChild(skel);
-		document.body.appendChild(scrollex);
-		document.body.appendChild(util);
-		document.body.appendChild(menu);
-
-		this.setState({
-			scriptIsLoaded: true
-		});
+	componentDidMount() {
+		createScript('/assets/js/loadCarousel.js');
 	}
-
-	removeScripts() {
-		$('#skel').remove();
-		//$('#menu').remove();
-		$('#scrollex').remove();
-		$('#util').remove();
-
-		this.setState({
-			scriptIsRemoved: true
-		});
-	}
-
+	
 	renderBanner() {
 		return (
 			<section className="banner full">
@@ -229,7 +168,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
 	return {
-		users: state.users
+		users: state.users,
 	}
 }
 

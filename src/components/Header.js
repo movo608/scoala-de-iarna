@@ -62,10 +62,11 @@ class Header extends Component {
 		});
 	}
 
-	renderAdminButton($flag_permission) {
+	renderAdminButtons($flag_permission) {
 		if ($flag_permission === true) {
 			return (
 				<ul className="links">
+					<li><Link to='/'>Home</Link></li>
 					{ this.renderLoggedInButtons() }
 				</ul>
 			);
@@ -83,10 +84,10 @@ class Header extends Component {
 					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
 					{ this.renderLogout() }
 					<button onClick={ () => this.openFrontendWindow() }>To Frontend</button>
-					<a href="#menu">Menu</a>
+					<a href="#menu" className="toggle-menu">Menu</a>
 				</header>
 				<nav id="menu">
-					{ this.renderAdminButton(this.props.users.isLoggedIn) }
+					{ this.renderAdminButtons(this.props.users.isLoggedIn) }
 				</nav>
 			</div>
 		);
@@ -110,7 +111,7 @@ class Header extends Component {
 			<div>
 				<header id="header" className="">
 					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
-					<a href="#menu">Menu</a>
+					<a href="#menu" className="toggle-menu">Menu</a>
 				</header>
 				<nav id="menu" className="">
 					{ this.renderStaticNavigation() }					

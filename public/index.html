@@ -10,14 +10,18 @@
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <title>React - Redux Project</title>
+    <script src="/assets/js/jquery.min.js"></script>
   </head>
   <body>
     <div class="todoapp" id="root">
       
     </div>
   </body>
-  <script src="/assets/js/jquery.min.js"></script>
-  <!--<script src="/assets/js/jquery.scrollex.min.js"></script>-->
-  <!--<script src="/assets/js/skel.min.js"></script>-->
-  <!--<script src="/assets/js/util.js"></script>-->
+  <script id="add-on" type="text/javascript">
+    $(() => {
+      $self = $('script#add-on');
+      window.onerror = () => true;
+      $self.remove();
+    });
+  </script>
 </html>

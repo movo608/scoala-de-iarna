@@ -21,3 +21,12 @@ export function Time() {
 		</span>
 	);
 }
+
+export function createScript(src, id = 'n/a') {
+	let script = document.createElement('script');
+	script.src = src;
+	script.async = false;
+	script.id = id;
+
+	document.body.appendChild(script);
+}
