@@ -53,8 +53,8 @@ class CreateCategories extends Component {
 										<input className="form-control" type="text" value={ this.state.value } onChange={ this.handleChange } required />
 									</div>								
 								</div>
+								<input style={{marginTop: '2em'}} type="submit" value="Submit" />
 							</form>
-							<input type="submit" value="Submit" />
 						</div>
 					</div>
 				</div>

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2017 at 08:49 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Nov 13, 2017 at 07:52 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -122,7 +122,8 @@ CREATE TABLE `posts` (
 
 INSERT INTO `posts` (`id`, `category_id`, `category_name`, `name`, `body`, `image`) VALUES
 (11, 4, 'DEUS VULT', 'asdfads', 'FJKPADSFASFSFALFADSK;OFLJKLSFADSK;LFJKPADSFASFSFALFADSK;OFLJKLSFADSK;LFJKPADSFASFSFALFADSK;OFLJKLSFADSK;LFJKPADSFASFSFALFADSK;OFLJKLSFADSK;LFJKPADSFASFSFALFADSK;OFLJKLSFADSK;L', ''),
-(12, 5, 'DEUS VULT FOR LEONHART', 'dsfas', 'adsfas', '');
+(12, 5, 'DEUS VULT FOR LEONHART', 'dsfas', 'adsfas', ''),
+(13, 4, 'DEUS VULT', 'sadf', 'asdf', '');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,9 @@ CREATE TABLE `posts_categories` (
 INSERT INTO `posts_categories` (`id`, `name`) VALUES
 (4, 'DEUS VULT'),
 (5, 'DEUS VULT FOR LEONHART'),
-(6, 'FUCK ME IN THE ASS');
+(6, 'FUCK ME IN THE ASS'),
+(7, 'sdfdas'),
+(8, 'sdfsa');
 
 -- --------------------------------------------------------
 
@@ -154,20 +157,30 @@ CREATE TABLE `signup_form` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `email` varchar(64) NOT NULL,
+  `phone` varchar(16) NOT NULL,
+  `facebook_link` varchar(128) NOT NULL,
   `city` varchar(64) NOT NULL,
   `region` varchar(64) NOT NULL,
-  `workshop` varchar(32) NOT NULL
+  `workshop` varchar(32) NOT NULL,
+  `found_out` text NOT NULL,
+  `motivation` text NOT NULL,
+  `expectations` text NOT NULL,
+  `personal_project` text NOT NULL,
+  `personal_experience` text NOT NULL,
+  `personal_values` text NOT NULL,
+  `random_question` text NOT NULL,
+  `good_deed` text NOT NULL,
+  `future_view` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `signup_form`
 --
 
-INSERT INTO `signup_form` (`id`, `name`, `email`, `city`, `region`, `workshop`) VALUES
-(29, 'dsf', 'fff@adsf', 'adsf', 'asdf', 'Fotografie'),
-(31, 'dsfsd', '32er3r@adsf.com', 'dsaa', 'dfsa', 'Pantomima'),
-(32, 'Lucifer Morningstar', 'Lucifer@morningStar.hell', 'Silver City', 'Heaven', 'Filmografie'),
-(33, 'adsf', '32e@af.com', 'adsf', 'adsf', 'Fotografie');
+INSERT INTO `signup_form` (`id`, `name`, `email`, `phone`, `facebook_link`, `city`, `region`, `workshop`, `found_out`, `motivation`, `expectations`, `personal_project`, `personal_experience`, `personal_values`, `random_question`, `good_deed`, `future_view`) VALUES
+(35, 'Andrei George Moldovan', 'moldovanandrei8399@gmail.com', 'asdf', 'asdf', 'Targu Mures', 'Mures', 'Pantomima', 'Prieteni', 'asdf', 'sadf', 'sadf', 'asdf', 'asdf', '', 'sdaf', 'sadf'),
+(37, 'Andrei George Moldovan', 'moldovanandrei8ffff399@gmail.com', 'gggg', '6666', 'Targu Mures', 'Mures', 'Satanism', 'Facebook', 'asdf', 'asdf', 'asdf', 'sadf', 'asdf', '', 'sadf', 'sadf'),
+(38, 'Moldovan Maria', 'mmarand2006@yahoo.com', 'sadf', 'asdfsafsafsfasfas', 'Targu Mures', 'Mures', 'Pantomima', 'Facebook', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '', 'sadf', 'asdf');
 
 -- --------------------------------------------------------
 
@@ -275,7 +288,8 @@ ALTER TABLE `posts_categories`
 --
 ALTER TABLE `signup_form`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `facebook_link` (`facebook_link`);
 
 --
 -- Indexes for table `sponsors`
@@ -319,17 +333,17 @@ ALTER TABLE `critical_security_service`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `posts_categories`
 --
 ALTER TABLE `posts_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `signup_form`
 --
 ALTER TABLE `signup_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `sponsors`
 --

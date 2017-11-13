@@ -2,45 +2,74 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import $ from 'jquery'
 
 //import submit-form action
-import { sendForm } from '../actions'
-import { getWorkshops } from '../actions'
+import { sendForm, getWorkshops } from '../actions'
 
 // import react select
 import Select from 'react-select'
 // import react select css
 import 'react-select/dist/react-select.css'
 
-const IS_DISABLED = true;
-
+const IS_DISABLED = false;
 let allowMessage = false;
 
 class Form extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
+		this.state = this.getInitialState();
+
+		this.bindFunctions()
+
+		allowMessage = false;
+	}
+
+	getInitialState() {
+		return {
 			name: '',
 			email: '',
 			city: '',
 			region: '',
 			workshop: '',
-			workshopId: ''
+			workshopId: '',
+			found: '',
+			facebook: '',
+			phone: '',
+			motivation: '',
+			expectations: '',
+			project: '',
+			life: '',
+			values: '',
+			question: '',
+			deed: '',
+			future: ''
 		};
+	}
 
+	bindFunctions() {
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleCityChange = this.handleCityChange.bind(this);
 		this.handleRegionChange = this.handleRegionChange.bind(this);
 		this.handleWorkshopChange = this.handleWorkshopChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-
-		allowMessage = false;
+		this.handleFoundChange = this.handleFoundChange.bind(this);
+		this.handleFacebookChange = this.handleFacebookChange.bind(this);
+		this.handlePhoneChange = this.handlePhoneChange.bind(this);
+		this.handleMotivationChange = this.handleMotivationChange.bind(this);
+		this.handleExpectationsChange = this.handleExpectationsChange.bind(this);
+		this.handleProjectChange = this.handleProjectChange.bind(this);
+		this.handleLifeChange = this.handleLifeChange.bind(this);
+		this.handleValuesChange = this.handleValuesChange.bind(this);
+		this.handleQuestionChange = this.handleQuestionChange.bind(this);
+		this.handleDeedChange = this.handleDeedChange.bind(this);
+		this.handleFutureChange = this.handleFutureChange.bind(this);
 	}
 
 	componentWillMount() {
-		this.props.getWorkshops()
+		this.props.getWorkshops();
 	}	
 
 	componentWillReceiveProps(nextProps) {
@@ -49,11 +78,55 @@ class Form extends Component {
 		} else {
 			allowMessage = false;
 		}
-	}	
+	}
 
 	handleSubmit(event) {
 		event.preventDefault();
 		this.props.sendForm(this.state);
+	}
+
+	handleFutureChange(event) {
+		this.setState({ future: event.target.value });
+	}
+
+	handleDeedChange(event) {
+		this.setState({ deed: event.target.value });
+	}
+
+	handleQuestionChange(event) {
+		this.setState({ question: event.target.value });
+	}
+
+	handleValuesChange(event) {
+		this.setState({ values: event.target.value });
+	}
+
+	handleLifeChange(event) {
+		this.setState({ life: event.target.value });
+	}
+
+	handleProjectChange(event) {
+		this.setState({ project: event.target.value });
+	}
+
+	handleExpectationsChange(event) {
+		this.setState({ expectations: event.target.value });
+	}
+
+	handleMotivationChange(event) {
+		this.setState({ motivation: event.target.value });
+	}
+
+	handlePhoneChange(event) {
+		this.setState({ phone: event.target.value });
+	}
+
+	handleFacebookChange(event) {
+		this.setState({ facebook: event.target.value });
+	}
+
+	handleFoundChange(event) {
+		this.setState({ found: event.value });
 	}
 
 	handleNameChange(event) {
@@ -81,9 +154,10 @@ class Form extends Component {
 
 	renderForm() {
 		return (
-			<div>
-				<form>
-					<div className="form-signin row uniform">
+			<div className="submit-form">
+				<form onSubmit={ this.handleSubmit }>
+					<div className="form-sign-up-camp row uniform">
+						<h3>Vrem să te cunoaștem!</h3>
 						<label className="sr-only">Name</label>
 						<div className="12u 12u$(xsmall)">
 							<input placeholder="Name" className="form-control" type="text" value={ this.state.value } onChange={ this.handleNameChange } required />
@@ -92,13 +166,21 @@ class Form extends Component {
 						<div className="12u 12u$(xsmall)">
 							<input placeholder="Email" className="form-control" type="email" value={ this.state.value } onChange={ this.handleEmailChange } required />
 						</div>
-						<label className="sr-only">City</label>
+						<label className="sr-only">Link către profilul tău de Facebook</label>
 						<div className="12u 12u$(xsmall)">
-							<input placeholder="City" className="form-control" type="text" value={ this.state.value } onChange={ this.handleCityChange } required />
+							<input placeholder="Link către profilul tău de Facebook" className="form-control" type="text" value={ this.state.value } onChange={ this.handleFacebookChange } required />
+						</div>
+						<label className="sr-only">Număr de telefon</label>
+						<div className="12u 12u$(xsmall)">
+							<input placeholder="Număr de telefon" className="form-control" type="text" value={ this.state.value } onChange={ this.handlePhoneChange } required />
 						</div>
 						<label className="sr-only">Region</label>
 						<div className="12u 12u$(xsmall)">
 							<input placeholder="Region" className="form-control" type="text" value={ this.state.value } onChange={ this.handleRegionChange } required />
+						</div>
+						<label className="sr-only">City</label>
+						<div className="12u 12u$(xsmall)">
+							<input placeholder="City" className="form-control" type="text" value={ this.state.value } onChange={ this.handleCityChange } required />
 						</div>
 						<label className="sr-only">Workshop</label>
 						<div className="12u 12u$(xsmall)">
@@ -113,11 +195,89 @@ class Form extends Component {
 								required
 							/>
 						</div>
+						<h3>Secțiunea "Școala de Iarnă"</h3>
+						<label className="sr-only">Cum ai aflat despre Școala de Iarnă?</label>
+						<div className="12u 12u$(xsmall)">
+							<Select
+								name="form-field-found"
+								placeholder="Cum ai aflat de Școala de Iarnă?"
+								value={ this.state.found }
+								onChange={ this.handleFoundChange }
+								options={ [
+									{ value: 'Facebook', label: 'Facebook' },
+									{ value: 'Școală / Facultate', label: 'Școală / Facultate' },
+									{ value: 'Prieteni', label: 'Prieteni' },
+									{ value: 'Altele...', label: 'Altele...' }
+								] }
+								clearable={ false }
+								searchable={ false }
+								required
+							/>
+						</div>
+						<label className="sr-only">Motivation</label>
+						<div className="12u 12u$(xsmall)">
+							<textarea required value={ this.state.value } onChange={ this.handleMotivationChange } placeholder="Știm că ești o persoană implicată, povestește-ne despre un proiect la care ai participat și cum
+							te-a ajutat."/>
+						</div>
+						<label className="sr-only">Expectations</label>
+						<div className="12u 12u$(xsmall)">
+							<textarea required value={ this.state.value } onChange={ this.handleExpectationsChange } placeholder="Vrem să facem experiența asta perfectă pentru tine așa că ne-am bucura să aflăm care sunt
+							așteptările tale de la acest proiect."/>
+						</div>
+						<h3>Experiența Ta</h3>
+						<label className="sr-only">Personal Project</label>
+						<div className="12u 12u$(xsmall)">
+							<textarea required value={ this.state.value } onChange={ this.handleProjectChange } placeholder="Știm că ești o persoană implicată, povestește-ne despre un proiect la care ai participat și cum
+							te-a ajutat."/>
+						</div>
+						<label className="sr-only">Life Event</label>
+						<div className="12u 12u$(xsmall)">
+							<textarea required value={ this.state.value } onChange={ this.handleLifeChange } placeholder="Suntem convinși că ai o viață tare interesantă. Împărtășește cu noi o experiență inedită pe
+							care ai trăit-o."/>
+						</div>
+						<label className="sr-only">Values</label>
+						<div className="12u 12u$(xsmall)">
+							<input placeholder="Care e principiul sau valorile după care te ghidezi în viață?" className="form-control" type="text" value={ this.state.value } onChange={ this.handleValuesChange } required />
+						</div>
+						<h3>Creativitatea e contagioasă. A ajuns și la tine?</h3>
+						<label className="sr-only">Life Event</label>
+						<div className="12u 12u$(xsmall)">
+							<h5>
+								Într-o casă locuiau 2 surori. Una dintre ele şi-a omorât soţul. 
+								Dacă cealaltă anunţă poliţia, va intra şi ea, la rândul ei, la închisoare.
+								De ce?
+							</h5>
+							<textarea required value={ this.state.value } onChange={ this.handleQuestionChange } placeholder="Răspunsul tău..."/>
+						</div>
+						<div className="12u 12u$(xsmall)">
+							<h5>
+								Când a fost ultima dată când ai făcut ceva pentru prima oară? 
+								Povestește-ne despre asta!
+							</h5>
+							<textarea required value={ this.state.value } onChange={ this.handleDeedChange } placeholder="Răspunsul tău..."/>
+						</div>
+						<div className="12u 12u$(xsmall)">
+							<h5>
+								Și pentru că viitorul e cea mai mare provocare pentru care ne pregătim, ce crezi că vei
+								spune peste 5 ani despre Școala de Iarnă 2018?
+							</h5>
+							<textarea required value={ this.state.value } onChange={ this.handleFutureChange } placeholder="Răspunsul tău..."/>
+						</div>
 					</div>
+					<input className="btn 3u 3u$(xsmall)" type="submit" value="Submit" />
 				</form>
-				<input onClick={ this.handleSubmit } className="btn btn-default" type="submit" value="Submit" />
 			</div>
 		);
+	}
+
+	hideForm() {
+		$('.submit-form').fadeOut('slow');
+	}
+
+	scrollToTop(duration) {
+		$('html, body').animate({
+			scrollTop: 0
+		}, parseInt(duration));
 	}
 
 	renderFormWorkshops() {
@@ -130,22 +290,29 @@ class Form extends Component {
 
 	renderMessage() {
 		if (this.props.formResponse.sendForm.status === true) {
+			this.hideForm();
 			return (
 				<div className="alert-success">
-					<strong>Success!</strong> The request has been successfully sent.
+					<strong>Success!</strong> The submission has been successfully sent.
 			  	</div>
 			);
 		} else {
-			return (
-				<div className="alert-danger">
-					<strong>Error!</strong> Email address has already been used.
-			  	</div>
-			);
+			this.scrollToTop(2000);
+			if (this.props.formResponse.sendForm.data === 'error_email_found') {
+				return (
+					<div className="alert-danger">
+						<strong>Error!</strong> Email address has already been used.
+					</div>
+				);
+			} else {
+				this.scrollToTop();
+				return (
+					<div className="alert-danger">
+						<strong>Error!</strong> The Facebook link has already been provided.
+					</div>
+				);
+			}
 		}
-	}
-
-	hide(event) {
-		console.log(event);
 	}
 
 	renderAvailable() {

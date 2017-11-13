@@ -251,20 +251,43 @@ class ApiController extends Controller
 				'email' => $request->get('email'),
 				'city' => $request->get('city'),
 				'region' => $request->get('region'),
-				'workshop' => $request->get('workshop')
+				'workshop' => $request->get('workshop'),
+				'phone' => $request->get('phone'),
+				'facebook_link' => $request->get('facebook_link'),
+				'found_out' => $request->get('found_out'),
+				'motivation' => $request->get('motivation'),
+				'expectations' => $request->get('expectations'),
+				'personal_project' => $request->get('personal_project'),
+				'personal_experience' => $request->get('personal_experience'),
+				'personal_values' => $request->get('personal_values'),
+				'random_question' => $request->get('random_question'),
+				'good_deed' => $request->get('good_deed'),
+				'future_view' => $request->get('future_view')
 			];
 
 			if (SignupForm::find()->where(['email' => $information['email']])->one()) {
 				return Json::encode(['status' => false, 'data' => 'error_email_found']);
+			} elseif (SignupForm::find()->where(['facebook_link' => $information['facebook_link']])->one()) {
+				return Json::encode(['status' => false, 'data' => 'facebook_link_found']);
 			}
 
 			$model = new SignupForm();
 
-			$model->name 		= $information['name'];
-			$model->email 		= $information['email'];
-			$model->city 		= $information['city'];
-			$model->region 		= $information['region'];
-			$model->workshop 	= $information['workshop'];
+			$model->name 				= $information['name'];
+			$model->email 				= $information['email'];
+			$model->city 				= $information['city'];
+			$model->region 				= $information['region'];
+			$model->workshop 			= $information['workshop'];
+			$model->phone				= $information['phone'];
+			$model->facebook_link 		= $information['facebook_link'];
+			$model->found_out			= $information['found_out'];
+			$model->motivation			= $information['motivation'];
+			$model->expectations		= $information['expectations'];
+			$model->personal_project	= $information['personal_project'];
+			$model->personal_experience = $information['personal_experience'];
+			$model->personal_values		= $information['personal_values'];
+			$model->good_deed			= $information['good_deed'];
+			$model->future_view			= $information['future_view'];
 
 			if ($model->save(false)) {
 				return Json::encode(['status' => true, 'data' => 'success_submission_saved']);
@@ -288,6 +311,8 @@ class ApiController extends Controller
 			$model->delete();
 
 			return Json::encode(['status' => true, 'data' => 'success']);
+		} else {
+			return Json::encode(['status' => false, 'data' => 'no_request']);
 		}
 	}
 

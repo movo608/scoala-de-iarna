@@ -271,8 +271,9 @@ export function deletePost(id) {
  * Submits the completed form
  */
 export function sendForm({...values}) {
+    console.log(values);
     return async (dispatch, getState) => {
-        let data = await axios({
+        await axios({
             headers: { 
                 'content-type': 'application/json'
             },
@@ -281,12 +282,22 @@ export function sendForm({...values}) {
             params: {
                 name: values.name,
                 email: values.email,
+                phone: values.phone,
+                facebook_link: values.facebook,
                 city: values.city,
                 region: values.region,
-                workshop: values.workshop
+                workshop: values.workshop,
+                found_out: values.found,
+                motivation: values.motivation,
+                expectations: values.expectations,
+                personal_project: values.project,
+                personal_experience: values.life,
+                personal_values: values.values,
+                random_question: values.question,
+                good_deed: values.deed,
+                future_view: values.future
             }
-        });
-        dispatch(dispatchSendForm(data));
+        }).then((response) => dispatch(dispatchSendForm(response)));
     };
 }
 
