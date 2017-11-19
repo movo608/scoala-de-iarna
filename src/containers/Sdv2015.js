@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class SDI extends Component {
+export default class Sdv2015 extends Component {
 	render() {
 		return (
 			<div>
@@ -8,7 +8,7 @@ class SDI extends Component {
 					<div className="inner">
 						<header className="align-center">
 							<p>Eleifend vitae urna</p>
-							<h2>Scoala De Iarna</h2>
+							<h2>Scoala De Vara 2015</h2>
 						</header>
 					</div>
 				</section>
@@ -16,5 +16,3 @@ class SDI extends Component {
 		);
 	}
 }
-
-export default SDI;

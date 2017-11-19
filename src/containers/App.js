@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reactLocalStorage as __storage } from 'reactjs-localstorage'
-import $ from 'jquery'
 import { createScript } from '../helpers/CustomHelpers'
 
 // import actions
@@ -23,16 +22,16 @@ class App extends  Component {
 		return (
 			<section className="banner full">
 				<article>
-					<img src="images/slide01.jpg" alt="" />
+					<img src="images/carousel/slide01.jpg" alt="" />
 					<div className="inner">
 						<header>
-							<p>Niggaaaaaa</p>
-							<h2>Hielo</h2>
+							<p>un altfel de școală</p>
+							<h2>Schimbarea e în noi</h2>
 						</header>
 					</div>
 				</article>
 				<article>
-					<img src="images/slide02.jpg" alt="" />
+					<img src="images/carousel/slide02.jpg" alt="" />
 					<div className="inner">
 						<header>
 							<p>Lorem ipsum dolor sit amet nullam feugiat</p>
@@ -41,7 +40,7 @@ class App extends  Component {
 					</div>
 				</article>
 				<article>
-					<img src="images/slide03.jpg"  alt="" />
+					<img src="images/carousel/slide03.jpg"  alt="" />
 					<div className="inner">
 						<header>
 							<p>Sed cursus aliuam veroeros lorem ipsum nullam</p>
@@ -50,7 +49,7 @@ class App extends  Component {
 					</div>
 				</article>
 				<article>
-					<img src="images/slide04.jpg"  alt="" />
+					<img src="images/carousel/slide04.jpg"  alt="" />
 					<div className="inner">
 						<header>
 							<p>Adipiscing lorem ipsum feugiat sed phasellus consequat</p>
@@ -59,7 +58,16 @@ class App extends  Component {
 					</div>
 				</article>
 				<article>
-					<img src="images/slide05.jpg"  alt="" />
+					<img src="images/carousel/slide05.jpg"  alt="" />
+					<div className="inner">
+						<header>
+							<p>Ipsum dolor sed magna veroeros lorem ipsum</p>
+							<h2>Lorem adipiscing</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/carousel/slide06.jpg"  alt="" />
 					<div className="inner">
 						<header>
 							<p>Ipsum dolor sed magna veroeros lorem ipsum</p>
@@ -77,43 +85,61 @@ class App extends  Component {
 				{ this.renderBanner() }
 				<section id="one" className="wrapper style2">
 					<div className="inner">
-						<div className="grid-style">
-							<div>
-								<div className="box">
-									<div className="image fit">
-										<img src="images/pic02.jpg" alt="" />
+						<header className="align-center">
+							<p className="special">Pe meleagurile sibiene...</p>
+							<h2>Scriem împreună cel de-al III-lea capitol al Școlii de Iarnă!</h2>
+						</header>
+						<div className="box">
+							<div className="content">
+								<div className="row 200%">
+									<div className="when 6u 12u$(medium)">
+										<h3>Când?</h3>
+										<p>3 - 9 februarie, 2018</p>
 									</div>
-									<div className="content">
-										<header className="align-center">
-											<p>maecenas sapien feugiat ex purus</p>
-											<h2>Lorem ipsum dolor</h2>
-										</header>
-										<p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.</p>
-										<footer className="align-center">
-											<a href="#" className="button alt">Learn More</a>
-										</footer>
+
+									<div className="where 6u 12u$(medium)">
+										<h3>Unde?</h3>
+										<p>Localitatea Rîu Sadului, județul Sibiu</p>
+									</div>
+
+									<div className="how-many 6u 12u$(medium)">
+										<h3>Câți participanți vor fi?</h3>
+										<p>
+											<strong>72</strong> de tineri cu vârste cuprinse între <strong>14 și 24 de ani</strong>
+										</p>
+										<p> 
+											Fiecare participant va fi repartizat într-un grup și un atelier, în funcție de 
+											completarea formularului din website.
+										</p>
+									</div>
+
+									<div className="cost 6u 12u$(medium)">
+										<h3>Care sunt costurile?</h3>
+										<p>
+											<strong>600 de lei.</strong>
+										</p>
+										<p>
+											Înscrie-te până la sfârșitul lunii decembrie și beneficiezi de o taxă de participare de <strong>550</strong> de lei! (este
+											inclusă cazarea, masa și transportul dus-întors de la Sibiu până la <strong>cabană</strong>)
+										</p>
 									</div>
 								</div>
 							</div>
-
-							<div>
-								<div className="box">
-									<div className="image fit">
-										<img src="images/pic03.jpg" alt="" />
-									</div>
-									<div className="content">
-										<header className="align-center">
-											<p>mattis elementum sapien pretium tellus</p>
-											<h2>Vestibulum sit amet</h2>
-										</header>
-										<p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.</p>
-										<footer className="align-center">
-											<a href="#" className="button alt">Learn More</a>
-										</footer>
-									</div>
+						</div>
+						<div className="box">
+							<div className="content">
+								<div className="what 12u 12u$(large) align-center">
+									<h3>Ce vor face?</h3>
+									<p>
+										Vor putea participa la training-uri de <strong>dezvoltare personală</strong> și la ateliere care abordează latura artistică:
+										&nbsp;<strong>teatru, muzică, film și dans</strong>.
+									</p>
+									<p>
+										Acestea vor fi susținute de <strong>profesioniști</strong> într-un mod <strong>nonformal</strong>, aproape de
+										tineri.
+									</p>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</section>
@@ -121,8 +147,8 @@ class App extends  Component {
 				<section id="two" className="wrapper style3">
 					<div className="inner">
 						<header className="align-center">
-							<p>Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
-							<h2>Morbi maximus justo</h2>
+							<p>Un salt către trecut</p>
+							<h2>Privind introspectiv in istoria Școlilor...</h2>
 						</header>
 					</div>
 				</section>
@@ -130,28 +156,28 @@ class App extends  Component {
 				<section id="three" className="wrapper style2">
 					<div className="inner">
 						<header className="align-center">
-							<p className="special">Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
-							<h2>Morbi maximus justo</h2>
+							<p className="special">Datorită greșelilor trecutului...</p>
+							<h2>Promitem că viitorul este cu noi</h2>
 						</header>
-						<div className="gallery">
+						<div className="home-gallery gallery">
 							<div>
 								<div className="image fit">
-									<a href="#"><img src="images/pic01.jpg" alt="" /></a>
+									<img src="images/home/home1.jpg" alt="" />
 								</div>
 							</div>
 							<div>
 								<div className="image fit">
-									<a href="#"><img src="images/pic02.jpg" alt="" /></a>
+									<img src="images/home/home2.jpg" alt="" />
 								</div>
 							</div>
 							<div>
 								<div className="image fit">
-									<a href="#"><img src="images/pic03.jpg" alt="" /></a>
+									<img src="images/home/home3.jpg" alt="" />
 								</div>
 							</div>
 							<div>
 								<div className="image fit">
-									<a href="#"><img src="images/pic04.jpg" alt="" /></a>
+									<img src="images/home/home4.jpg" alt="" />
 								</div>
 							</div>
 						</div>

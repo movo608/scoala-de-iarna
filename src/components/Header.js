@@ -5,7 +5,6 @@ import { createHashHistory } from 'history'
 import { bindActionCreators } from 'redux'
 import _ from 'lodash'
 import axios from 'axios'
-import $ from 'jquery'
 
 // import root url
 import {
@@ -45,7 +44,7 @@ class Header extends Component {
 	renderLogout() {
 		if(this.props.users.isLoggedIn === true) {
 			return (
-				<button style={{ marginRight: '10px' }} onClick={ this.submitLogout } className="btn btn-default navbar-btn logout-btn">
+				<button style={{ marginRight: '10px' }} onClick={ this.submitLogout } className="mobile-hidden btn btn-default navbar-btn logout-btn">
 					Logout ({ this.props.users.username.substring(0, this.props.users.username.indexOf('@')) })
 				</button> 
 			);
@@ -83,7 +82,7 @@ class Header extends Component {
 				<header id="header" className="">
 					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
 					{ this.renderLogout() }
-					<button onClick={ () => this.openFrontendWindow() }>To Frontend</button>
+					<button className="mobile-hidden" onClick={ () => this.openFrontendWindow() }>To Frontend</button>
 					<a href="#menu" className="toggle-menu">Menu</a>
 				</header>
 				<nav id="menu">
@@ -98,7 +97,7 @@ class Header extends Component {
 			<ul className="links">
 				<li>{ <Link to="/">Home</Link> }</li>
 				<li>{ <Link to="/about">About</Link> }</li>
-				<li>{ <Link to="/camps">Camps</Link> }</li>
+				<li>{ <Link to="/schools">Schools</Link> }</li>
 				<li>{ <Link to="/form">Form</Link> }</li>
 				<li>{ <Link to="/contributors">Contributors</Link> }</li>
 				<li>{ <Link to="/sponsors">Sponsors</Link> }</li>

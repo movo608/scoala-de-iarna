@@ -173,13 +173,13 @@ class Form extends Component {
 						<div className="12u 12u$(xsmall)">
 							<input placeholder="Număr de telefon" className="form-control" type="text" value={ this.state.value } onChange={ this.handlePhoneChange } required />
 						</div>
-						<label className="sr-only">Region</label>
+						<label className="sr-only">Județ</label>
 						<div className="12u 12u$(xsmall)">
-							<input placeholder="Region" className="form-control" type="text" value={ this.state.value } onChange={ this.handleRegionChange } required />
+							<input placeholder="Județ" className="form-control" type="text" value={ this.state.value } onChange={ this.handleRegionChange } required />
 						</div>
-						<label className="sr-only">City</label>
+						<label className="sr-only">Oraș</label>
 						<div className="12u 12u$(xsmall)">
-							<input placeholder="City" className="form-control" type="text" value={ this.state.value } onChange={ this.handleCityChange } required />
+							<input placeholder="Oraș" className="form-control" type="text" value={ this.state.value } onChange={ this.handleCityChange } required />
 						</div>
 						<label className="sr-only">Workshop</label>
 						<div className="12u 12u$(xsmall)">
@@ -263,7 +263,7 @@ class Form extends Component {
 							<textarea required value={ this.state.value } onChange={ this.handleFutureChange } placeholder="Răspunsul tău..."/>
 						</div>
 					</div>
-					<input className="btn 3u 3u$(xsmall)" type="submit" value="Submit" />
+					<input style={{marginTop: '1em'}} className="btn 3u 3u$(xsmall)" type="submit" value="Submit" />
 				</form>
 			</div>
 		);
