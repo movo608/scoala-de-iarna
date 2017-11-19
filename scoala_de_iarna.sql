@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2017 at 07:52 PM
+-- Generation Time: Nov 19, 2017 at 03:35 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -70,18 +70,6 @@ INSERT INTO `contributors` (`id`, `name`) VALUES
 (4, 'dfss'),
 (6, 'Satan'),
 (14, 'Molfenstein');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `critical_security_service`
---
-
-CREATE TABLE `critical_security_service` (
-  `id` int(11) NOT NULL,
-  `critical_password` varchar(128) NOT NULL,
-  `critical_username` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -162,7 +150,7 @@ CREATE TABLE `signup_form` (
   `city` varchar(64) NOT NULL,
   `region` varchar(64) NOT NULL,
   `workshop` varchar(32) NOT NULL,
-  `found_out` text NOT NULL,
+  `found_out` text CHARACTER SET utf16 COLLATE utf16_romanian_ci NOT NULL,
   `motivation` text NOT NULL,
   `expectations` text NOT NULL,
   `personal_project` text NOT NULL,
@@ -178,9 +166,7 @@ CREATE TABLE `signup_form` (
 --
 
 INSERT INTO `signup_form` (`id`, `name`, `email`, `phone`, `facebook_link`, `city`, `region`, `workshop`, `found_out`, `motivation`, `expectations`, `personal_project`, `personal_experience`, `personal_values`, `random_question`, `good_deed`, `future_view`) VALUES
-(35, 'Andrei George Moldovan', 'moldovanandrei8399@gmail.com', 'asdf', 'asdf', 'Targu Mures', 'Mures', 'Pantomima', 'Prieteni', 'asdf', 'sadf', 'sadf', 'asdf', 'asdf', '', 'sdaf', 'sadf'),
-(37, 'Andrei George Moldovan', 'moldovanandrei8ffff399@gmail.com', 'gggg', '6666', 'Targu Mures', 'Mures', 'Satanism', 'Facebook', 'asdf', 'asdf', 'asdf', 'sadf', 'asdf', '', 'sadf', 'sadf'),
-(38, 'Moldovan Maria', 'mmarand2006@yahoo.com', 'sadf', 'asdfsafsafsfasfas', 'Targu Mures', 'Mures', 'Pantomima', 'Facebook', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '', 'sadf', 'asdf');
+(40, 'Andrei George Moldovan', 'moldovanandrei8399@gmail.com', '12331', 'asdfsa', 'Targu Mures', 'Mures', 'Pantomima', 'Școală / Facultate', 'asdf', 'sadf', 'asdf', 'asdf', 'sadf', 'sadf', 'sadf', 'asdf');
 
 -- --------------------------------------------------------
 
@@ -220,7 +206,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `access_token`, `password`, `is_logged`) VALUES
-(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 0);
+(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 1);
 
 -- --------------------------------------------------------
 
@@ -256,12 +242,6 @@ ALTER TABLE `buttons_navbar_logged`
 -- Indexes for table `contributors`
 --
 ALTER TABLE `contributors`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `critical_security_service`
---
-ALTER TABLE `critical_security_service`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -325,11 +305,6 @@ ALTER TABLE `buttons_navbar_logged`
 ALTER TABLE `contributors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT for table `critical_security_service`
---
-ALTER TABLE `critical_security_service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
@@ -343,7 +318,7 @@ ALTER TABLE `posts_categories`
 -- AUTO_INCREMENT for table `signup_form`
 --
 ALTER TABLE `signup_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `sponsors`
 --
