@@ -2,6 +2,10 @@
 
 namespace app\controllers;
 
+/**
+ * Allow all-cross-origin AJAX-let request.
+ * Headers allowance for the header type.
+ */
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
@@ -288,6 +292,7 @@ class ApiController extends Controller
 			$model->personal_values		= $information['personal_values'];
 			$model->good_deed			= $information['good_deed'];
 			$model->future_view			= $information['future_view'];
+			$model->random_question 	= $information['random_question'];
 
 			if ($model->save(false)) {
 				return Json::encode(['status' => true, 'data' => 'success_submission_saved']);
@@ -295,7 +300,7 @@ class ApiController extends Controller
 				return Json::encode(['status' => false, 'data' => 'error_not_saved']);
 			}
 		} else {
-			return Json::encode(['status' => false, 'data' => 'error_no_request']);
+			return Json::encode(['status' => false, 'data' => 'error_no_connection']);
 		}
 	}
 

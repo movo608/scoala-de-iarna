@@ -20,7 +20,6 @@ class Form extends Component {
 		super(props);
 
 		this.state = this.getInitialState();
-
 		this.bindFunctions()
 
 		allowMessage = false;

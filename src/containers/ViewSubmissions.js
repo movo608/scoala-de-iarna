@@ -10,6 +10,10 @@ import { deleteSubmission } from '../actions'
 
 const customHistory = createHashHistory();
 
+/**
+ * Component one can use to view all the form submissions.
+ * @requires PAGINATION.
+ */
 class ViewSubmissions extends Component {
 	constructor(props) {
 		super(props);
@@ -56,6 +60,54 @@ class ViewSubmissions extends Component {
 						</div>
 						<div className="12u 12u$(medium)">
 							<h3>Workshop: { it.workshop }</h3>
+						</div>
+						<div className="12u 12u$(medium)">
+							<h3>Facebook link: <a href={'https://' + it.facebook_link }>{ it.name }</a></h3>
+						</div>
+						<div className="12u 12u$(medium)">
+							<h3>Descoperire: { it.found_out }</h3>
+						</div>
+						<div style={{backgroundColor: 'lightgray'}} className="12u 12u$(medium)">
+							<h3>Motivație</h3>
+							<p style={{color: 'black'}}>
+								{ it.motivation }
+							</p>
+						</div>
+						<div style={{backgroundColor: 'lightgray'}} className="12u 12u$(medium)">
+							<h3>Așteptări</h3>
+							<p style={{color: 'black'}}>
+								{ it.expectations }
+							</p>
+						</div>
+						<div style={{backgroundColor: 'lightgray'}} className="12u 12u$(medium)">
+							<h3>Proiect Personal</h3>
+							<p style={{color: 'black'}}>
+								{ it.personal_project }
+							</p>
+						</div>
+						<div style={{backgroundColor: 'lightgray'}} className="12u 12u$(medium)">
+							<h3>Valori Personale</h3>
+							<p style={{color: 'black'}}>
+								{ it.personal_values }
+							</p>
+						</div>
+						<div style={{backgroundColor: 'lightgray'}} className="12u 12u$(medium)">
+							<h3>Random Question</h3>
+							<p style={{color: 'black'}}>
+								{ it.random_question }
+							</p>
+						</div>
+						<div style={{backgroundColor: 'lightgray'}} className="12u 12u$(medium)">
+							<h3>Good Deed</h3>
+							<p style={{color: 'black'}}>
+								{ it.good_deed }
+							</p>
+						</div>
+						<div style={{backgroundColor: 'lightgray'}} className="12u 12u$(medium)">
+							<h3>Future View</h3>
+							<p style={{color: 'black'}}>
+								{ it.future_view }
+							</p>
 						</div>
 						<button className="12u 12u$(medium)" ref="btn" onClick={() => this.submitDeletion(it.id) }>Remove</button>
 					</div>
