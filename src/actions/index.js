@@ -16,8 +16,7 @@ import {
     GET_SUBMISSIONS,
     GET_CONTRIBUTORS,
     GET_SPONSORS,
-    CREATE_CONTRIBUTOR,
-    CREATE_SPONSOR
+    CREATE_CONTRIBUTOR
 } from '../constants/ActionTypes'
 
 /**
@@ -477,48 +476,6 @@ export function deleteContributor(id) {
     return async (dispatch, getState) => {
         await axios({
             url: `${ROOT_URL}api/delete-contributor`,
-            method: 'post',
-            params: {
-                id
-            }
-        });
-    }
-}
-
-/**
- * Creates a sponsor entry in the database
- */
-export function createSponsor(values) {
-    return async (dispatch, getState) => {
-        await axios({
-            url: `${ROOT_URL}api/create-sponsor`,
-            method: 'post',
-            data: {
-                name: values.name,
-                images: values.images
-            }
-        })//.then((response) => dispatch(dispatchCreateSponsor(response)));
-        .then((response) => console.log(response))
-    }
-}
-
-/**
- * Dispatches the created sponsor towards the reducers
- */
-function dispatchCreateSponsor(data) {
-    return {
-        type: CREATE_SPONSOR,
-        payload: data
-    }
-}
-
-/**
- * Deletes a sponsor from the database
- */
-export function deleteSponsor(id) {
-    return async (getState, dispatch) => {
-        await axios({
-            url: `${ROOT_URL}api/delete-sponsor`,
             method: 'post',
             params: {
                 id

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 class Camps extends Component {
 	renderSchool(image, title, paraTitle, desc, link) {
@@ -38,6 +39,9 @@ class Camps extends Component {
 
 				<section id="one" className="wrapper style2">
 					<div className="inner">
+
+						<Breadcrumbs className="align-center" />
+						
 						<div className="grid-style">
 							
 							{ 

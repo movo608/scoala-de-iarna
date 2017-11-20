@@ -82,7 +82,7 @@ class Header extends Component {
 				<header id="header" className="">
 					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
 					{ this.renderLogout() }
-					<button className="mobile-hidden" onClick={ () => this.openFrontendWindow() }>To Frontend</button>
+					<button className="mobile-hidden" onClick={ () => this.openFrontendWindow() }>New Window</button>
 					<a href="#menu" className="toggle-menu">Menu</a>
 				</header>
 				<nav id="menu">
@@ -95,12 +95,12 @@ class Header extends Component {
 	renderStaticNavigation() {
 		return (
 			<ul className="links">
-				<li>{ <Link to="/">Home</Link> }</li>
-				<li>{ <Link to="/about">About</Link> }</li>
-				<li>{ <Link to="/schools">Schools</Link> }</li>
-				<li>{ <Link to="/form">Form</Link> }</li>
-				<li>{ <Link to="/contributors">Contributors</Link> }</li>
-				<li>{ <Link to="/sponsors">Sponsors</Link> }</li>
+				<li>{ <Link to="/">Acasă</Link> }</li>
+				<li>{ <Link to="/about">Despre Noi</Link> }</li>
+				<li>{ <Link to="/schools">Școlile AGA</Link> }</li>
+				<li>{ <Link to="/form">Formular de înscriere</Link> }</li>
+				<li>{ <Link to="/contributors">Contribuitori</Link> }</li>
+				<li>{ <Link to="/sponsors">Sponsori</Link> }</li>
 			</ul>
 		);
 	}

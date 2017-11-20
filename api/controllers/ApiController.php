@@ -20,7 +20,6 @@ use app\models\Posts;
 use app\models\PostsCategories;
 use app\models\Workshops;
 use app\models\SignupForm;
-use app\models\Sponsors;
 use app\models\Contributors;
 use yii\web\UploadedFile;
 use app\components\ImageUploadComponent;
@@ -73,12 +72,6 @@ class ApiController extends Controller
 				$this->enableCsrfValidation = false;
 				break;
 			case 'delete-contributor':
-				$this->enableCsrfValidation = false;
-				break;
-			case 'create-sponsor':
-				$this->enableCsrfValidation = false;
-				break;
-			case 'delete-sponsor':
 				$this->enableCsrfValidation = false;
 				break;
 			case 'get-submissions':
@@ -423,46 +416,19 @@ class ApiController extends Controller
 	}
 
 	/**
-	 * Creates a sponsor entry in the database
+	 * Exports the form submissions table to sql files
 	 */
-	public function actionCreateSponsor()
-	{
-		$request = Yii::$app->request;
-
-		var_dump($request->get());
-		
-		if ($request->post()) {
-			if (Sponsors::find()->where(['name' => $request->post('name')])->one()) {
-				return Json::encode(['status' => false, 'data' => 'error_name_exists']);
-			}
-
-			$model = new Sponsors();
-			$model->name = $request->post('name');
-
-			$model->image = UploadedFile::getInstancesByName('images');
-
-			if (ImageUploadComponent::upload($model)) {
-				return Json::encode(['status' => true, 'data' => 'success']);
-			} else {
-				return Json::encode(['status' => false, 'data' => 'error_not_saved']);
-			}
-		} else {
-			return Json::encode(['status' => false, 'data' => 'error_no_request']);
-		}
-	}
-
-	/**
-	 * Deletes a sponsor entry from the database
-	 */
-	public function actionDeleteSponsor()
-	{
-		$request = Yii::$app->request;
-		
-		if ($request->get()) {
-			$model = Sponsors::find()->where(['id' => $request->get('id')])->one();
-			$model->delete();
-
-			return Json::encode(['status' => true, 'data' => 'success']);
-		}
+	public function actionExportTable()
+	{	
+		$file = \Yii::createObject([
+			'class' => 'codemix\excelexport\ExcelFile',
+			'sheets' => [
+				'FormSubmissions' => [
+					'class' => 'codemix\excelexport\ActiveExcelSheet',
+					'query' => SignupForm::find()
+				]
+			]
+		]);
+		$file->send('FormSubmissions.xlsx');
 	}
 }

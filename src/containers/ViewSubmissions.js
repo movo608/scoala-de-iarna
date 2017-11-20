@@ -41,6 +41,10 @@ class ViewSubmissions extends Component {
 		this.refreshSubmissions();
 	}
 
+	openExportWindow() {
+		window.open('http://127.0.0.1/scoala-de-iarna/api/web/api/export-table');
+	}
+
 	renderSubmissions() {
 		return _.map(this.props.submissions, (it) => {
 			return (
@@ -126,7 +130,8 @@ class ViewSubmissions extends Component {
 								<p>in this section you can see all the form submissions</p>
 								<h2>View Form Submissions</h2>
 							</header>
-							<button style={{marginBottom: '25px', marginRight: '10px'}} onClick={ () => this.refreshSubmissions() }>Refresh</button>
+							<button style={{ marginRight: '10px' }} onClick={ () => this.refreshSubmissions() }>Refresh</button>
+							<button onClick={ () => this.openExportWindow() }>Export to Excel</button>
 							<hr />
 							<ul className="alt categories-list uniform">
 								{ this.renderSubmissions() }

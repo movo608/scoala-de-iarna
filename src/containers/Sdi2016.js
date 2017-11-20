@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 export default class Sdi2016 extends Component {
 	render() {
@@ -7,7 +8,7 @@ export default class Sdi2016 extends Component {
 				<section id="One" className="wrapper style3">
 					<div className="inner">
 						<header className="align-center">
-							<p>Al II-lea Capitol</p>
+							<p>Primul Capitol</p>
 							<h2>Scoala De Iarnă 2016</h2>
 						</header>
 					</div>
@@ -15,6 +16,9 @@ export default class Sdi2016 extends Component {
 
 				<section id="two" className="wrapper style2">
 					<div className="inner">
+
+						<Breadcrumbs className="align-center" current='Sdi 2016'/>
+
 						<div className="content" style={{color: 'gray', fontWeight: '500'}}>
 							<div className="box">
 								<div className="content">

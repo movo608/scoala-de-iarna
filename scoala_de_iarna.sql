@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2017 at 03:35 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Nov 20, 2017 at 07:30 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -45,8 +45,7 @@ INSERT INTO `buttons_navbar_logged` (`id`, `name`, `value`) VALUES
 (6, '/create/workshop', 'Create Workshops'),
 (7, '/view/submissions', 'View Submissions'),
 (8, '/create/contributor', 'Create Contributors'),
-(9, '/view/contributors', 'View Contributors'),
-(10, '/view/sponsors', 'View Sponsors');
+(9, '/view/contributors', 'View Contributors');
 
 -- --------------------------------------------------------
 
@@ -64,12 +63,7 @@ CREATE TABLE `contributors` (
 --
 
 INSERT INTO `contributors` (`id`, `name`) VALUES
-(1, 'One'),
-(2, 'Two'),
-(3, 'Lorem Ipsum Dolor Sit Amet\r\n'),
-(4, 'dfss'),
-(6, 'Satan'),
-(14, 'Molfenstein');
+(16, 'Moldovan Andrei');
 
 -- --------------------------------------------------------
 
@@ -132,8 +126,7 @@ INSERT INTO `posts_categories` (`id`, `name`) VALUES
 (4, 'DEUS VULT'),
 (5, 'DEUS VULT FOR LEONHART'),
 (6, 'FUCK ME IN THE ASS'),
-(7, 'sdfdas'),
-(8, 'sdfsa');
+(7, 'sdfdas');
 
 -- --------------------------------------------------------
 
@@ -166,7 +159,8 @@ CREATE TABLE `signup_form` (
 --
 
 INSERT INTO `signup_form` (`id`, `name`, `email`, `phone`, `facebook_link`, `city`, `region`, `workshop`, `found_out`, `motivation`, `expectations`, `personal_project`, `personal_experience`, `personal_values`, `random_question`, `good_deed`, `future_view`) VALUES
-(40, 'Andrei George Moldovan', 'moldovanandrei8399@gmail.com', '12331', 'asdfsa', 'Targu Mures', 'Mures', 'Pantomima', 'Școală / Facultate', 'asdf', 'sadf', 'asdf', 'asdf', 'sadf', 'sadf', 'sadf', 'asdf');
+(41, 'Andrei George Moldovan', 'moldovanandrei8399@gmail.com', 'asdfas', 'adsfas', 'adsf', 'adsfas', 'Pantomima', 'Școală / Facultate', 'adsfads', 'adsfas', 'asdfas', 'asdfa', 'asdfs', 'asdf', 'adsf', 'asdfs'),
+(42, 'Andrei George Moldovan', 'moldovanandrei8399@gfffmail.com', 'asdfasfff', 'adsfasffff', 'adsf', 'adsfas', 'Pantomima', 'Școală / Facultate', 'adsfads', 'adsfas', 'asdfas', 'asdfa', 'asdfs', 'asdf', 'adsf', 'asdfs');
 
 -- --------------------------------------------------------
 
@@ -206,7 +200,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `access_token`, `password`, `is_logged`) VALUES
-(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 1);
+(10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 0),
+(11, 'aga2015@aga.ro', 'ea193ec3c3fcce3631d98ce724fc34fa733756460d7cc17726f9e18d2060170f', '79804e184d8d1626cfa4e45f2b98b7567e8fd2fa0b3dd3c881c97cbf80ce8204', 1);
 
 -- --------------------------------------------------------
 
@@ -303,7 +298,7 @@ ALTER TABLE `buttons_navbar_logged`
 -- AUTO_INCREMENT for table `contributors`
 --
 ALTER TABLE `contributors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `posts`
 --
@@ -313,12 +308,12 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts_categories`
 --
 ALTER TABLE `posts_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `signup_form`
 --
 ALTER TABLE `signup_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `sponsors`
 --
@@ -328,7 +323,7 @@ ALTER TABLE `sponsors`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `workshops`
 --
