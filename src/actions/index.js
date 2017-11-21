@@ -221,7 +221,7 @@ export function deleteCategory(id) {
  */
 export function createPost(name, body, category_id, category_name) {
     return async (dispatch, getState) => {
-        let data = await axios({
+        await axios({
             headers: { 
                 'content-type': 'application/json'
             },
@@ -233,8 +233,7 @@ export function createPost(name, body, category_id, category_name) {
                 category_id,
                 category_name
             }
-        });
-        dispatch(dispatchCreatePost(data));
+        }).then(response => dispatch(dispatchCreatePost(response)));
     };
 }
 

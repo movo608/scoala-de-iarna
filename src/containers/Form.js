@@ -9,8 +9,6 @@ import { sendForm, getWorkshops } from '../actions'
 
 // import react select
 import Select from 'react-select'
-// import react select css
-import 'react-select/dist/react-select.css'
 
 const IS_DISABLED = false;
 let allowMessage = false;

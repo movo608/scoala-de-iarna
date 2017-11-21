@@ -6,8 +6,6 @@ import _ from 'lodash'
 
 // import react select
 import Select from 'react-select'
-// import react select css
-import 'react-select/dist/react-select.css'
 
 // import actions
 import { createPost } from '../actions'

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { Router, Switch, Route } from 'react-router-dom'
 import { createHashHistory } from 'history'
-//import logger from 'redux-logger'
+import logger from 'redux-logger'
 
 // import components
 import LandingLayout from './layouts/LandingLayout.jsx'
@@ -39,8 +39,8 @@ const customHistory = createHashHistory();
 
 const store = createStore (
     reducer,
-    middleware
-	//applyMiddleware(logger)
+    middleware,
+	applyMiddleware(logger)
 );
 
 render(

@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { createHashHistory } from 'history'
 import _ from 'lodash'
+import { ROOT_URL } from '../constants/ActionTypes'
 
 //import actions
 import { getSubmissions } from '../actions'
@@ -42,7 +43,7 @@ class ViewSubmissions extends Component {
 	}
 
 	openExportWindow() {
-		window.open('http://127.0.0.1/scoala-de-iarna/api/web/api/export-table');
+		window.open(`${ROOT_URL}api/web/api/export-table`);
 	}
 
 	renderSubmissions() {
