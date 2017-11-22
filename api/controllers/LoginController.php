@@ -136,7 +136,8 @@ class LoginController extends Controller
 	/**
 	 * Logs an user out, rendering the (model)$user -> `is_logged` to 0 
 	 */
-	public function actionLogout() {
+	public function actionLogout()
+	{
 		if (Yii::$app->request->get()) {
 			$model = User::find()->where(['id' => Yii::$app->request->get('id')])->one();
 			$model->is_logged = 0;
@@ -148,6 +149,21 @@ class LoginController extends Controller
 		} else {
 			return Json::encode(['status' => false, 'data' => 'error_not_request']);
 		}
+	}
+
+	/**
+	 * Force logs out all the users in the database
+	 */
+	public function forceLogout()
+	{
+		$model = User::find()->all();
+
+		foreach ($model as $user) {
+			$user->is_logged = false;
+			$user->save();
+		}
+
+		return Json::encode(['status' => true, 'data' => 'users_logged_out']);
 	}
 
 	/**

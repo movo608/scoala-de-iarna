@@ -7,10 +7,10 @@ export default class Footer extends Component {
 			<footer id="footer">
 				<div className="container">
 					<ul className="icons">
-						<li><a href="www.facebook.com" className="icon fa-facebook"><span className="label">Facebook</span></a></li>
-						<li><a href="www.instagram.com" className="icon fa-instagram"><span className="label">Instagram</span></a></li>
-						<li><a href="www.twitter.com" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
-						<li><a href="www.gmail.com" className="icon fa-envelope-o"><span className="label">Email</span></a></li>
+						<li><a href="http://www.facebook.com" className="icon fa-facebook"><span className="label">Facebook</span></a></li>
+						<li><a href="http://www.instagram.com" className="icon fa-instagram"><span className="label">Instagram</span></a></li>
+						<li><a href="http://www.twitter.com" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
+						<li><a href="http://www.gmail.com" className="icon fa-envelope-o"><span className="label">Email</span></a></li>
 					</ul>
 				</div>
 				<div className="copyright">
