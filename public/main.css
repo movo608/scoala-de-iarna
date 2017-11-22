@@ -53,3 +53,7 @@ textarea {
 .camps-images img {
 	height: 350px;
 }
+
+.app-banner h2 {
+	opacity: 0.45;
+}

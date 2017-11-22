@@ -20,13 +20,12 @@ class App extends  Component {
 	
 	renderBanner() {
 		return (
-			<section className="banner full">
+			<section className="banner full app-banner">
 				<article>
 					<img src="images/carousel/slide01.jpg" alt="" />
 					<div className="inner">
 						<header>
-							<p>un altfel de școală</p>
-							<h2>Schimbarea e în noi</h2>
+							<h2>#SDV 2017</h2>
 						</header>
 					</div>
 				</article>
@@ -34,8 +33,7 @@ class App extends  Component {
 					<img src="images/carousel/slide02.jpg" alt="" />
 					<div className="inner">
 						<header>
-							<p>Lorem ipsum dolor sit amet nullam feugiat</p>
-							<h2>Magna etiam</h2>
+							<h2>#SDI 2016</h2>
 						</header>
 					</div>
 				</article>
@@ -43,8 +41,7 @@ class App extends  Component {
 					<img src="images/carousel/slide03.jpg"  alt="" />
 					<div className="inner">
 						<header>
-							<p>Sed cursus aliuam veroeros lorem ipsum nullam</p>
-							<h2>Tempus dolor</h2>
+							<h2>#SDV 2016</h2>
 						</header>
 					</div>
 				</article>
@@ -52,8 +49,7 @@ class App extends  Component {
 					<img src="images/carousel/slide04.jpg"  alt="" />
 					<div className="inner">
 						<header>
-							<p>Adipiscing lorem ipsum feugiat sed phasellus consequat</p>
-							<h2>Etiam feugiat</h2>
+							<h2>#SDV 2015</h2>
 						</header>
 					</div>
 				</article>
@@ -61,8 +57,7 @@ class App extends  Component {
 					<img src="images/carousel/slide05.jpg"  alt="" />
 					<div className="inner">
 						<header>
-							<p>Ipsum dolor sed magna veroeros lorem ipsum</p>
-							<h2>Lorem adipiscing</h2>
+							<h2>#SDI 2017</h2>
 						</header>
 					</div>
 				</article>
@@ -70,12 +65,17 @@ class App extends  Component {
 					<img src="images/carousel/slide06.jpg"  alt="" />
 					<div className="inner">
 						<header>
-							<p>Ipsum dolor sed magna veroeros lorem ipsum</p>
-							<h2>Lorem adipiscing</h2>
+							<h2>#SDV 2014</h2>
 						</header>
 					</div>
 				</article>
 			</section>
+		);
+	}
+
+	renderNews() {
+		return (
+			<a href="#"><h2>Still under development</h2></a>
 		);
 	}
 
@@ -87,8 +87,21 @@ class App extends  Component {
 					<div className="inner">
 						<header className="align-center">
 							<p className="special">Pe meleagurile sibiene...</p>
-							<h2>Scriem împreună cel de-al III-lea capitol al Școlii de Iarnă!</h2>
+							<h2 style={{ fontStyle: 'italic' }}>Scriem împreună cel de-al III-lea capitol al Școlii de Iarnă!</h2>
 						</header>
+
+						<div className="box" style={{ backgroundColor: 'yellow' }}>
+							<div className="content">
+								<header className="align-center">
+									<p className="special">Cele mai noi anunțuri</p>
+									<h2>Breaking News</h2>
+								</header>
+								<div className="align-center">
+									{ this.renderNews() }
+								</div>
+							</div>
+						</div>
+
 						<div className="box">
 							<div className="content">
 								<div className="row 200%">

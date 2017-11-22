@@ -10,7 +10,7 @@ import { sendForm, getWorkshops } from '../actions'
 // import react select
 import Select from 'react-select'
 
-const IS_DISABLED = false;
+const IS_DISABLED = true;
 let allowMessage = false;
 
 class Form extends Component {
@@ -181,7 +181,7 @@ class Form extends Component {
 						</div>
 						<label className="sr-only">Workshop</label>
 						<div className="12u 12u$(xsmall)">
-							<Select
+							{/*<Select
 								name="form-field-workshop"
 								placeholder="Select Workshop..."
 								value={ this.state.workshopId }
@@ -190,7 +190,7 @@ class Form extends Component {
 								clearable={ false }
 								searchable={ false }
 								required
-							/>
+							/>*/}
 						</div>
 						<h3>Secțiunea "Școala de Iarnă"</h3>
 						<label className="sr-only">Cum ai aflat despre Școala de Iarnă?</label>

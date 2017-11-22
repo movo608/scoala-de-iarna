@@ -80,7 +80,7 @@ class Header extends Component {
 		return (
 			<div>
 				<header id="header" className="">
-					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
+					<div className="logo"><Link to="/">Școala AGA <span>by Moldo</span></Link></div>
 					{ this.renderLogout() }
 					<button className="mobile-hidden" onClick={ () => this.openFrontendWindow() }>New Window</button>
 					<a href="#menu" className="toggle-menu">Menu</a>

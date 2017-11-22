@@ -154,7 +154,7 @@ class LoginController extends Controller
 	/**
 	 * Force logs out all the users in the database
 	 */
-	public function forceLogout()
+	public function actionforceLogout()
 	{
 		$model = User::find()->all();
 

@@ -14,7 +14,7 @@ export default class Footer extends Component {
 					</ul>
 				</div>
 				<div className="copyright">
-					<p>&copy; <a href="">Asociația Generația de Azi</a> { Time() }. All rights reserved.</p>
+					<p>&copy; Asociația Generația de Azi { Time() }. All rights reserved.</p>
 					<p>{ Author() } { Powered() }</p>
 				</div>
 			</footer>
