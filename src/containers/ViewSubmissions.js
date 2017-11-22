@@ -43,7 +43,7 @@ class ViewSubmissions extends Component {
 	}
 
 	openExportWindow() {
-		window.open(`${ROOT_URL}api/web/api/export-table`);
+		window.open(`${ROOT_URL}api/export-table`);
 	}
 
 	renderSubmissions() {

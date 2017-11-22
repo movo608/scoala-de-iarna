@@ -5,7 +5,7 @@ var BUILD_DIR = path.resolve(__dirname, 'public');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
-  entry: APP_DIR + '/index.js',
+  entry: APP_DIR,
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
@@ -15,13 +15,12 @@ var config = {
       {
         test: /\.jsx?$/,
         include: APP_DIR,
-        loader: 'babel-loader',
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader'],
-        include: __dirname + '/src'
-      }
+        loaders: ["style-loader","css-loader"]
+      },
     ]
   }
 };

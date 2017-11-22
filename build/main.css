@@ -1,0 +1,55 @@
+.alert-danger {
+    padding: 20px;
+    background-color: #f44336;
+	color: white;
+	margin-bottom: 20px;
+}
+
+.alert-success {
+	padding: 20px;
+    background-color: #00a300;
+	color: white;
+	margin-bottom: 20px;
+}
+
+.hidden {
+	display: none;
+}
+
+.categories-list li span {
+	font-size: 1.4em;
+}
+
+.contributors-list {
+	color: rgba(red, green, blue, 0.8) !important;
+	font-size: 1.2em !important;
+	font-weight: 600 !important;
+}
+
+textarea {
+	resize: none;
+}
+
+.post-body {
+	word-wrap: break-word;
+}
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-gallery img {
+	height: 320px;
+}
+
+@media only screen and (max-width: 720px) {
+	.mobile-hidden {
+		display: none;
+	}
+}
+
+.camps-images img {
+	height: 350px;
+}

@@ -15,7 +15,7 @@ class App extends  Component {
 	}
 
 	componentDidMount() {
-		createScript('/assets/js/loadCarousel.js');
+		createScript('assets/js/loadCarousel.js');
 	}
 	
 	renderBanner() {
