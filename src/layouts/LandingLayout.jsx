@@ -19,6 +19,7 @@ export default class LandingLayout extends Component {
 
                 <div className="content">
                     {this.props.children}
+                    <a href="javascript:" id="return-to-top"><i className="fa fa-chevron-up" aria-hidden="true"></i></a>
                 </div>
 
                 <Footer />
