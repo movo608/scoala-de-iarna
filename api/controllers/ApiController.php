@@ -21,6 +21,7 @@ use app\models\PostsCategories;
 use app\models\Workshops;
 use app\models\SignupForm;
 use app\models\Contributors;
+use app\models\News;
 use yii\web\UploadedFile;
 use app\components\ImageUploadComponent;
 
@@ -430,5 +431,27 @@ class ApiController extends Controller
 			]
 		]);
 		$file->send('FormSubmissions.xlsx');
+	}
+
+	/**
+	 * Extracts all news from the database
+	 */
+	public function actionGetNews()
+	{
+		$model = News::find()->all();
+
+		return Json::encode(['status' => true, 'data' => $model]);
+	}
+
+	/**
+	 * Extracts one piece of news from the database
+	 * according to the id provided
+	 * @param id
+	 */
+	public function actionGetOneNews($id)
+	{
+		$model = News::find()->where(['id' => $id])->one();
+
+		return Json::encode(['status' => true, 'data' => $model]);
 	}
 }

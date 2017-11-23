@@ -29,7 +29,7 @@ class Contributors extends Component {
 						<div className="content">
 							<header className="align-center">
 								<p>dorim să le adresăm sincere mulțumiri contribuitorilor noștri</p>
-								<h2>Contribuitori</h2>
+								<h2>Au contribuit...</h2>
 							</header>
 							<div className="12u 12u$(medium) uniform contributors-list Aligner align-center">
 								<ul className="alt 6u 6u$(medium) contributors-list">
