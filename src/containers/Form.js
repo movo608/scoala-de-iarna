@@ -10,7 +10,7 @@ import { sendForm, getWorkshops } from '../actions'
 // import react select
 import Select from 'react-select'
 
-const IS_DISABLED = true;
+const IS_DISABLED = false;
 let allowMessage = false;
 
 class Form extends Component {

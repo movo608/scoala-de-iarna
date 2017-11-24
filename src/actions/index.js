@@ -16,7 +16,9 @@ import {
     GET_SUBMISSIONS,
     GET_CONTRIBUTORS,
     GET_SPONSORS,
-    CREATE_CONTRIBUTOR
+    CREATE_CONTRIBUTOR,
+    GET_NEWS,
+    GET_ONE_NEWS
 } from '../constants/ActionTypes'
 
 /**
@@ -458,6 +460,7 @@ export function createContributor(values) {
         }).then((response) => dispatch(dispatchCreateContributor(response)));
     };
 }
+
 /**
  * Dispatches the created contributor towards the reducers
  */
@@ -481,4 +484,52 @@ export function deleteContributor(id) {
             }
         });
     }
+}
+
+/**
+ * Fetches the news from the database
+ */
+export function getNews() {
+    return async (dispatch, getState) => {
+        await axios({
+            url: `${ROOT_URL}api/get-news`,
+            method: 'get'
+        }).then((response) => dispatch(dispatchGetNews(response)));
+    };
+}
+
+/**
+ * Dispatches the fetched news towards the reducers
+ */
+function dispatchGetNews(data) {
+    return {
+        TYPE: GET_NEWS,
+        payload: data
+    };
+}
+
+/**
+ * Fetches the piece of news from the database as requested from the database
+ * @param id
+ */
+export function getOneNews(id) {
+    return async (dispatch, getState) => {
+        await axios({
+            url: `${ROOT_URL}api/get-one-news`,
+            method: 'get',
+            params: {
+                id
+            }
+        }).then((response) => dispatch(dispatchGetNewsOne(response)));
+    };
+}
+
+/**
+ * Dispatches the fetched piece of news as requested from the database by the @param id
+ */
+function dispatchGetNewsOne(data) {
+    return {
+        type: GET_ONE_NEWS,
+        payload: data
+    };
 }

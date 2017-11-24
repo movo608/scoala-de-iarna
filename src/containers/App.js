@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reactLocalStorage as __storage } from 'reactjs-localstorage'
 import { createScript } from '../helpers/CustomHelpers'
+import { Link } from 'react-router-dom'
 
 // import actions
 import { userStoreLogin } from '../actions'
@@ -75,7 +76,7 @@ class App extends  Component {
 
 	renderNews() {
 		return (
-			<a href="#"><h2>Still under development</h2></a>
+			<Link to="/form"><h2>S-au deschis înscrierile!</h2></Link>
 		);
 	}
 

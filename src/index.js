@@ -40,8 +40,8 @@ const customHistory = createHashHistory();
 
 const store = createStore (
     reducer,
-    middleware,
-	applyMiddleware(logger)
+    middleware
+	//applyMiddleware(logger)
 );
 
 render(

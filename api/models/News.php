@@ -28,10 +28,10 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title', 'body', 'image_url'], 'required'],
-            [['id'], 'integer'],
-            [['body', 'image_url'], 'string'],
-            [['title'], 'string', 'max' => 128],
+            [['title', 'body', 'image_url'], 'required'],
+            [['body'], 'string'],
+            [['image_url'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['title'], 'string', 'max' => 128]
         ];
     }
 
@@ -44,7 +44,24 @@ class News extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'body' => 'Body',
-            'image_url' => 'Image Url',
+            'image_url' => 'Image',
         ];
+    }
+
+    /**
+     * Uploads the image to the server and saves the path into the database.
+     */
+    public function upload()
+    {
+        $time = time();
+        if ($this->validate()) {
+            $this->image_url->saveAs('uploads/' . 'file_image_type' . $time . '.' . $this->image_url->extension);
+            $this->image_url = 'file_image_type' . $time . '.' . $this->image_url->extension;
+            
+            if ($this->save(false)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

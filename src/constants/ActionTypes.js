@@ -1,6 +1,6 @@
 // set default URL for API
-export const ROOT_URL = 'http://127.0.0.1/scoala-de-iarna/api/web/'
-//export const ROOT_URL = 'http://api.scoala-aga.ro/web/'
+//export const ROOT_URL = 'http://127.0.0.1/scoala-de-iarna/api/web/'
+export const ROOT_URL = 'http://api.scoala-aga.ro/web/'
 
 // set default URLs for frontend and backend
 export const ROOT_FRONTEND = 'http://www.scoala-aga.ro/'
@@ -22,3 +22,5 @@ export const GET_SUBMISSIONS = 'GET_SUBMISSIONS'
 export const GET_CONTRIBUTORS = 'GET_CONTRIBUTORS'
 export const GET_SPONSORS = 'GET_SPONSORS'
 export const CREATE_CONTRIBUTOR = 'CREATE_CONTRIBUTOR'
+export const GET_NEWS = 'GET_NEWS'
+export const GET_ONE_NEWS = 'GET_ONE_NEWS'
