@@ -55,6 +55,9 @@ class ViewSubmissions extends Component {
 							<h3>Name: { it.name }</h3>
 						</div>
 						<div className="12u 12u$(medium)">
+							<h3>Time of Birth: { it.age }</h3>
+						</div>
+						<div className="12u 12u$(medium)">
 							<h3>Email: { it.email }</h3>
 						</div>
 						<div className="12u 12u$(medium)">

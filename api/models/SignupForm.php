@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $email
+ * @property string $age
  * @property string $phone
  * @property string $facebook_link
  * @property string $city
@@ -41,12 +42,12 @@ class SignupForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'phone', 'facebook_link', 'city', 'region', 'workshop', 'found_out', 'motivation', 'expectations', 'personal_project', 'personal_experience', 'personal_values', 'random_question', 'good_deed', 'future_view'], 'required'],
+            [['name', 'email', 'age', 'phone', 'facebook_link', 'city', 'region', 'workshop', 'found_out', 'motivation', 'expectations', 'personal_project', 'personal_experience', 'personal_values', 'random_question', 'good_deed', 'future_view'], 'required'],
             [['found_out', 'motivation', 'expectations', 'personal_project', 'personal_experience', 'personal_values', 'random_question', 'good_deed', 'future_view'], 'string'],
             [['name', 'facebook_link'], 'string', 'max' => 128],
             [['email', 'city', 'region'], 'string', 'max' => 64],
+            [['age', 'workshop'], 'string', 'max' => 32],
             [['phone'], 'string', 'max' => 16],
-            [['workshop'], 'string', 'max' => 32],
             [['email'], 'unique'],
             [['facebook_link'], 'unique'],
         ];
@@ -61,6 +62,7 @@ class SignupForm extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'email' => 'Email',
+            'age' => 'Age',
             'phone' => 'Phone',
             'facebook_link' => 'Facebook Link',
             'city' => 'City',

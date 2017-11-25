@@ -247,6 +247,7 @@ class ApiController extends Controller
 			$information = [
 				'name' => $request->get('name'),
 				'email' => $request->get('email'),
+				'age' => $request->get('age'),
 				'city' => $request->get('city'),
 				'region' => $request->get('region'),
 				'workshop' => $request->get('workshop'),
@@ -273,6 +274,7 @@ class ApiController extends Controller
 
 			$model->name 				= $information['name'];
 			$model->email 				= $information['email'];
+			$model->age					= $information['age'];
 			$model->city 				= $information['city'];
 			$model->region 				= $information['region'];
 			$model->workshop 			= $information['workshop'];

@@ -271,7 +271,6 @@ export function deletePost(id) {
  * Submits the completed form
  */
 export function sendForm({...values}) {
-    console.log(values);
     return async (dispatch, getState) => {
         await axios({
             headers: { 
@@ -283,6 +282,7 @@ export function sendForm({...values}) {
                 name: values.name,
                 email: values.email,
                 phone: values.phone,
+                age: values.age,
                 facebook_link: values.facebook,
                 city: values.city,
                 region: values.region,

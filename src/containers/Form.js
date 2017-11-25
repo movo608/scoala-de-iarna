@@ -27,6 +27,7 @@ class Form extends Component {
 		return {
 			name: '',
 			email: '',
+			age: '',
 			city: '',
 			region: '',
 			workshop: '',
@@ -63,6 +64,7 @@ class Form extends Component {
 		this.handleQuestionChange = this.handleQuestionChange.bind(this);
 		this.handleDeedChange = this.handleDeedChange.bind(this);
 		this.handleFutureChange = this.handleFutureChange.bind(this);
+		this.handleAgeChange = this.handleAgeChange.bind(this);
 	}
 
 	componentWillMount() {
@@ -80,6 +82,11 @@ class Form extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		this.props.sendForm(this.state);
+	}
+
+	handleAgeChange(event) {
+		event.preventDefault();
+		this.setState({ age: event.target.value });
 	}
 
 	handleFutureChange(event) {
@@ -157,7 +164,11 @@ class Form extends Component {
 						<h3>Vrem să te cunoaștem!</h3>
 						<label className="sr-only">Name</label>
 						<div className="12u 12u$(xsmall)">
-							<input placeholder="Name" className="form-control" type="text" value={ this.state.value } onChange={ this.handleNameChange } required />
+							<input placeholder="Nume" className="form-control" type="text" value={ this.state.value } onChange={ this.handleNameChange } required />
+						</div>
+						<label className="sr-only">Age</label>
+						<div className="12u 12u$(xsmall)">
+							<input placeholder="Data Nașterii" className="form-control" type="text" value={ this.state.value } onChange={ this.handleAgeChange } required />
 						</div>								
 						<label className="sr-only">Email</label>
 						<div className="12u 12u$(xsmall)">
@@ -213,8 +224,8 @@ class Form extends Component {
 						</div>
 						<label className="sr-only">Motivation</label>
 						<div className="12u 12u$(xsmall)">
-							<textarea required value={ this.state.value } onChange={ this.handleMotivationChange } placeholder="Știm că ești o persoană implicată, povestește-ne despre un proiect la care ai participat și cum
-							te-a ajutat."/>
+							<textarea required value={ this.state.value } onChange={ this.handleMotivationChange } placeholder="Ne bucurăm că vrei să fii alături de noi, dar suntem curioși, care este motivația ta pentru a
+							aplica la acest proiect?"/>
 						</div>
 						<label className="sr-only">Expectations</label>
 						<div className="12u 12u$(xsmall)">

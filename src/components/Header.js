@@ -105,11 +105,16 @@ class Header extends Component {
 		);
 	}
 
+	renderTime() {
+		const date = new Date();
+		return date.getFullYear();
+	}
+
 	renderMain() {
 		return (
 			<div>
 				<header id="header" className="">
-					<div className="logo"><Link to="/">Hello, nigga <span>by Molfex</span></Link></div>
+					<div className="logo"><Link to="/">Școala AGA <span>{ this.renderTime() }</span></Link></div>
 					<a href="#menu" className="toggle-menu">Menu</a>
 				</header>
 				<nav id="menu" className="">
