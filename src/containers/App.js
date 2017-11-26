@@ -23,6 +23,9 @@ class App extends  Component {
 		return (
 			<section className="banner full app-banner">
 				<article>
+					<img src="images/carousel/slide00.jpg" alt="" />
+				</article>
+				<article>
 					<img src="images/carousel/slide01.jpg" alt="" />
 					<div className="inner">
 						<header>
