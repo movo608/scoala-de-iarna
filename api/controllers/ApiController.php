@@ -440,7 +440,7 @@ class ApiController extends Controller
 	 */
 	public function actionGetNews()
 	{
-		$model = News::find()->all();
+		$model = News::find()->where(['active' => (int) 1])->all();
 
 		return Json::encode(['status' => true, 'data' => $model]);
 	}
@@ -452,7 +452,7 @@ class ApiController extends Controller
 	 */
 	public function actionGetOneNews($id)
 	{
-		$model = News::find()->where(['id' => $id])->one();
+		$model = News::findOne(['id' => $id]);
 
 		return Json::encode(['status' => true, 'data' => $model]);
 	}

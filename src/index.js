@@ -34,14 +34,15 @@ import Sdv2015 from './containers/Sdv2015'
 import Sdv2016 from './containers/Sdv2016'
 import Sdv2017 from './containers/Sdv2017'
 import News from './containers/News'
+import NewsAll from './containers/NewsAll'
 
 const middleware = applyMiddleware(thunkMiddleware);
 const customHistory = createHashHistory();
 
 const store = createStore (
     reducer,
-    middleware
-	//applyMiddleware(logger)
+    middleware,
+	applyMiddleware(logger)
 );
 
 render(
@@ -55,6 +56,7 @@ render(
 					<Route exact path='/sponsors' render={() => <LandingLayout><Sponsors /></LandingLayout>} />
 					<Route exact path='/about' render={() => <LandingLayout><About /></LandingLayout>} />
 					<Route exact path='/schools' render={() => <LandingLayout><Camps /></LandingLayout>} />
+					<Route exact path='/news' render={() => <LandingLayout><NewsAll /></LandingLayout>} />
 					<Route exact path='/news/:id' render={(props) => <LandingLayout><News {...this.props} {...props}/></LandingLayout>} />
 
 					<Route exact path='/schools/sdv/2014' render={() => <LandingLayout><Sdv2014 /></LandingLayout>} />

@@ -490,12 +490,10 @@ export function deleteContributor(id) {
  * Fetches the news from the database
  */
 export function getNews() {
-    return async (dispatch, getState) => {
-        await axios({
-            url: `${ROOT_URL}api/get-news`,
-            method: 'get'
-        }).then((response) => dispatch(dispatchGetNews(response)));
-    };
+    return (dispatch) => {
+		axios.get(`${ROOT_URL}api/get-news`)
+			.then((response) => { dispatch(dispatchGetNews(response)) });
+	}
 }
 
 /**
@@ -503,7 +501,7 @@ export function getNews() {
  */
 function dispatchGetNews(data) {
     return {
-        TYPE: GET_NEWS,
+        type: GET_NEWS,
         payload: data
     };
 }
@@ -513,15 +511,10 @@ function dispatchGetNews(data) {
  * @param id
  */
 export function getOneNews(id) {
-    return async (dispatch, getState) => {
-        await axios({
-            url: `${ROOT_URL}api/get-one-news`,
-            method: 'get',
-            params: {
-                id
-            }
-        }).then((response) => dispatch(dispatchGetNewsOne(response)));
-    };
+    return (dispatch) => {
+		axios.get(`${ROOT_URL}api/get-one-news?id=${id}`)
+			.then((response) => { dispatch(dispatchGetNewsOne(response)) });
+	}
 }
 
 /**

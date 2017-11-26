@@ -11,6 +11,7 @@ use Yii;
  * @property string $title
  * @property string $body
  * @property string $image_url
+ * @property integer $active
  */
 class News extends \yii\db\ActiveRecord
 {
@@ -28,10 +29,11 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'body', 'image_url'], 'required'],
+            [['title', 'body', 'image_url', 'active'], 'required'],
             [['body'], 'string'],
             [['image_url'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
-            [['title'], 'string', 'max' => 128]
+            [['active'], 'string'],
+            [['title'], 'string', 'max' => 128],
         ];
     }
 
@@ -45,11 +47,12 @@ class News extends \yii\db\ActiveRecord
             'title' => 'Title',
             'body' => 'Body',
             'image_url' => 'Image',
+            'active' => 'Active',
         ];
     }
 
     /**
-     * Uploads the image to the server and saves the path into the database.
+     * Uploads the image to the server and saves the path into the database
      */
     public function upload()
     {
@@ -57,7 +60,7 @@ class News extends \yii\db\ActiveRecord
         if ($this->validate()) {
             $this->image_url->saveAs('uploads/' . 'file_image_type' . $time . '.' . $this->image_url->extension);
             $this->image_url = 'file_image_type' . $time . '.' . $this->image_url->extension;
-            
+
             if ($this->save(false)) {
                 return true;
             }

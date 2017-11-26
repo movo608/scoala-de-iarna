@@ -37,7 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     return 'http://127.0.0.1/scoala-de-iarna/api/web/uploads/' . $value->image_url;
                 },
                 'format' => ['image', ['class' => 'col-md-7 col-lg-7 col-xs-7']]
-            ]
+            ],
+            'active'
         ],
     ]) ?>
 

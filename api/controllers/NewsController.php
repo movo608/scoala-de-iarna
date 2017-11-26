@@ -69,10 +69,11 @@ class NewsController extends Controller
         if ($model->load(Yii::$app->request->post())) {  
             $model->image_url = UploadedFile::getInstance($model, 'image_url');
 
-            if ($model->upload())  {
+            if ($model->upload()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
+
         return $this->render('create', [
             'model' => $model,
         ]);

@@ -14,7 +14,7 @@ import getSponsors from './get_sponsors'
 import createContributor from './create_contributor'
 import createSponsor from './create_sponsor'
 import getNews from './get_news'
-import getOneNews from './get_one_news'
+import getPieceOfNews from './get_one_news'
 
 const rootReducer = combineReducers({
 	users,
@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
 	createContributor,
 	createSponsor,
 	getNews,
-	getOneNews
+	getPieceOfNews
 });
 
 export default rootReducer;

@@ -18,7 +18,7 @@ class modelsNewsSearch extends News
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'active'], 'integer'],
             [['title', 'body', 'image_url'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class modelsNewsSearch extends News
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'active' => $this->active,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

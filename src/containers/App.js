@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux'
 import { reactLocalStorage as __storage } from 'reactjs-localstorage'
 import { createScript } from '../helpers/CustomHelpers'
 import { Link } from 'react-router-dom'
+import _ from 'lodash'
 
 // import actions
-import { userStoreLogin } from '../actions'
+import { userStoreLogin, getNews } from '../actions'
 
 class App extends  Component {
 	componentWillMount() {
@@ -17,6 +18,7 @@ class App extends  Component {
 
 	componentDidMount() {
 		createScript('assets/js/loadCarousel.js');
+		this.props.getNews();
 	}
 	
 	renderBanner() {
@@ -78,9 +80,11 @@ class App extends  Component {
 	}
 
 	renderNews() {
-		return (
-			<Link to="/form"><h2>S-au deschis înscrierile!</h2></Link>
-		);
+		return _.map(this.props.news, (it) => {
+			return (
+				<Link key={ it.id } to={`/news/${it.id}`}><h4>{ it.title }</h4></Link>
+			);
+		});
 	}
 
 	render() {
@@ -98,7 +102,7 @@ class App extends  Component {
 							<div className="content">
 								<header className="align-center">
 									<p className="special">Cele mai noi anunțuri</p>
-									<h2>Breaking News</h2>
+									<Link to='/news'><h2>Breaking News</h2></Link>
 								</header>
 								<div className="align-center">
 									{ this.renderNews() }
@@ -206,12 +210,13 @@ class App extends  Component {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ userStoreLogin }, dispatch);
+	return bindActionCreators({ userStoreLogin, getNews }, dispatch);
 }
 
 function mapStateToProps(state) {
 	return {
 		users: state.users,
+		news: state.getNews.news
 	}
 }
 

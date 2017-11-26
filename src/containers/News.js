@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { ROOT_URL } from '../constants/ActionTypes'
+import _ from 'lodash'
 
-export default class News extends Component {
+//import actions
+import { getOneNews } from '../actions'
+
+class News extends Component {
 	constructor(props) {
 		super(props);
+	}
 
+	componentWillMount() {
 		const { id } = this.props.match.params;
+		this.props.getOneNews(id);
 	}
 
 	render() {
@@ -13,8 +23,8 @@ export default class News extends Component {
 				<section id="One" className="wrapper style3">
 					<div className="inner">
 						<header className="align-center">
-							<p>Primul Capitol</p>
-							<h2>Scoala De Iarnă 2016</h2>
+							<p>Breaking News</p>
+							<h2>{ this.props.news.title }</h2>
 						</header>
 					</div>
 				</section>
@@ -24,27 +34,15 @@ export default class News extends Component {
 						<div className="content" style={{color: 'gray', fontWeight: '500'}}>
 							<div className="box">
 								<div className="content">
-									<p>
-										Cea de-a II-a ediție a Școlii de Iarnă a avut loc, precum ediția precedentă, în Loc. Rîu
-										Sadului, Jud.Sibiu. Au participat în perioada 5-11 februarie 70 de tineri din 23 de județe.	
-									</p>
-									<p>
-										Participanții au fost întâmpinați cu  4 Training-uri; Distorsiuni și bariere în comunicarea
-										interpersonală; Public Speaking; Debate (Dezbatere); Managementul conflictelor și negociere și 
-										4 Ateliere: Muzică; Teatru; Dans; Pantomimă.
-									</p>
-									<p>
-										Pe lângă partea nonformală de dezvoltare personală, am condimentat Școala de Iarnă cu
-										multe teambuilding-uri, seri tematice pentru o bună intercunoaștere și un foc de tabără cum
-										numai la Școala de Iarnă se poate întâlni.
-									</p>
-									<div className="home-gallery gallery">
-										<div>
-											<div className="image fit">
-												<img src="images/sdi2016/photo5.jpg" alt="" />
-											</div>
-										</div>
+									<div style={{fontSize: '1.4em'}} className="body" dangerouslySetInnerHTML={{ __html: this.props.news.body }}>
 									</div>
+								</div>
+							</div>
+						</div>
+						<div className="home-gallery gallery Aligner">
+							<div>
+								<div className="image fit">
+									<img src={`${ROOT_URL}/uploads/${this.props.news.image}`} alt="" />
 								</div>
 							</div>
 						</div>
@@ -53,4 +51,16 @@ export default class News extends Component {
 			</div>
 		)
 	}
-} 
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ getOneNews }, dispatch);
+}
+
+function mapStateToProps(state) {
+	return {
+		news: state.getPieceOfNews
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(News);

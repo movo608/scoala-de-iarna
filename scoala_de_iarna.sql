@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2017 at 07:30 PM
+-- Generation Time: Nov 26, 2017 at 07:15 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -63,7 +63,8 @@ CREATE TABLE `contributors` (
 --
 
 INSERT INTO `contributors` (`id`, `name`) VALUES
-(16, 'Moldovan Andrei');
+(16, 'Moldovan Andrei'),
+(17, 'Deus Vult');
 
 -- --------------------------------------------------------
 
@@ -82,6 +83,28 @@ CREATE TABLE `migration` (
 
 INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m000000_000000_base', 1504514478);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `body` text NOT NULL,
+  `image_url` text NOT NULL,
+  `active` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `body`, `image_url`, `active`) VALUES
+(1, 'Lorem Ipsum TEST Dolor', 'LOREM IPSUM TEST DOLOR', 'file_image_type1511712437.jpg', 1),
+(3, 'sdafdsa', '<p>para1</p>\r\n<p>para12213</p>', 'file_image_type1511718229.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -125,8 +148,7 @@ CREATE TABLE `posts_categories` (
 INSERT INTO `posts_categories` (`id`, `name`) VALUES
 (4, 'DEUS VULT'),
 (5, 'DEUS VULT FOR LEONHART'),
-(6, 'FUCK ME IN THE ASS'),
-(7, 'sdfdas');
+(6, 'FUCK ME IN THE ASS');
 
 -- --------------------------------------------------------
 
@@ -201,7 +223,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `access_token`, `password`, `is_logged`) VALUES
 (10, 'adminadmin@admin.com', 'cd9220cb28e58511ce8568da7be1e8c820bef885570b1a31091e4f12d7e29b45', 'ae0385755959d6e53f97b701cd0ed71a03b9d8391120f936dc14c401734dcb59', 0),
-(11, 'aga2015@aga.ro', 'ea193ec3c3fcce3631d98ce724fc34fa733756460d7cc17726f9e18d2060170f', '79804e184d8d1626cfa4e45f2b98b7567e8fd2fa0b3dd3c881c97cbf80ce8204', 1);
+(11, 'aga2015@aga.ro', 'ea193ec3c3fcce3631d98ce724fc34fa733756460d7cc17726f9e18d2060170f', '79804e184d8d1626cfa4e45f2b98b7567e8fd2fa0b3dd3c881c97cbf80ce8204', 0);
 
 -- --------------------------------------------------------
 
@@ -244,6 +266,12 @@ ALTER TABLE `contributors`
 --
 ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `posts`
@@ -298,7 +326,12 @@ ALTER TABLE `buttons_navbar_logged`
 -- AUTO_INCREMENT for table `contributors`
 --
 ALTER TABLE `contributors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `posts`
 --
@@ -308,7 +341,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts_categories`
 --
 ALTER TABLE `posts_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `signup_form`
 --
