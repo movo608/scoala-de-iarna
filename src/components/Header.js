@@ -101,6 +101,7 @@ class Header extends Component {
 				<li>{ <Link to="/form">Formular de înscriere</Link> }</li>
 				<li>{ <Link to="/contributors">Contribuitori</Link> }</li>
 				<li>{ <Link to="/sponsors">Sponsori</Link> }</li>
+				<li>{ <Link to="/news">Breaking News</Link> }</li>
 			</ul>
 		);
 	}

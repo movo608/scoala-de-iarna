@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2017 at 07:15 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Nov 27, 2017 at 08:10 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -37,12 +37,6 @@ CREATE TABLE `buttons_navbar_logged` (
 --
 
 INSERT INTO `buttons_navbar_logged` (`id`, `name`, `value`) VALUES
-(1, '/create/category', 'Create Category'),
-(2, '/create/post', 'Create Post'),
-(3, '/view/categories', 'Categories'),
-(4, '/view/posts', 'Posts'),
-(5, '/view/workshops', 'Workshops'),
-(6, '/create/workshop', 'Create Workshops'),
 (7, '/view/submissions', 'View Submissions'),
 (8, '/create/contributor', 'Create Contributors'),
 (9, '/view/contributors', 'View Contributors');
@@ -104,7 +98,8 @@ CREATE TABLE `news` (
 
 INSERT INTO `news` (`id`, `title`, `body`, `image_url`, `active`) VALUES
 (1, 'Lorem Ipsum TEST Dolor', 'LOREM IPSUM TEST DOLOR', 'file_image_type1511712437.jpg', 1),
-(3, 'sdafdsa', '<p>para1</p>\r\n<p>para12213</p>', 'file_image_type1511718229.jpg', 1);
+(3, 'sdafdsa', '<p>para1</p>\r\n<p>para12213</p>', 'file_image_type1511718229.jpg', 1),
+(4, 'Hey baoss, I have cansur', 'CANSURRR', 'file_image_type1511782010.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -201,7 +196,7 @@ CREATE TABLE `sponsors` (
 --
 
 INSERT INTO `sponsors` (`id`, `name`, `image`) VALUES
-(1, 'fdsf', 'uploads/pic01.jpg');
+(1, 'Hail Satan', 'file_image_type1511806607.jpg');
 
 -- --------------------------------------------------------
 
@@ -321,7 +316,7 @@ ALTER TABLE `workshops`
 -- AUTO_INCREMENT for table `buttons_navbar_logged`
 --
 ALTER TABLE `buttons_navbar_logged`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `contributors`
 --
@@ -331,7 +326,7 @@ ALTER TABLE `contributors`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `posts`
 --
@@ -341,7 +336,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts_categories`
 --
 ALTER TABLE `posts_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `signup_form`
 --
@@ -356,7 +351,7 @@ ALTER TABLE `sponsors`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `workshops`
 --

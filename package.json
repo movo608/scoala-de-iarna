@@ -15,6 +15,7 @@
     "uglifyify": "^4.0.5"
   },
   "dependencies": {
+    "@types/react-breadcrumbs-dynamic": "^1.0.0",
     "axios": "^0.16.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -27,6 +28,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
     "react-async-script-loader": "^0.3.0",
+    "react-breadcrumb": "^1.0.0",
     "react-confirm-dialog": "^1.0.5",
     "react-dom": "^15.5.0",
     "react-dropzone": "^4.2.1",

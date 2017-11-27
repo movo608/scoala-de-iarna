@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ROOT_URL } from '../constants/ActionTypes'
-import _ from 'lodash'
+import BreadCrumb from 'react-breadcrumb'
 
 //import actions
 import { getOneNews } from '../actions'
@@ -10,9 +10,7 @@ import { getOneNews } from '../actions'
 class News extends Component {
 	constructor(props) {
 		super(props);
-	}
 
-	componentWillMount() {
 		const { id } = this.props.match.params;
 		this.props.getOneNews(id);
 	}
@@ -25,6 +23,23 @@ class News extends Component {
 						<header className="align-center">
 							<p>Breaking News</p>
 							<h2>{ this.props.news.title }</h2>
+							<BreadCrumb
+								className="align-center"
+								path={
+									[
+										{
+											path: '#/',
+											label: 'Acasă'
+										},
+										{
+											path: '#/news',
+											label: 'Breaking News'
+										},
+										{
+											label: this.props.news.title
+										}
+									]
+								} separatorChar={ <i style={{marginLeft: '10px', marginRight: '10px'}} className="fa fa-chevron-right"></i> } />
 						</header>
 					</div>
 				</section>

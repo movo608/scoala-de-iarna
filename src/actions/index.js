@@ -487,13 +487,23 @@ export function deleteContributor(id) {
 }
 
 /**
+ * Fetches the active news from the database
+ */
+export function getNewsActive() {
+    return (dispatch) => {
+		axios.get(`${ROOT_URL}api/get-news-active`)
+			.then((response) => { dispatch(dispatchGetNews(response)) });
+	}
+}
+
+/**
  * Fetches the news from the database
  */
 export function getNews() {
     return (dispatch) => {
-		axios.get(`${ROOT_URL}api/get-news`)
-			.then((response) => { dispatch(dispatchGetNews(response)) });
-	}
+        axios.get(`${ROOT_URL}api/get-news`)
+            .then((response) => { dispatch(dispatchGetNews(response)) });
+    }
 }
 
 /**

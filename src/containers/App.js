@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import _ from 'lodash'
 
 // import actions
-import { userStoreLogin, getNews } from '../actions'
+import { userStoreLogin, getNewsActive } from '../actions'
 
 class App extends  Component {
 	componentWillMount() {
@@ -18,7 +18,7 @@ class App extends  Component {
 
 	componentDidMount() {
 		createScript('assets/js/loadCarousel.js');
-		this.props.getNews();
+		this.props.getNewsActive();
 	}
 	
 	renderBanner() {
@@ -210,7 +210,7 @@ class App extends  Component {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ userStoreLogin, getNews }, dispatch);
+	return bindActionCreators({ userStoreLogin, getNewsActive }, dispatch);
 }
 
 function mapStateToProps(state) {

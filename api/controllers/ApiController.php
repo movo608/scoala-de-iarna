@@ -22,6 +22,7 @@ use app\models\Workshops;
 use app\models\SignupForm;
 use app\models\Contributors;
 use app\models\News;
+use app\models\Sponsors;
 use yii\web\UploadedFile;
 use app\components\ImageUploadComponent;
 
@@ -375,7 +376,7 @@ class ApiController extends Controller
 	{
 		$model = Sponsors::find()->all();
 
-		return Json::encode($model);
+		return Json::encode(['status' => true, 'data' => $model]);
 	}
 
 	/**
@@ -436,9 +437,9 @@ class ApiController extends Controller
 	}
 
 	/**
-	 * Extracts all news from the database
+	 * Extracts all active news from the database
 	 */
-	public function actionGetNews()
+	public function actionGetNewsActive()
 	{
 		$model = News::find()->where(['active' => (int) 1])->all();
 
@@ -453,6 +454,16 @@ class ApiController extends Controller
 	public function actionGetOneNews($id)
 	{
 		$model = News::findOne(['id' => $id]);
+
+		return Json::encode(['status' => true, 'data' => $model]);
+	}
+
+	/**
+	 * Extract all the news from the database
+	 */
+	public function actionGetNews()
+	{
+		$model = News::find()->all();
 
 		return Json::encode(['status' => true, 'data' => $model]);
 	}
