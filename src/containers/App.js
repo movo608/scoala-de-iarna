@@ -149,7 +149,7 @@ class App extends  Component {
 						</div>
 						<div className="box">
 							<div className="content">
-								<div className="what 12u 12u$(large) align-center">
+								<div className="what 12u 12u$(medium) align-center">
 									<h3>Ce vor face?</h3>
 									<p>
 										Vor putea participa la training-uri de <strong>dezvoltare personală</strong> și la ateliere care abordează latura artistică:

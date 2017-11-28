@@ -35,6 +35,8 @@ import Sdv2016 from './containers/Sdv2016'
 import Sdv2017 from './containers/Sdv2017'
 import News from './containers/News'
 import NewsAll from './containers/NewsAll'
+import ApiSponsors from './containers/ApiSponsors'
+import ApiNews from './containers/ApiNews'
 
 const middleware = applyMiddleware(thunkMiddleware);
 const customHistory = createHashHistory();
@@ -80,6 +82,9 @@ render(
 					<Route exact path='/view/workshops' render={() => <LandingLayout><ViewWorkshops /></LandingLayout>} />
 					<Route exact path='/view/submissions' render={() => <LandingLayout><ViewSubmissions /></LandingLayout>} />
 					<Route exact path='/view/contributors' render={() => <LandingLayout><ViewContributors /></LandingLayout>} />
+
+					<Route exact path='/api/news' render={() => <LandingLayout><ApiNews /></LandingLayout>} />
+					<Route exact path='/api/sponsors' render={() => <LandingLayout><ApiSponsors /></LandingLayout>} />
               	</Switch>
           	</div>
       	</Router>
