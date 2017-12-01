@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => ['image', ['class' => 'col-md-7 col-lg-7 col-xs-7']]
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
         ],
     ]); ?>
 </div>

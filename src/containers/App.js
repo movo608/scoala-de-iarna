@@ -105,6 +105,7 @@ class App extends  Component {
 									<Link to='/news'><h2>Breaking News</h2></Link>
 								</header>
 								<div className="align-center">
+									<Link to={`/form`}><h4>S-au deschis înscrierile! (link către formular)</h4></Link>
 									{ this.renderNews() }
 								</div>
 							</div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BreadCrumb from 'react-breadcrumb'
 
 export default class Sdv2015 extends Component {
 	render() {
@@ -9,6 +10,23 @@ export default class Sdv2015 extends Component {
 						<header className="align-center">
 							<p>Al doilea Capitol</p>
 							<h2>Scoala De Vara 2015</h2>
+							<BreadCrumb
+							className="align-center"
+							path={
+								[
+									{
+										path: '#/',
+										label: 'Acasă'
+									},
+									{
+										path: '#/schools',
+										label: 'Școlile AGA'
+									},
+									{
+										label: 'Sdv 2015'
+									}
+								]
+							} separatorChar={ <i style={{marginLeft: '10px', marginRight: '10px'}} className="fa fa-chevron-right"></i> } />
 						</header>
 					</div>
 				</section>

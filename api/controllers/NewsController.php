@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use components\RootUrlComponent;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -41,7 +42,7 @@ class NewsController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider
         ]);
     }
 
@@ -65,6 +66,7 @@ class NewsController extends Controller
     public function actionCreate()
     {
         $model = new News();
+        $model->scenario = 'create';
 
         if ($model->load(Yii::$app->request->post())) {  
             $model->image_url = UploadedFile::getInstance($model, 'image_url');
@@ -88,14 +90,31 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = 'update';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            // request deconstructor. Who the fuck writes a 34-long variable!?
+            $request = Yii::$app->request->post()['News'];
+
+            $model->title = $request['title'];
+            $model->body = $request['body'];
+            $model->active = $request['active'];
+            
+            if (!empty(Yii::$app->request->post('image_url')) && $model->image_url !== UploadedFile::getInstance($model, 'image_url')) {
+                $model->image_url = UploadedFile::getInstance($model, 'image_url');
+                if ($model->upload()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**

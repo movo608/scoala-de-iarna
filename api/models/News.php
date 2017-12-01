@@ -67,4 +67,17 @@ class News extends \yii\db\ActiveRecord
         }
         return false;
     }
+
+    /**
+     * Define scenarios
+     */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+
+        $scenarios['create'] = ['title', 'body', 'image_url', 'active'];
+        $scenarios['update'] = [];
+
+        return $scenarios;
+    }
 }

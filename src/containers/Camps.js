@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import BreadCrumb from 'react-breadcrumb'
 
 class Camps extends Component {
 	renderSchool(image, title, paraTitle, desc, link) {
@@ -30,8 +31,20 @@ class Camps extends Component {
 				<section id="One" className="wrapper style3">
 					<div className="inner">
 						<header className="align-center">
-							<p>Eleifend vitae urna</p>
 							<h2>Școlile Noastre</h2>
+							<BreadCrumb
+								className="align-center"
+								path={
+									[
+										{
+											path: '#/',
+											label: 'Acasă'
+										},
+										{
+											label: 'Școlile AGA'
+										}
+									]
+								} separatorChar={ <i style={{marginLeft: '10px', marginRight: '10px'}} className="fa fa-chevron-right"></i> } />
 						</header>
 					</div>
 				</section>

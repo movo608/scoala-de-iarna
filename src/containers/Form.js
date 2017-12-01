@@ -5,7 +5,7 @@ import _ from 'lodash'
 import $ from 'jquery'
 
 //import submit-form action
-import { sendForm, getWorkshops } from '../actions'
+import { sendForm } from '../actions'
 
 // import react select
 import Select from 'react-select'
@@ -66,10 +66,6 @@ class Form extends Component {
 		this.handleFutureChange = this.handleFutureChange.bind(this);
 		this.handleAgeChange = this.handleAgeChange.bind(this);
 	}
-
-	componentWillMount() {
-		this.props.getWorkshops();
-	}	
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.formResponse.sendForm.data !== 'no_request') {
@@ -382,14 +378,13 @@ class Form extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ sendForm, getWorkshops }, dispatch);
+	return bindActionCreators({ sendForm }, dispatch);
 }
 
 function mapStateToProps(state) {
 	return {
 		users: state.users,
-		formResponse: state.submitForm,
-		workshops: state.getWorkshops
+		formResponse: state.submitForm
 	};
 }
 

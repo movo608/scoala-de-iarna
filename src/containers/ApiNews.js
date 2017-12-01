@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ROOT_URL } from '../constants/ActionTypes'
 
 export default class ApiNews extends Component {
-	componentWillMount() {
+	componentDidMount() {
 		window.location = `${ROOT_URL}news`;
 	}
 
