@@ -54,5 +54,20 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "react-scripts test"
-  }
+  },
+  "description": "npm install\r npm start",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/movo608/scoala-de-iarna.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Molfenstein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/movo608/scoala-de-iarna/issues"
+  },
+  "homepage": "https://github.com/movo608/scoala-de-iarna#readme"
 }

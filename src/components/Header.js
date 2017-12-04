@@ -83,7 +83,7 @@ class Header extends Component {
 					<div className="logo"><Link to="/">Școala AGA <span>by Moldo</span></Link></div>
 					{ this.renderLogout() }
 					<button className="mobile-hidden" onClick={ () => this.openFrontendWindow() }>New Window</button>
-					<a href="#menu" className="toggle-menu">Menu</a>
+					<a href="#menu" className="toggle-menu">MENIU</a>
 				</header>
 				<nav id="menu">
 					{ this.renderAdminButtons(this.props.users.isLoggedIn) }
@@ -116,7 +116,7 @@ class Header extends Component {
 			<div>
 				<header id="header" className="">
 					<div className="logo"><Link to="/">Școala AGA <span>{ this.renderTime() }</span></Link></div>
-					<a href="#menu" className="toggle-menu">Menu</a>
+					<a href="#menu" className="toggle-menu">MENIU</a>
 				</header>
 				<nav id="menu" className="">
 					{ this.renderStaticNavigation() }					
