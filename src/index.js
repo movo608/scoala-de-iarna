@@ -14,11 +14,7 @@ import reducer from './reducers'
 import Login from './containers/Login'
 import Browse from './containers/Browse'
 import Form from './containers/Form'
-import CreateCategories from './containers/CreateCategories'
-import CreatePosts from './containers/CreatePosts'
 import CreateWorkshops from './containers/CreateWorkshops'
-import ViewCategories from './containers/ViewCategories'
-import ViewPosts from './containers/ViewPosts'
 import ViewWorkshops from './containers/ViewWorkshops'
 import ViewSubmissions from './containers/ViewSubmissions'
 import Contributors from './containers/Contributors'
@@ -37,14 +33,15 @@ import News from './containers/News'
 import NewsAll from './containers/NewsAll'
 import ApiSponsors from './containers/ApiSponsors'
 import ApiNews from './containers/ApiNews'
+import Blog from './containers/Blog'
 
 const middleware = applyMiddleware(thunkMiddleware);
 const customHistory = createHashHistory();
 
 const store = createStore (
     reducer,
-    middleware
-	//applyMiddleware(logger)
+    middleware,
+	applyMiddleware(logger)
 );
 
 render(
@@ -60,6 +57,7 @@ render(
 					<Route exact path='/schools' render={() => <LandingLayout><Camps /></LandingLayout>} />
 					<Route exact path='/news' render={() => <LandingLayout><NewsAll /></LandingLayout>} />
 					<Route exact path='/news/:id' render={(props) => <LandingLayout><News {...this.props} {...props}/></LandingLayout>} />
+					<Route exact path='/blog' render={() => <LandingLayout><Blog /></LandingLayout>} />
 
 					<Route exact path='/schools/sdv/2014' render={() => <LandingLayout><Sdv2014 /></LandingLayout>} />
 					<Route exact path='/schools/sdv/2015' render={() => <LandingLayout><Sdv2015 /></LandingLayout>} />
@@ -72,13 +70,9 @@ render(
 					<Route exact path='/login' render={() => <LandingLayout><Login /></LandingLayout>} />
 					<Route exact path='/admin' render={() => <LandingLayout><Browse /></LandingLayout>} />
 							  
-					<Route exact path='/create/category' render={() => <LandingLayout><CreateCategories /></LandingLayout>} />
 					<Route exact path='/create/contributor' render={() => <LandingLayout><CreateContributor /></LandingLayout>} />
-					<Route exact path='/create/post' render={() => <LandingLayout><CreatePosts /></LandingLayout>} />
 					<Route exact path='/create/workshop' render={() => <LandingLayout><CreateWorkshops /></LandingLayout>} /> 
 
-              	  	<Route exact path='/view/categories' render={() => <LandingLayout><ViewCategories /></LandingLayout>} />
-					<Route exact path='/view/posts' render={() => <LandingLayout><ViewPosts /></LandingLayout>} /> 
 					<Route exact path='/view/workshops' render={() => <LandingLayout><ViewWorkshops /></LandingLayout>} />
 					<Route exact path='/view/submissions' render={() => <LandingLayout><ViewSubmissions /></LandingLayout>} />
 					<Route exact path='/view/contributors' render={() => <LandingLayout><ViewContributors /></LandingLayout>} />

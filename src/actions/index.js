@@ -6,11 +6,9 @@ import {
  	USER_LOGOUT,
  	GET_LOGGED_NAVBAR,
     GET_POSTS,
-    GET_CATEGORIES,
-    CREATE_CATEGORY,
-    CREATE_POST,
     USER_STORE_LOGIN,
     SEND_FORM,
+    GET_CATEGORIES,
     GET_WORKSHOPS,
     CREATE_WORKSHOP,
     GET_SUBMISSIONS,
@@ -167,104 +165,6 @@ function dispatchFetchCategories(data) {
         type: GET_CATEGORIES,
         payload: data
     }
-}
-
-/**
- * Submits a created category
- */
-export function createCategory(values) {
-    return async (dispatch, getState) => {
-        await axios({
-            headers: { 
-                'content-type': 'application/json'
-            },
-            method: 'post',
-            url: `${ROOT_URL}api/create-category`,
-            params: {
-                name: values
-            }
-        }).then((response) => {
-            dispatch(dispatchCreateCategory(response.data));
-        });
-        
-    };
-}
-
-/**
- * Dispatches the created category towards the reducers
- */
-function dispatchCreateCategory(data) {
-    return {
-        type: CREATE_CATEGORY,
-        payload: data
-    };
-}
-
-/**
- * Deletes an entry from the database
- */
-export function deleteCategory(id) {
-    return async (dispatch, getState) => {
-        await axios({
-            headers: { 
-                'content-type': 'application/json'
-            },
-            method: 'post',
-            url: `${ROOT_URL}api/delete-category`,
-            params: {
-                id
-            }
-        });
-    };  
-}
-
-/**
- * Submits a created post
- */
-export function createPost(name, body, category_id, category_name) {
-    return async (dispatch, getState) => {
-        await axios({
-            headers: { 
-                'content-type': 'application/json'
-            },
-            method: 'post',
-            url: `${ROOT_URL}api/create-post`,
-            params: {
-                name,
-                body,
-                category_id,
-                category_name
-            }
-        }).then(response => dispatch(dispatchCreatePost(response)));
-    };
-}
-
-/**
- * Dispatches the created post towards the reducers
- */
-function dispatchCreatePost(data) {
-    return {
-        type: CREATE_POST,
-        payload: data
-    };
-}
-
-/**
- * Submits the deletion of a post
- */
-export function deletePost(id) {
-    return async (dispatch, getState) => {
-        await axios({
-            headers: { 
-                'content-type': 'application/json'
-            },
-            method: 'post',
-            url: `${ROOT_URL}api/delete-post`,
-            params: {
-                id
-            }
-        });
-    };  
 }
 
 /**

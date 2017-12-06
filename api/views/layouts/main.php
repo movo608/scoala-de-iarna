@@ -36,7 +36,9 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'News', 'url' => ['/news']],
-            ['label' => 'Sponsors', 'url' => ['/sponsors']]
+            ['label' => 'Sponsors', 'url' => ['/sponsors']],
+            ['label' => 'Posts Categories', 'url' => ['/posts-categories']],
+            ['label' => 'Posts', 'url' => ['/posts']]
         ]
     ]);
     NavBar::end();
