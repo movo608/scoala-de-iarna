@@ -55,4 +55,26 @@ class Posts extends \yii\db\ActiveRecord
             'image2' => 'Image2',
         ];
     }
+
+    /**
+     * Uploads the image to the server and saves the path into the database
+     */
+    public function upload()
+    {
+        $time = time();
+        if ($this->validate()) {
+            //saves image1
+            $this->image1->saveAs('uploads/' . 'file_image_type' . $time . '.' . $this->image1->extension);
+            $this->image1 = 'file_image_type' . $time . '.' . $this->image1->extension;
+
+            //saves image2
+            $this->image2->saveAs('uploads/' . 'file_image_type' . $time . '.' . $this->image2->extension);
+            $this->image2 = 'file_image_type' . $time . '.' . $this->image2->extension;
+
+            if ($this->save(false)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

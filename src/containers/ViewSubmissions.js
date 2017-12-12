@@ -70,7 +70,7 @@ class ViewSubmissions extends Component {
 							<h3>Workshop: { it.workshop }</h3>
 						</div>
 						<div className="12u 12u$(medium)">
-							<h3>Facebook link: <a href={'https://' + it.facebook_link }>{ it.name }</a></h3>
+							<h3>Facebook link: <a href={ it.facebook_link }>{ it.name }</a></h3>
 						</div>
 						<div className="12u 12u$(medium)">
 							<h3>Descoperire: { it.found_out }</h3>

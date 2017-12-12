@@ -25,9 +25,9 @@ use app\models\PostsCategories;
 
     <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'image1')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image1')->fileInput() ?>
 
-    <?= $form->field($model, 'image2')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image2')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
