@@ -27,21 +27,29 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    NavBar::begin([
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'News', 'url' => ['/news']],
-            ['label' => 'Sponsors', 'url' => ['/sponsors']],
-            ['label' => 'Posts Categories', 'url' => ['/posts-categories']],
-            ['label' => 'Posts', 'url' => ['/posts']]
-        ]
-    ]);
-    NavBar::end();
+        if (!Yii::$app->session['showNavbar'] === false):
+    ?>
+
+        <?php
+            NavBar::begin([
+                'options' => [
+                    'class' => 'navbar-inverse navbar-fixed-top',
+                ],
+            ]);
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => [
+                    ['label' => 'News', 'url' => ['/news']],
+                    ['label' => 'Sponsors', 'url' => ['/sponsors']],
+                    ['label' => 'Posts Categories', 'url' => ['/posts-categories']],
+                    ['label' => 'Posts', 'url' => ['/posts']]
+                ]
+            ]);
+            NavBar::end();
+        ?>
+
+    <?php
+        endif;
     ?>
 
     <div class="container">

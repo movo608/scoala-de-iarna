@@ -1,6 +1,6 @@
 // set default URL for API
-//export const ROOT_URL = 'http://127.0.0.1/scoala-de-iarna/api/web/'
-export const ROOT_URL = 'http://api.scoala-aga.ro/web/'
+export const ROOT_URL = 'http://127.0.0.1/scoala-de-iarna/api/web/'
+//export const ROOT_URL = 'http://api.scoala-aga.ro/web/'
 
 // set default URLs for frontend and backend
 export const ROOT_FRONTEND = 'http://www.scoala-aga.ro/'

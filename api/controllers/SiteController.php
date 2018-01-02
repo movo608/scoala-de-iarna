@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
+use yii\web\HttpException;
 
 class SiteController extends Controller
 {
@@ -61,6 +63,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if ($this->findUser()) {
+            return $this->render('index');
+        }
+
+        Yii::$app->session['showNavbar'] = false;
+
+        $errorMessage = 'You are not allowed to visit this page. Please login at www.scoala-aga.ro/#/login.';
+        throw new HttpException(403, $errorMessage);
+    }
+
+    /**
+     * Checks if there are any users logged into the database
+     * 
+     * @return string
+     */
+    private function findUser()
+    {
+        return User::findOne(['is_logged' => 1]) ? true : false;
     }
 }
