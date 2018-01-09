@@ -44,7 +44,8 @@ class Camps extends Component {
 											label: 'Școlile AGA'
 										}
 									]
-								} separatorChar={ <i style={{marginLeft: '10px', marginRight: '10px'}} className="fa fa-chevron-right"></i> } />
+								}
+								separatorChar={ <i style={{marginLeft: '10px', marginRight: '10px'}} className="fa fa-chevron-right"></i> } />
 						</header>
 					</div>
 				</section>

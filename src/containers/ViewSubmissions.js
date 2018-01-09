@@ -52,26 +52,27 @@ class ViewSubmissions extends Component {
 				<li key={ it.id }>
 					<div className="uniform">
 						<div className="12u 12u$(medium)">
-							<h3>Name: { it.name }</h3>
+							<h5>Name: { it.name }</h5>
 						</div>
 						<div className="12u 12u$(medium)">
-							<h3>Time of Birth: { it.age }</h3>
+							<h5>Time of Birth: { it.age }</h5>
 						</div>
 						<div className="12u 12u$(medium)">
-							<h3>Email: { it.email }</h3>
+							<h5>Email: { it.email }</h5>
 						</div>
 						<div className="12u 12u$(medium)">
-							<h3>City: { it.city }</h3>
+							<h5>City: { it.city }</h5>
 						</div>
 						<div className="12u 12u$(medium)">
-							<h3>Region: { it.region }</h3>
+							<h5>Region: { it.region }</h5>
 						</div>
+						{/*<div className="12u 12u$(medium)">
+							<h5>Workshop: { it.workshop }</h5>
+						</div>*/}
 						<div className="12u 12u$(medium)">
-							<h3>Workshop: { it.workshop }</h3>
+							<h5>Facebook link: <a href={ it.facebook_link }>{ it.name }</a></h5>
 						</div>
-						<div className="12u 12u$(medium)">
-							<h3>Facebook link: <a href={ it.facebook_link }>{ it.name }</a></h3>
-						</div>
+						{ /*
 						<div className="12u 12u$(medium)">
 							<h3>Descoperire: { it.found_out }</h3>
 						</div>
@@ -117,6 +118,7 @@ class ViewSubmissions extends Component {
 								{ it.future_view }
 							</p>
 						</div>
+						*/}
 						<button className="12u 12u$(medium)" ref="btn" onClick={() => this.submitDeletion(it.id) }>Remove</button>
 					</div>
 				</li>
@@ -136,6 +138,7 @@ class ViewSubmissions extends Component {
 							</header>
 							<button style={{ marginRight: '10px' }} onClick={ () => this.refreshSubmissions() }>Refresh</button>
 							<button onClick={ () => this.openExportWindow() }>Export to Excel</button>
+							<code className="pull-right">Showing <span style={{ color: 'green' }}>{ _.map(this.props.submissions).length }</span> results.</code>
 							<hr />
 							<ul className="alt categories-list uniform">
 								{ this.renderSubmissions() }
