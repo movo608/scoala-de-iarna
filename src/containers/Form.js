@@ -309,7 +309,7 @@ class Form extends Component {
 					</div>
 				);
 			} else {
-				this.scrollToTop();
+				this.scrollToTop(2000);
 				return (
 					<div className="alert-danger">
 						<strong>Error!</strong> The Facebook link has already been provided.
