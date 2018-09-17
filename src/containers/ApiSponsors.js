@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { ROOT_URL } from '../constants/ActionTypes'
+import { createHashHistory } from 'history'
+
+const customHistory = createHashHistory();
 
 export default class ApiSponsors extends Component {
 	componentWillMount() {
-		window.location = `${ROOT_URL}sponsors`;
+		window.open(`${ROOT_URL}sponsors`);
+		customHistory.push('/');
 	}
 
 	render() {

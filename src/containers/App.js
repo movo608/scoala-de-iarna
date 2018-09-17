@@ -98,7 +98,7 @@ class App extends  Component {
 							<h2 style={{ fontStyle: 'italic' }}>Scriem împreună cel de-al III-lea capitol al Școlii de Iarnă!</h2>
 						</header>
 
-						<div className="box" style={{ backgroundColor: 'yellow' }}>
+						<div className="box" style={{ backgroundColor: '#FFDFAA' }}>
 							<div className="content">
 								<header className="align-center">
 									<p className="special">Cele mai noi anunțuri</p>
@@ -112,7 +112,7 @@ class App extends  Component {
 						</div>
 
 						<div className="box">
-							<div className="content">
+							<div className="content" style={{textAlign: 'center'}}>
 								<div className="row 200%">
 									<div className="when 6u 12u$(medium)">
 										<h3>Când?</h3>
